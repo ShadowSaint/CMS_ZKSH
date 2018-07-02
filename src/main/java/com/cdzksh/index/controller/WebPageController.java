@@ -12,4 +12,9 @@ public class WebPageController {
     public String index(){
         return "index";
     }
+
+    @RequestMapping("/template")
+    public String template(){
+        return "template";
+    }
 }
