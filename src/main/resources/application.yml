@@ -28,3 +28,14 @@ spring:
      username: root
      password: Grq1994711
      driver-class-name: com.mysql.jdbc.Driver
+
+  devtools:
+      restart:
+      #热部署生效
+      enabled: true
+      #设置重启的目录
+      additional-paths: resources/**,static/**,templates/**
+      #classpath目录下的WEB-INF文件夹内容修改不重启
+      exclude: data/**
+  thymeleaf:
+    cache: false
