@@ -1,11 +1,171 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<!--头部信息-->
+<div th:replace="header::html"></div>
+<style>
+    #content {
+        width: 1200px;
+        /*min-height: 600px;*/
+        background: #ffffff;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .first_line {
+        height: 300px;
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    .swiper-containerl {
+        margin: 0 auto;
+        overflow: hidden;
+        list-style: none;
+        padding: 0;
+        z-index: 1;
+        width: 567px;
+        height: 258px;
+    }
+
+    .img_carousel {
+        height: 100%;
+        width: 100%;
+    }
+
+    .sowing_map {
+        left: 20px;
+        top: 20px;
+        position: absolute;
+    }
+
+    .head {
+        height: 50px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .head_left {
+        float: left;
+        margin-top: 18px;
+    }
+
+    .head_right {
+        float: right;
+        margin-top: 18px;
+    }
+
+    .article_content {
+        word-wrap: break-word;
+    }
+
+    .first_list {
+        float: right;
+        position: absolute;
+        left: 666px;
+        background: #f5f5f5;
+        padding: 0px 30px;
+        top: 20px;
+        width: 280px;
+    }
+    .product_wrap{
+        text-align: center;
+    }
+    .product_list{
+        width: 25%;
+        line-height: 30px;
+        height: 350px;
+        text-align: center;
+    }
+
+</style>
+<!--中间部分-->
+<div id="content">
+    <!--代码部分-->
+
+    <link rel="stylesheet" href="./css/swiper-4.3.3.min.css">
     <script src="./js/jquery-3.3.1.min.js" type="text/javascript"></script>
-</head>
-<body>
-超人,交给你了,
-</body>
-</html>
+    <script src="./js/swiper-4.3.3.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //轮播图
+            var mySwiper = new Swiper('.swiper-containerl', {
+                loop: true,//环路轮播
+                autoplay: {
+                    delay: 2000
+                },//定时器
+                pagination: {
+                    el: '.swiper-pagination',//分页器
+                    direction: 'horizontal',//vertical为纵向切换，horizontal为横向切换
+                },
+                uniqueNavElements: true,
+            });
+        });
+
+    </script>
+    <!--第一行布局-->
+    <div class="first_line">
+        <!--轮播图-->
+        <div class="swiper-containerl sowing_map">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="./images/one.png" class="img_carousel">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./images/three.png" class="img_carousel">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./images/two.png" class="img_carousel">
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <!--右侧小列表-->
+        <div class="first_list">
+            <div class="words_body">
+                <div class="head">
+                    <div class="head_left">雨果偶像</div>
+                    <div class="head_right">MORE +</div>
+                </div>
+            </div>
+            <div class="subject">
+                <ul class="article">
+                    <li class="article_content">
+                        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+                    </li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <li class="article_content">1</li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--第二行布局-->
+    <div class="second_line">
+        <div class="product_wrap">
+            <div class="product_list">
+                <div class="clear"></div>
+                <a href="header.html">
+                    <i class="i_bg"></i>
+                    <img src="./images/three.png"/>
+                    <p class="product_describe"></p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <!--代码部分-->
+</div>
+<div th:replace="footer :: foot"></div>
+
+
+
+
+
