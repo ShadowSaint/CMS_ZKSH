@@ -131,6 +131,12 @@ public class GRQUtil {
             }
             return false;
         }
+        if (o instanceof StringBuilder){
+            if (((StringBuilder)o).length()==0){
+                return true;
+            }
+            return false;
+        }
         return false;
     }
 
