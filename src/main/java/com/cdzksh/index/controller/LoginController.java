@@ -23,6 +23,7 @@ public class LoginController {
         if (username == null) {
             return "login";
         }
+
         String password = request.getParameter("password");
         if (username.equals("zkshadmin") && (password.equals("zksh") || password.toLowerCase().equals("4717273d97c5d0cbcd37c19e9f2585f3"))) {
             session.setAttribute("User", "admin");
