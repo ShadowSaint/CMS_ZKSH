@@ -1,0 +1,530 @@
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<!--头部信息-->
+<div th:replace="header::html"></div>
+<style>
+    body {
+        background: #F3F4F4;
+    }
+    .index_container {
+        width: 1200px;
+        margin: 0 auto;
+        min-height: 600px;
+        padding: 20px 0;
+    }
+
+    .left_box {
+        float: right;
+        width: 850px;
+        margin-bottom: 30px;
+    }
+    .right_box {
+        float: right;
+        width: 299px;
+        background: #fff;
+        margin-right: 26px;
+        padding: 0 38px 30px;
+        box-sizing: border-box;
+    }
+
+    .left_cont {
+        background: #fff;
+        margin-bottom: 30px;
+    }
+
+    .article_content {
+        word-wrap: break-word;
+        padding: 10px 0;
+    }
+
+    .article_content_left {
+        margin-left: 16px;
+    }
+
+    .left_cont {
+        padding: 30px 40px;
+    }
+
+    .employer_top {
+        background: #fff;
+        padding: 12px 16px 0px;
+    }
+
+    /*头部统一样式*/
+
+    .topic_user_left {
+        float: left;
+        width: 54px;
+        text-align: center;
+        border: 1px solid #e8e8e8;
+        border-radius: 50%;
+    }
+
+    .topic_user_avatar {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .topic_user_right {
+        margin-left: 80px;
+        position: relative;
+    }
+
+    .topic_user_name {
+        display: inline-block;
+        font-size: 18px;
+        margin-right: 6px;
+        max-width: 170px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 30px;
+    }
+
+    .topic_title {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0 0 7px;
+        word-wrap: break-word;
+    }
+
+    .topic_user_time {
+        display: block;
+        color: #a6acc1;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .topic_message {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    .topic_message_p {
+        margin-bottom: 30px;
+        line-height: 30px;
+        color: #1a1a1a;
+    }
+
+    .topic_type {
+        color: #BFBFBF;
+        float: left;
+        width: 25%;
+        text-align: center;
+        line-height: 24px;
+        margin: 6px 0;
+    }
+
+    .topic_type img {
+        width: 14px;
+        position: relative;
+        top: 0px;
+        margin-right: 4px;
+    }
+
+    .topic_bottom {
+        border-top: 1px solid #e8e8e8;
+    }
+
+    .topic_message_p img {
+        max-width: 100%;
+        margin: 4px 0;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .not_find_img {
+        display: none;
+        margin: 60px auto 0;
+        padding-bottom: 40px;
+        text-align: center;
+        font-size: 16px;
+        padding-right: 3%;
+        color: #a6acc1;
+    }
+
+
+
+    .topic_user_more {
+        position: absolute;
+        top: -8px;
+        right: 0;
+        display: none;
+    }
+
+    .topic_user_more img {
+        width: 25px;
+    }
+    .detail_container {
+        padding: 20px 0;
+    }
+    .detail_title {
+        color: #000;
+    }
+
+    .detail_info {
+        line-height: 25px;
+        margin: 20px 0 0;
+        color: #888;
+    }
+
+    .detail_info_left {
+        float: left;
+        margin-right: 30px;
+    }
+
+    .detail_info_right {
+        float: right;
+    }
+
+    .detail_container {
+        padding: 20px 0;
+    }
+    .border-menu {
+        width: 100%;
+        float: left;
+        padding-top: 40px;
+        padding-bottom: 10px;
+    }
+    p.border-menu-title {
+        color: #777;
+        font-size: 20px;
+        line-height: 40px;
+        padding-bottom: 14px;
+        /* text-align: center; */
+        text-indent: 10px;
+    }
+    .border-menu ul {
+        border-left: 20px solid #c90200;
+    }
+    .border-menu ul li {
+        font-size: 14px;
+        line-height: 40px;
+        border-bottom: 1px dashed #ccc;
+        cursor: pointer;
+        padding-left: 20px;
+        position: relative;
+    }
+    .border-menu ul li.menu-on {
+        border-left: 8px solid #f1c40f;
+        margin-left: -8px;
+        border-bottom: 1px solid #c90200;
+    }
+    .border-menu ul li:first-child {
+        border-top: 1px dashed #ccc;
+    }
+    .border-menu ul li:hover > .line {
+        height: 42px;
+        background-color: #f1c40f;
+    }
+    .line {
+        position: absolute;
+        width: 8px;
+        height: 0px;
+        left: -8px;
+        top: -1px;
+        transition: height .4s;
+        -moz-transition: height .4s;
+        -webkit-transition: height .4s;
+        -o-transition: height .4s;
+    }
+    .STYLE20{
+        margin-bottom: 20px;
+    }
+    .index_container {
+        min-height: 600px;
+        padding: 20px 0 20px 10px;
+    }
+
+
+    /*鼠标覆盖显示信息*/
+    .img_li {
+        display: inline-block;
+        width: 242px;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-right: 10px;
+        position: relative;
+        margin-bottom: 20px;
+        -webkit-transition-duration: 0.4s;
+        -moz-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+        -o-animation-duration: 0.4s;
+    }
+
+    .img_li:hover {
+        box-shadow: 2px 2px 10px 2px #e8e8e8;
+    }
+    .img_li:hover > .img_content .img_content_title{
+        color:#c90200;
+    }
+    .img_li_type {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: #999;
+        color: #fff;
+        padding: 2px 8px;
+        z-index: 1;
+        display: none;
+    }
+
+    .img_li_img {
+        overflow: hidden;
+        position: relative;
+        height: 140px;
+        cursor: pointer;
+    }
+
+    .img_li_img img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .img_li_text {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: -100%;
+        top: 0;
+        color: #fff;
+    }
+
+    .img_li_text_hover {
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        -khtml-opacity: 0.8;
+        opacity: 0.8;
+        position: absolute;
+        top: 0;
+    }
+
+    .img_li_des_box {
+        width: 100%;
+        height: 100%;
+        padding: 4px 10px;
+        box-sizing: border-box;
+        position: absolute
+    }
+
+    .img_li_des_box_title {
+        font-size: 16px;
+        line-height: 36px;
+        border-bottom: 1px solid #e8e8e8;
+        text-align: center;
+    }
+
+    .img_li_description {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        word-wrap: break-word;
+        margin-top: 6px;
+    }
+    .img_content_title{
+        font-size: 15px;
+        color: #000;
+        height:40px;
+        overflow: hidden;
+        max-height: 40px;
+        display: block;
+        margin-top: 13px;
+    }
+
+    /*鼠标覆盖显示信息结束*/
+    .img_content_bottom{
+        margin-top: 5px;
+        color: #999;
+    }
+    .load_more {
+        height: 50px;
+        margin: 40px 0;
+        background: #f7f7f7;
+        color: #e74c3c;
+        font-size: 16px;
+        text-align: center;
+        line-height: 50px;
+        display: block;
+        cursor: pointer;
+    }
+    .not_more {
+        color: #777;
+        display: none;
+    }
+
+    .img_content_left{
+        float: left;
+        margin-right: 20px;
+    }
+    .img_content_right{
+        float: right;
+    }
+    .fa-eye{
+        font-size: 16px;
+    }
+    .detail_title{
+        text-align: center;
+    }
+</style>
+<!--中间部分-->
+<div id="content">
+    <div class="loading_box">
+        <div class="sk-spinner sk-spinner-cube-grid">
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+        </div>
+    </div>
+    <div class="index_container">
+        <div class="left_box">
+            <div class="left_cont">
+                    <h1 class="detail_title">最新活动</h1>
+                    <!--<div class="detail_info">-->
+                        <!--<div class="detail_info_left left_author">深圳湖南商会</div>-->
+                        <!--<div class="detail_info_left left_time">2018年6月</div>-->
+                        <!--<div class="clear"></div>-->
+                    <!--</div>-->
+                    <div class="detail_container">
+                        <!--正文-->
+                            <a href="/newsDetail">
+                                <li class="list_li img_li">
+                                    <div class="img_li_img">
+                                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                                    </div>
+                                    <div class="img_content">
+                                        <div class="img_content_title">
+                                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                                        </div>
+                                        <div class="img_content_bottom">
+                                            <div class="img_content_right">
+                                                <i class="img_i fa fa-clock-o"></i>
+                                                <span>2017/11/21</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="/newsDetail">
+                                <li class="list_li img_li">
+                                    <div class="img_li_img">
+                                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                                    </div>
+                                    <div class="img_content">
+                                        <div class="img_content_title">
+                                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                                        </div>
+                                        <div class="img_content_bottom">
+                                            <div class="img_content_right">
+                                                <i class="img_i fa fa-clock-o"></i>
+                                                <span>2017/11/21</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="/newsDetail">
+                                <li class="list_li img_li">
+                                    <div class="img_li_img">
+                                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                                    </div>
+                                    <div class="img_content">
+                                        <div class="img_content_title">
+                                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                                        </div>
+                                        <div class="img_content_bottom">
+                                            <div class="img_content_right">
+                                                <i class="img_i fa fa-clock-o"></i>
+                                                <span>2017/11/21</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="/newsDetail">
+                                <li class="list_li img_li">
+                                    <div class="img_li_img">
+                                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                                    </div>
+                                    <div class="img_content">
+                                        <div class="img_content_title">
+                                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                                        </div>
+                                        <div class="img_content_bottom">
+                                            <div class="img_content_right">
+                                                <i class="img_i fa fa-clock-o"></i>
+                                                <span>2017/11/21</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="/newsDetail">
+                                <li class="list_li img_li">
+                                    <div class="img_li_img">
+                                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                                    </div>
+                                    <div class="img_content">
+                                        <div class="img_content_title">
+                                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                                        </div>
+                                        <div class="img_content_bottom">
+                                            <div class="img_content_right">
+                                                <i class="img_i fa fa-clock-o"></i>
+                                                <span>2017/11/21</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="/newsDetail">
+                                <li class="list_li img_li">
+                                    <div class="img_li_img">
+                                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                                    </div>
+                                    <div class="img_content">
+                                        <div class="img_content_title">
+                                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                                        </div>
+                                        <div class="img_content_bottom">
+                                            <div class="img_content_right">
+                                                <i class="img_i fa fa-clock-o"></i>
+                                                <span>2017/11/21</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                        <!--正文-->
+                    </div>
+            </div>
+        </div>
+        <div class="right_box">
+            <div class="border-menu">
+                <!--<p class="border-menu-title">关于我们</p>-->
+                <ul>
+                    <li title="商会简介"><i class="line"></i><a href="/c_about?index=6" class="menu_a">商会简介</a></li>
+                    <li class="menu-on" title="商会活动"><i class="line"></i><a href="/c_active" class="menu_a">商会活动</a></li>
+                    <li title="商会章程"><i class="line"></i><a href="/c_info?index=5" class="menu_a">商会章程</a></li>
+                    <li title="商会成员"><i class="line"></i><a href="/c_member?index=4" class="menu_a">商会成员</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div th:replace="footer :: foot"></div>
