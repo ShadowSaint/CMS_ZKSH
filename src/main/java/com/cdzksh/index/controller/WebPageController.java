@@ -57,9 +57,5 @@ public class WebPageController {
     public String manageHeader(){
         return "manage_header";
     }
-    //登录页面
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }
+
 }
