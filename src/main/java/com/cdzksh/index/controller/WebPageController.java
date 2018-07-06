@@ -52,4 +52,14 @@ public class WebPageController {
     public String newsDetail(){
         return "news_detail";
     }
+    //后台管理页面
+    @RequestMapping("/manage_header")
+    public String manageHeader(){
+        return "manage_header";
+    }
+    //登录页面
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
 }
