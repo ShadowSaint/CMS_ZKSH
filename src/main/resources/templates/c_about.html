@@ -1,0 +1,299 @@
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<!--头部信息-->
+<div th:replace="header::html"></div>
+<style>
+    body {
+        background: #F3F4F4;
+    }
+    .index_container {
+        width: 1200px;
+        margin: 0 auto;
+        min-height: 600px;
+        padding: 20px 0;
+    }
+
+    .left_box {
+        float: right;
+        width: 850px;
+        margin-bottom: 30px;
+    }
+    .right_box {
+        float: right;
+        width: 299px;
+        background: #fff;
+        margin-right: 26px;
+        padding: 0 38px 30px;
+        box-sizing: border-box;
+    }
+
+    .left_cont {
+        background: #fff;
+        margin-bottom: 30px;
+    }
+
+    .article_content {
+        word-wrap: break-word;
+        padding: 10px 0;
+    }
+
+    .article_content_left {
+        margin-left: 16px;
+    }
+
+    .left_cont {
+        padding: 30px 40px;
+    }
+
+    .employer_top {
+        background: #fff;
+        padding: 12px 16px 0px;
+    }
+
+    /*头部统一样式*/
+
+    .topic_user_left {
+        float: left;
+        width: 54px;
+        text-align: center;
+        border: 1px solid #e8e8e8;
+        border-radius: 50%;
+    }
+
+    .topic_user_avatar {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .topic_user_right {
+        margin-left: 80px;
+        position: relative;
+    }
+
+    .topic_user_name {
+        display: inline-block;
+        font-size: 18px;
+        margin-right: 6px;
+        max-width: 170px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 30px;
+    }
+
+    .topic_title {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0 0 7px;
+        word-wrap: break-word;
+    }
+
+    .topic_user_time {
+        display: block;
+        color: #a6acc1;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .topic_message {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    .topic_message_p {
+        margin-bottom: 30px;
+        line-height: 30px;
+        color: #1a1a1a;
+    }
+
+    .topic_type {
+        color: #BFBFBF;
+        float: left;
+        width: 25%;
+        text-align: center;
+        line-height: 24px;
+        margin: 6px 0;
+    }
+
+    .topic_type img {
+        width: 14px;
+        position: relative;
+        top: 0px;
+        margin-right: 4px;
+    }
+
+    .topic_bottom {
+        border-top: 1px solid #e8e8e8;
+    }
+
+    .topic_message_p img {
+        max-width: 100%;
+        margin: 4px 0;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .not_find_img {
+        display: none;
+        margin: 60px auto 0;
+        padding-bottom: 40px;
+        text-align: center;
+        font-size: 16px;
+        padding-right: 3%;
+        color: #a6acc1;
+    }
+
+
+
+    .topic_user_more {
+        position: absolute;
+        top: -8px;
+        right: 0;
+        display: none;
+    }
+
+    .topic_user_more img {
+        width: 25px;
+    }
+    .detail_container {
+        padding: 20px 0;
+        font-size: 18px;
+        font-family: cursive;
+    }
+    .detail_title {
+        color: #000;
+    }
+
+    .detail_info {
+        line-height: 25px;
+        margin: 20px 0 0;
+        color: #888;
+    }
+
+    .detail_info_left {
+        float: left;
+        margin-right: 30px;
+    }
+
+    .detail_info_right {
+        float: right;
+    }
+
+    .detail_container {
+        padding: 20px 0;
+    }
+    .border-menu {
+        width: 100%;
+        float: left;
+        padding-top: 40px;
+        padding-bottom: 10px;
+    }
+    p.border-menu-title {
+        color: #777;
+        font-size: 20px;
+        line-height: 40px;
+        padding-bottom: 14px;
+        /* text-align: center; */
+        text-indent: 10px;
+    }
+    .border-menu ul {
+        border-left: 20px solid #c90200;
+    }
+    .border-menu ul li {
+        font-size: 14px;
+        line-height: 40px;
+        border-bottom: 1px dashed #ccc;
+        cursor: pointer;
+        padding-left: 20px;
+        position: relative;
+    }
+    .border-menu ul li.menu-on {
+        border-left: 8px solid #f1c40f;
+        margin-left: -8px;
+        border-bottom: 1px solid #c90200;
+    }
+    .border-menu ul li:first-child {
+        border-top: 1px dashed #ccc;
+    }
+    .border-menu ul li:hover > .line {
+        height: 42px;
+        background-color: #f1c40f;
+    }
+    .line {
+        position: absolute;
+        width: 8px;
+        height: 0px;
+        left: -8px;
+        top: -1px;
+        transition: height .4s;
+        -moz-transition: height .4s;
+        -webkit-transition: height .4s;
+        -o-transition: height .4s;
+    }
+    .STYLE31{
+       line-height: 30px;
+    }
+    .detail_title{
+        text-align: center;
+    }
+
+</style>
+<!--中间部分-->
+<div id="content">
+    <div class="loading_box">
+        <div class="sk-spinner sk-spinner-cube-grid">
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+        </div>
+    </div>
+    <div class="index_container">
+        <div class="left_box">
+            <div class="left_cont">
+                    <h1 class="detail_title">深圳市湖南商会简介</h1>
+                    <!--<div class="detail_info">-->
+                    <!--<div class="detail_info_left left_author">深圳湖南商会</div>-->
+                    <!--<div class="detail_info_left left_time">2018年6月</div>-->
+                    <!--<div class="clear"></div>-->
+                    <!--</div>-->
+                    <div class="detail_container">
+                        <!--正文-->
+                        <td><p class="style4">
+                            <p class="STYLE31">&nbsp;&nbsp;深圳市湖南商会成立于1989年4月，是在深圳市民政局依法登记的社团法人。目前有会员企业400余家，涉及近百个行业。商会依照章程独立自主地开展活动。<br>
+                                <br>
+                                &nbsp;&nbsp;商会成立以来，坚持全心全意为会员服务的宗旨，积极为会员提供信息、法律咨询、管理咨询、政企沟通和商务合作等方面的服务，较好的发挥了商会作为“政府之助、企业之家、会员之友”应有的作用。紧紧围绕会员需求，商会开展一系列活动，包括组织项目考察、文体竞赛、知识讲座、资源对接、联谊晚会等，以加强联系、优势互补、互通信息、促进共同发展和维护会员合法权益为主要目的，获得了会员企业的广泛好评。<br>
+                                <br>
+                                &nbsp;&nbsp;商会依靠自身富有成效的工作，很好的凝聚了广大会员企业和湘籍企业家，在深圳当地社会的知名度和影响力不断提升。商会长期以来不仅成为湖南招商引资的一个良好平台，而且利用自身多方面的优势，努力促进湘深合作，有力支持了湖南的劳务输出、扶贫、希望工程及其他社会公益事业，发挥了十分积极的作用，得到了湘深两地政府部门的充分肯定。  连续十余年被湖南省经济技术协作办公室评为“湖南异地商会工作先进单位”，被湖南省委省政府评为“兴湘贡献奖”。2013年12月，在深圳市社会组织评估等级中被深圳市民政局评为“4A”级社会组织。<br>
+                                <br>
+                                &nbsp;&nbsp;商会在不断发展壮大的同时，注重党建的引领作用。2011年3月25日，中共深圳市湖南商会委员会成立。 2016年2月份，按照深圳市委及相关文件要求，商会党委整建制转入深圳市社会组织党委，成为市社会组织党委直属党委。目前，商会党委共统筹管辖8个党支部，分别是深圳市湖南商会机关联合党支部、深圳市湖南娄底商会党支部、深圳市益阳商会党支部、深圳市张家界商会党支部、深圳市湖南攸县商会党支部、深圳市岳阳商会党支部、深圳市坪山家私企业党支部、深圳市湖南株洲商会党支部。商会党委曾被深圳市直机关工委评为2010-2012年工委系统创优争先活动“优秀党建工作示范点”。2016年“7·1”表彰大会上，商会党委书记谢新康同志被中共深圳市委评为“优秀党务工作者”。<br>
+                                <br>
+                                &nbsp;&nbsp;三十年风雨兼程，商会稳步发展，逐步与国际接轨，初步建立了独立性、自主性、自律性、服务性机制模式。特别是近年来，商会在信息交流、企业维权、商务合作等方面为会员作出的大量艰辛细致工作得到党政高层人士、社会各界朋友的肯定和赞许，原全国人大常委会副委员长周光召，原全国政协副主席毛致用，清朝末代皇帝傅仪的弟弟、蜚声中外的书法大师傅颜.爱新觉罗，国画大师、中央紫光阁书院院士、享受国务院政府特殊津贴画家、一级美术师方国兴等同志为商会亲笔题词或欣然作画，高度评价商会的社会功效和独特价值。我们深信，在社会各界人士的关心和指导下，在广大在深湘籍企业家的帮助和支持下，商会将越办越红火、越办越兴旺、越办越强大。</p>
+                            <p class="STYLE32">&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p><br>
+                                <br>
+                            </p></td>
+                        <!--正文-->
+                    </div>
+            </div>
+        </div>
+        <div class="right_box">
+            <div class="border-menu">
+                <!--<p class="border-menu-title">关于我们</p>-->
+                <ul>
+                    <li class="menu-on" title="商会简介"><i class="line"></i><a href="/c_about?index=6" class="menu_a">商会简介</a></li>
+                    <li title="商会活动"><i class="line"></i><a href="/c_active" class="menu_a">商会活动</a></li>
+                    <li title="商会章程"><i class="line"></i><a href="/c_info?index=5" class="menu_a">商会章程</a></li>
+                    <li title="商会成员"><i class="line"></i><a href="/c_member?index=4" class="menu_a">商会成员</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div th:replace="footer :: foot"></div>
