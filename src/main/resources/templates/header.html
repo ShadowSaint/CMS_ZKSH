@@ -12,9 +12,10 @@
     <script src="./js/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="./js/style.js" type="text/javascript"></script>
     <style type="text/css">
-        body{
+        body {
             background: #fff;
         }
+
         .head_box {
             box-shadow: 2px 2px 10px 2px #e8e8e8;
             background: #fff;
@@ -32,8 +33,7 @@
             float: left;
         }
 
-
-        .css_li{
+        .css_li {
             font-size: 14px;
             color: #555;
             float: left;
@@ -43,9 +43,11 @@
             box-sizing: border-box;
             position: relative;
         }
-        .css_li:hover{
+
+        .css_li:hover {
             color: #c90200;
         }
+
         .logo_box {
             float: left;
             line-height: 82px;
@@ -68,36 +70,75 @@
 
         .bottom_container {
             background: #f7f7f7;
-            height: 120px;
+            /*height: 120px;*/
+        }
+
+        .bottom_container_box {
+            background: #d7d7d7;
         }
 
         .bottom_container_copy {
-            background: #d7d7d7;
+            background: #333333;
             padding: 10px 0;
             text-align: center;
             font-size: 12px;
             color: #999;
         }
 
+        .bottom_container_address {
+
+        }
+
+        .address_contact {
+            padding: 20px 30px;
+        }
+
         .statement_li {
             list-style-type: none;
             float: left;
-            padding: 30px;
+            padding: 20px;
             color: #999;
             font-size: 13px;
         }
+        .bottom_container_address{
+            margin: 0px auto;
+            width: 1000px;
+        }
 
-        .statement_li:hover{
+        .cooperate_li {
+            list-style-type: none;
+            float: left;
+            padding: 20px;
+            color: #777;
+        }
+        .cooperate_li2 {
+            list-style-type: none;
+            float: left;
+            padding: 20px;
+            color: #777;
+        }
+
+        .cooperate_li:hover {
             color: #c90200;
         }
+        .address_contact{
+            padding: 10px 21px 2px;
+        }
+
+        .statement_li:hover {
+            color: #c90200;
+        }
+
         .box_ul {
             margin: 0px auto;
             width: 850px;
         }
-        .loading_box{
+
+        .loading_box {
             display: none;
         }
-        .active_li{
+
+        .active_li {
             color: #c90200;
         }
 
@@ -232,7 +273,8 @@
             loadMenu()
         })
         var url_index = GetQueryString('index');
-        function loadMenu(){
+
+        function loadMenu() {
             $('.css_li').removeClass('active_li');
             $('.css_li').eq(url_index).addClass('active_li');
         }
