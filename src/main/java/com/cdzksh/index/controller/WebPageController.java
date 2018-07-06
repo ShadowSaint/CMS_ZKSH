@@ -42,7 +42,7 @@ public class WebPageController {
     public String aboutUs(){
         return "about_us";
     }
-    //图片新闻（特区湖南）
+    //图片新闻（特区河南）
     @RequestMapping("/picNewsList")
     public String picNewsList(){
         return "pic_list";

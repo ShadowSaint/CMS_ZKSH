@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>深圳商会</title>
+    <title>成都商会</title>
     <!--<link rel="shortcut icon" href="/resource/images/icon.ico"/>-->
     <link href="./css/style.css" rel="stylesheet" type="text/css">
     <link href="./css/animate.min.css" rel="stylesheet">
@@ -24,10 +24,12 @@
         .head_box_list {
             margin: 0px auto;
         }
-        .header_box{
+
+        .header_box {
             width: 1200px;
             margin: 0px auto;
         }
+
         .head_ul {
             list-style-type: none;
             float: left;
@@ -58,8 +60,11 @@
         }
 
         .img_name {
-            width: 290px;
-            margin-top: 7px;
+            width: 95px;
+            margin-top: 11px;
+        }
+        .head_ul{
+            margin-left: 70px;
         }
 
         .search_box {
@@ -100,7 +105,8 @@
             color: #999;
             font-size: 13px;
         }
-        .bottom_container_address{
+
+        .bottom_container_address {
             margin: 0px auto;
             width: 1000px;
         }
@@ -111,6 +117,7 @@
             padding: 20px;
             color: #777;
         }
+
         .cooperate_li2 {
             list-style-type: none;
             float: left;
@@ -121,7 +128,8 @@
         .cooperate_li:hover {
             color: #c90200;
         }
-        .address_contact{
+
+        .address_contact {
             padding: 10px 21px 2px;
         }
 
@@ -211,13 +219,14 @@
             cursor: pointer;
             color: #c13d3b;
         }
-        .menu_a{
-            color: #555;
-        }
-        .menu_a:visited{
+
+        .menu_a {
             color: #555;
         }
 
+        .menu_a:visited {
+            color: #555;
+        }
 
         .login_container {
             float: right;
@@ -227,12 +236,14 @@
             cursor: pointer;
             position: relative;
         }
-        .icon-weixingongzhonghao{
+
+        .icon-weixingongzhonghao {
             font-size: 22px;
             margin-right: 4px;
             position: relative;
             top: 4px;
         }
+
         .login_container:hover {
             color: #c13d3b;
         }
@@ -242,6 +253,7 @@
             position: relative;
             top: 3px;
         }
+
         .app_code_box {
             position: absolute;
             bottom: -166px;
@@ -278,6 +290,7 @@
             $('.css_li').removeClass('active_li');
             $('.css_li').eq(url_index).addClass('active_li');
         }
+
         function showAppCode() {
             $('.app_code_box').show().addClass('bounceIn')
         }
@@ -291,20 +304,20 @@
 <div class="head_box">
     <div class="head_box_list">
         <div class="header_box">
+            <a href="/" class="logo_box">
+                <img src="./images/logo_top.gif" class="img_name">
+            </a>
             <ul class="head_ul">
-                <a href="/" class="logo_box">
-                    <img src="./images/logo_top.gif" class="img_name">
-                    <!--<span class="word_name">深圳湖南商会</span>-->
-                </a>
+
                 <!--index=几，第几个菜单选中-->
                 <a href="/?index=0" class="menu_css">
                     <li class="css_li">首页</li>
                 </a>
                 <a href="/picNewsList?index=1" class="menu_css">
-                    <li class="css_li">特区湘商</li>
+                    <li class="css_li">特区豫商</li>
                 </a>
                 <a href="/list?index=2" class="menu_css">
-                    <li class="css_li ">湘商通讯</li>
+                    <li class="css_li ">豫商通讯</li>
                 </a>
                 <a href="/list?index=3" class="menu_css">
                     <li class="css_li ">商会新闻</li>
