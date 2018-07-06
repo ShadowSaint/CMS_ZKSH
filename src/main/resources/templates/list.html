@@ -1,0 +1,449 @@
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<!--头部信息-->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div th:replace="header::html"></div>
+<style>
+    #content {
+        width: 1200px;
+        background: #ffffff;
+        position: relative;
+        margin: 30px auto 0;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    .index_container {
+        width: 1200px;
+        margin: 0 auto;
+        min-height: 600px;
+        padding: 20px 0;
+    }
+
+    .words_body {
+        width: 320px;
+        min-height: 10px;
+        padding: 10px;
+        overflow: hidden;
+        background: #f7f7f7;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+    }
+
+    .right_box {
+        float: right;
+        width: 320px;
+    }
+
+    .right_head {
+
+        border-bottom: 1px solid #ccc;
+
+    }
+
+    .head_left {
+        float: left;
+        font-weight: bold;
+    }
+
+    .head_right {
+        height: 50px;
+        line-height: 50px;
+        float: right;
+        color: #a7b1c2;
+    }
+
+    .article_content {
+        word-wrap: break-word;
+        padding: 10px 0;
+    }
+
+    .article_content_left {
+        margin-left: 16px;
+    }
+
+    .active_color {
+        color: #E94E4C;
+    }
+
+    .article span {
+        font-size: 40px;
+        width: 5px;
+        height: 15px;
+        float: left;
+        line-height: 15px;
+    }
+
+    .add {
+        font-size: 18px;
+        position: relative;
+    }
+
+    .select_everyday {
+        display: inline-block;
+        position: relative;
+        padding: 10px 20px 10px 23px;
+        border-radius: 50px;
+        left: -31px;
+        /* width: 100px; */
+        text-align: center;
+        text-indent: 10px;
+        margin-top: 5px;
+        background: #EF622F;
+        color: #fff;
+    }
+
+    .right_head2 {
+        margin-top: 20px;
+    }
+
+    .head_right:hover {
+
+        cursor: pointer;
+        color: #c13d3b;
+    }
+
+    .left_box {
+        float: left;
+        width: 850px;
+    }
+
+    .news_li {
+        border-bottom: 1px solid #e8e8e8;
+        padding: 15px 0;
+        cursor: pointer;
+    }
+
+    .news_li_img_box {
+        height: 140px;
+        width: 230px;
+        float: left;
+        overflow: hidden;
+    }
+
+    .news_li_img_left {
+        width: 100%;
+    }
+
+    .news_li_right {
+        margin-left: 250px;
+    }
+
+    .news_li_right:hover > .news_li_title {
+        color: #c13d3b;
+    }
+
+    .news_li_title {
+        font-size: 20px;
+        margin-bottom: 14px;
+    }
+
+    .news_li_des {
+        color: #888;
+        min-height: 71px;
+        line-height: 28px;
+        font-size: 15px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+    }
+
+    .news_li_bottom {
+        line-height: 40px;
+    }
+
+    .news_li_source {
+        float: left;
+        margin-right: 100px;
+    }
+
+    .news_li_time {
+        float: left;
+        color: #888;
+    }
+
+    .big_li {
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .big_li_img {
+        width: 100%;
+        height: 360px;
+        transition: all 1s;
+    }
+
+    .big_li:hover > img {
+        transform: scale(1.1);
+    }
+
+    .hover_bottom {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        height: 100px;
+        width: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0.24) 40%, rgba(0, 0, 0, 0.29) 47%, rgba(0, 0, 0, 0.65) 95%);
+
+    }
+
+    .big_li_bottom {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        color: #fff;
+        padding: 20px;
+        font-size: 20px;
+        box-sizing: border-box;
+        z-index: 1;
+    }
+
+    .big_li_title {
+        position: relative;
+        z-index: 1;
+    }
+
+    .news_li_source:hover {
+        color: #c13d3b;
+        cursor: pointer;
+    }
+
+    .load_more {
+        height: 50px;
+        margin: 40px 0;
+        background: #f7f7f7;
+        color: #e74c3c;
+        font-size: 16px;
+        text-align: center;
+        line-height: 50px;
+        display: block;
+        cursor: pointer;
+    }
+
+    .not_more {
+        color: #777;
+        display: none;
+    }
+
+    .no_cover .news_li_img_box {
+        display: none !important;
+    }
+
+    .no_cover .news_li_right {
+        margin-left: 0;
+    }
+
+    .dn {
+        display: none;
+    }
+
+    .article_content_left:hover {
+        cursor: pointer;
+        color: #c13d3b;
+    }
+</style>
+<!--中间部分-->
+<div id="content">
+    <div class="left_box">
+        <ul class="news_ul">
+            <a href="/newsDetail?id=1969" target="_blank">
+                <li class="news_li no_cover">
+                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
+                    </div>
+                    <div class="news_li_right">
+                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
+                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
+                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
+                        </div>
+                        <div class="news_li_bottom">
+                            <div class="news_li_source">深圳湖南商会</div>
+                            <div class="news_li_time">2018-01-26</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail?id=1969" target="_blank">
+                <li class="news_li no_cover">
+                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
+                    </div>
+                    <div class="news_li_right">
+                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
+                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
+                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
+                        </div>
+                        <div class="news_li_bottom">
+                            <div class="news_li_source">深圳湖南商会</div>
+                            <div class="news_li_time">2018-01-26</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail?id=1969" target="_blank">
+                <li class="news_li no_cover">
+                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
+                    </div>
+                    <div class="news_li_right">
+                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
+                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
+                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
+                        </div>
+                        <div class="news_li_bottom">
+                            <div class="news_li_source">深圳湖南商会</div>
+                            <div class="news_li_time">2018-01-26</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail?id=1969" target="_blank">
+                <li class="news_li no_cover">
+                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
+                    </div>
+                    <div class="news_li_right">
+                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
+                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
+                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
+                        </div>
+                        <div class="news_li_bottom">
+                            <div class="news_li_source">深圳湖南商会</div>
+                            <div class="news_li_time">2018-01-26</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail?id=1969" target="_blank">
+                <li class="news_li no_cover">
+                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
+                    </div>
+                    <div class="news_li_right">
+                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
+                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
+                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
+                        </div>
+                        <div class="news_li_bottom">
+                            <div class="news_li_source">深圳湖南商会</div>
+                            <div class="news_li_time">2018-01-26</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <div class="clear news_li_clear"></div>
+        </ul>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right_box">
+        <!--<div th:replace="righter :: html"></div>-->
+        <div class="words_body hb_body">
+            <div class="right_head">
+                <div class="select_everyday">专题新闻推荐</div>
+
+                <a href="/?id=1&index=0">
+                    <div class="head_right">MORE <span class="active_color add">+</span></div>
+                </a>
+                <div class="clear"></div>
+            </div>
+            <div class="subject">
+                <ul class="article article_hb">
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2675"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2674"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2243"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2243"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2243"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="words_body zsh_body">
+            <div class="right_head">
+                <div class="select_everyday">商会新闻</div>
+                <a href="/?id=1&index=4">
+                    <div class="head_right">MORE <span class="active_color add">+</span></div>
+                </a>
+                <div class="clear"></div>
+            </div>
+            <div class="subject">
+                <ul class="article article_zsh">
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2675"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2674"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2243"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2243"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                    <a href="" target="_blank">
+                        <li class="article_content" data_id="2243"><span>·</span>
+                            <div class="article_content_left">深圳湖南商会关于湖南省201</div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+
+</script>
+<div th:replace="footer :: foot"></div>
+

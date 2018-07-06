@@ -1,0 +1,286 @@
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<!--头部信息-->
+<div th:replace="header::html"></div>
+<style>
+    body {
+        background: #F3F4F4;
+    }
+    .index_container {
+        width: 1200px;
+        margin: 0 auto;
+        min-height: 600px;
+        padding: 20px 0;
+    }
+
+    .left_box {
+        float: right;
+        width: 850px;
+        margin-bottom: 30px;
+    }
+    .right_box {
+        float: right;
+        width: 299px;
+        background: #fff;
+        margin-right: 26px;
+        padding: 0 38px 30px;
+        box-sizing: border-box;
+    }
+
+    .left_cont {
+        background: #fff;
+        margin-bottom: 30px;
+    }
+
+    .article_content {
+        word-wrap: break-word;
+        padding: 10px 0;
+    }
+
+    .article_content_left {
+        margin-left: 16px;
+    }
+
+    .left_cont {
+        padding: 30px 40px;
+    }
+
+    .employer_top {
+        background: #fff;
+        padding: 12px 16px 0px;
+    }
+
+    /*头部统一样式*/
+
+    .topic_user_left {
+        float: left;
+        width: 54px;
+        text-align: center;
+        border: 1px solid #e8e8e8;
+        border-radius: 50%;
+    }
+
+    .topic_user_avatar {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .topic_user_right {
+        margin-left: 80px;
+        position: relative;
+    }
+
+    .topic_user_name {
+        display: inline-block;
+        font-size: 18px;
+        margin-right: 6px;
+        max-width: 170px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 30px;
+    }
+
+    .topic_title {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0 0 7px;
+        word-wrap: break-word;
+    }
+
+    .topic_user_time {
+        display: block;
+        color: #a6acc1;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .topic_message {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    .topic_message_p {
+        margin-bottom: 30px;
+        line-height: 30px;
+        color: #1a1a1a;
+    }
+
+    .topic_type {
+        color: #BFBFBF;
+        float: left;
+        width: 25%;
+        text-align: center;
+        line-height: 24px;
+        margin: 6px 0;
+    }
+
+    .topic_type img {
+        width: 14px;
+        position: relative;
+        top: 0px;
+        margin-right: 4px;
+    }
+
+    .topic_bottom {
+        border-top: 1px solid #e8e8e8;
+    }
+
+    .topic_message_p img {
+        max-width: 100%;
+        margin: 4px 0;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .not_find_img {
+        display: none;
+        margin: 60px auto 0;
+        padding-bottom: 40px;
+        text-align: center;
+        font-size: 16px;
+        padding-right: 3%;
+        color: #a6acc1;
+    }
+
+
+
+    .topic_user_more {
+        position: absolute;
+        top: -8px;
+        right: 0;
+        display: none;
+    }
+
+    .topic_user_more img {
+        width: 25px;
+    }
+    .detail_container {
+        padding: 20px 0;
+    }
+    .detail_title {
+        color: #000;
+    }
+
+    .detail_info {
+        line-height: 25px;
+        margin: 20px 0 0;
+        color: #888;
+    }
+
+    .detail_info_left {
+        float: left;
+        margin-right: 30px;
+    }
+
+    .detail_info_right {
+        float: right;
+    }
+
+    .detail_container {
+        padding: 20px 0;
+    }
+    .border-menu {
+        width: 100%;
+        float: left;
+        padding-top: 40px;
+        padding-bottom: 10px;
+    }
+    p.border-menu-title {
+        color: #777;
+        font-size: 20px;
+        line-height: 40px;
+        padding-bottom: 14px;
+        /* text-align: center; */
+        text-indent: 10px;
+    }
+    .border-menu ul {
+        border-left: 20px solid #c90200;
+    }
+    .border-menu ul li {
+        font-size: 14px;
+        line-height: 40px;
+        border-bottom: 1px dashed #ccc;
+        cursor: pointer;
+        padding-left: 20px;
+        position: relative;
+    }
+    .border-menu ul li.menu-on {
+        border-left: 8px solid #f1c40f;
+        margin-left: -8px;
+        border-bottom: 1px solid #c90200;
+    }
+    .border-menu ul li:first-child {
+        border-top: 1px dashed #ccc;
+    }
+    .border-menu ul li:hover > .line {
+        height: 42px;
+        background-color: #f1c40f;
+    }
+    .line {
+        position: absolute;
+        width: 8px;
+        height: 0px;
+        left: -8px;
+        top: -1px;
+        transition: height .4s;
+        -moz-transition: height .4s;
+        -webkit-transition: height .4s;
+        -o-transition: height .4s;
+    }
+
+</style>
+<!--中间部分-->
+<div id="content">
+    <div class="loading_box">
+        <div class="sk-spinner sk-spinner-cube-grid">
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+        </div>
+    </div>
+    <div class="index_container">
+        <div class="left_box">
+            <div class="left_cont">
+                <div class="left_cont">
+                    <h2 class="detail_title">【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</h2>
+                    <div class="detail_info">
+                        <div class="detail_info_left left_author">深圳湖南商会</div>
+                        <div class="detail_info_left left_time">2017/11/21 22:06:36</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="detail_container">
+                        <!--正文-->
+                        <td valign="top" class="style4"><span class="showlist" style="line-height: 30px">在老百姓的抱怨声中，银行排队难问题有望得到缓解。湖南银监局5月14日发出特急文件，要求银行在业务高峰时期柜面窗口争取全部开放。　<br>　　银行应做到有投诉必有回应湖南银监局向辖区内各中资商业银行下发的特急文件为《加强和改进银行业机构服务工作的指导意见》，要求各银行要将加强和改进服务纳入负责人的绩效考核内容，银行应建立健全客户投诉机制，做到有询问必有答复，有投诉必有回应。　<br>　　要求银行制定客户等候时间标准银监局要求银行提高网点柜面开工率，在排队人员多、临柜服务压力大的高峰时期，包括正常工作日休息时段和节假日，各银行的网点柜面窗口要争取全部开放。目前监管部门对“业务高峰期”只有原则性的界定，比如国债发行第一天、集中办理社保资金的那几天等。　<br>　　柜台服务要限时银行要制定不同业务“客户等候时间”的量化标准，督促柜员严格按规范要求办理临柜业务。比如，目前省工行对各项柜台业务推出限时服务措施，办理业务超时，客户可投诉。　<br>　　长沙平均等待11.7分钟4月中旬，湖南银监局对省内7个城市17家银行网点调查显示，普通客户平均排队时间为25分钟，一般网点最长排队时间达50分钟，个别建行网点等待时间达1个多小时。自包括本报等媒体报道银行排队难后，各银行采取措施缓解排队难问题。五一长假前后，湖南银监局又随机抽取89个城市银行网点进行调查，调查显示，客户一般等待时间为6.9分钟，平均最长等待时间为16.2分钟；平均业务办理时间为3分钟，平均最长为8.3分钟。对1187名客户的随机调查显示，客户满意度达68.2％。在长沙地区，客户等待的平均时间为11.7分钟，按网点平均计算的最长等待时间为24.9分钟，客户满意度为57.7％。
+                       </span></td>
+                        <!--正文-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right_box">
+            <div class="border-menu">
+                <!--<p class="border-menu-title">关于我们</p>-->
+                <ul>
+                    <li class="menu-on" title="商会简介"><i class="line"></i><a href="/menu/detail?id=8">商会简介</a></li>
+                    <li title="商会活动"><i class="line"></i><a href="/menu/detail?id=9">商会活动</a></li>
+                    <li title="商会章程"><i class="line"></i><a href="/menu/detail?id=10">商会章程</a></li>
+                    <li title="商会成员"><i class="line"></i><a href="/menu/detail?id=11">商会成员</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+
+</script>
+<div th:replace="footer :: foot"></div>

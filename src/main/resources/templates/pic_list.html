@@ -1,0 +1,278 @@
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<!--头部信息-->
+<div th:replace="header::html"></div>
+<style>
+    body {
+        background: #F3F4F4;
+    }
+    #content {
+        width: 1200px;
+        background: #ffffff;
+        position: relative;
+        margin: 30px auto 0;
+    }
+    .index_container {
+        min-height: 600px;
+        padding: 20px 0 20px 10px;
+    }
+
+
+    /*鼠标覆盖显示信息*/
+    .img_li {
+        display: inline-block;
+        width: 32%;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-right: 10px;
+        position: relative;
+        margin-bottom: 20px;
+        -webkit-transition-duration: 0.4s;
+        -moz-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+        -o-animation-duration: 0.4s;
+    }
+
+    .img_li:hover {
+        box-shadow: 2px 2px 10px 2px #e8e8e8;
+    }
+    .img_li:hover > .img_content .img_content_title{
+       color:#c90200;
+    }
+    .img_li_type {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: #999;
+        color: #fff;
+        padding: 2px 8px;
+        z-index: 1;
+        display: none;
+    }
+
+    .img_li_img {
+        overflow: hidden;
+        position: relative;
+        height: 190px;
+        cursor: pointer;
+    }
+
+    .img_li_img img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .img_li_text {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: -100%;
+        top: 0;
+        color: #fff;
+    }
+
+    .img_li_text_hover {
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        -khtml-opacity: 0.8;
+        opacity: 0.8;
+        position: absolute;
+        top: 0;
+    }
+
+    .img_li_des_box {
+        width: 100%;
+        height: 100%;
+        padding: 4px 10px;
+        box-sizing: border-box;
+        position: absolute
+    }
+
+    .img_li_des_box_title {
+        font-size: 16px;
+        line-height: 36px;
+        border-bottom: 1px solid #e8e8e8;
+        text-align: center;
+    }
+
+    .img_li_description {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        word-wrap: break-word;
+        margin-top: 6px;
+    }
+    .img_content_title{
+        font-size: 16px;
+        color: #000;
+        height: 52px;
+        overflow: hidden;
+        max-height: 60px;
+        display: block;
+        margin-top: 20px;
+    }
+
+    /*鼠标覆盖显示信息结束*/
+    .img_content_bottom{
+        margin-top: 5px;
+        color: #999;
+    }
+    .load_more {
+        height: 50px;
+        margin: 40px 0;
+        background: #f7f7f7;
+        color: #e74c3c;
+        font-size: 16px;
+        text-align: center;
+        line-height: 50px;
+        display: block;
+        cursor: pointer;
+    }
+    .not_more {
+        color: #777;
+        display: none;
+    }
+
+    .img_content_left{
+        float: left;
+        margin-right: 20px;
+    }
+    .img_content_right{
+        float: right;
+    }
+    .fa-eye{
+        font-size: 16px;
+    }
+</style>
+<!--中间部分-->
+<div id="content">
+    <div class="index_container">
+        <div class="video_container">
+            <a href="/newsDetail">
+                <li class="list_li img_li">
+                    <div class="img_li_img">
+                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                    </div>
+                    <div class="img_content">
+                        <div class="img_content_title">
+                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                        </div>
+                        <div class="img_content_bottom">
+                            <div class="img_content_right">
+                                <i class="img_i fa fa-clock-o"></i>
+                                <span>2017/11/21</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail">
+                <li class="list_li img_li">
+                    <div class="img_li_img">
+                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                    </div>
+                    <div class="img_content">
+                        <div class="img_content_title">
+                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                        </div>
+                        <div class="img_content_bottom">
+                            <div class="img_content_right">
+                                <i class="img_i fa fa-clock-o"></i>
+                                <span>2017/11/21</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail">
+                <li class="list_li img_li">
+                    <div class="img_li_img">
+                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                    </div>
+                    <div class="img_content">
+                        <div class="img_content_title">
+                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                        </div>
+                        <div class="img_content_bottom">
+                            <div class="img_content_right">
+                                <i class="img_i fa fa-clock-o"></i>
+                                <span>2017/11/21</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail">
+                <li class="list_li img_li">
+                    <div class="img_li_img">
+                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                    </div>
+                    <div class="img_content">
+                        <div class="img_content_title">
+                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                        </div>
+                        <div class="img_content_bottom">
+                            <div class="img_content_right">
+                                <i class="img_i fa fa-clock-o"></i>
+                                <span>2017/11/21</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail">
+                <li class="list_li img_li">
+                    <div class="img_li_img">
+                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                    </div>
+                    <div class="img_content">
+                        <div class="img_content_title">
+                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                        </div>
+                        <div class="img_content_bottom">
+                            <div class="img_content_right">
+                                <i class="img_i fa fa-clock-o"></i>
+                                <span>2017/11/21</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="/newsDetail">
+                <li class="list_li img_li">
+                    <div class="img_li_img">
+                        <img class="scrollLoading"  src="./images/s1.JPG"/>
+                    </div>
+                    <div class="img_content">
+                        <div class="img_content_title">
+                            <span>【湘商大会】第八届湘商大会暨第五届湘南投洽会，我们来啦！</span>
+                        </div>
+                        <div class="img_content_bottom">
+                            <div class="img_content_right">
+                                <i class="img_i fa fa-clock-o"></i>
+                                <span>2017/11/21</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+
+</script>
+<div th:replace="footer :: foot"></div>
+

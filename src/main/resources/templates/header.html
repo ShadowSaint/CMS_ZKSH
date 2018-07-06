@@ -91,7 +91,94 @@
             margin: 0px auto;
             width: 850px;
         }
+        .loading_box{
+            display: none;
+        }
+        .active_li{
+            color: #c90200;
+        }
+
+        .words_body {
+            width: 320px;
+            min-height: 10px;
+            padding: 10px;
+            overflow: hidden;
+            background: #fff;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .right_box {
+            float: right;
+            width: 320px;
+        }
+
+        .right_head {
+
+            border-bottom: 1px solid #ccc;
+
+        }
+
+        .head_left {
+
+            float: left;
+            font-weight: bold;
+        }
+
+        .head_right {
+            height: 50px;
+            line-height: 50px;
+            float: right;
+            color: #a7b1c2;
+        }
+
+        .active_color {
+            color: #E94E4C;
+        }
+
+        .article span {
+            font-size: 40px;
+            width: 5px;
+            height: 15px;
+            float: left;
+            line-height: 15px;
+        }
+
+        .add {
+            font-size: 18px;
+            position: relative;
+        }
+
+        .select_everyday {
+            display: inline-block;
+            position: relative;
+            padding: 10px 20px 10px 23px;
+            border-radius: 50px;
+            left: -31px;
+            /* width: 100px; */
+            text-align: center;
+            text-indent: 10px;
+            margin-top: 5px;
+            background: #EF622F;
+            color: #fff;
+        }
+
+        .head_right:hover {
+            cursor: pointer;
+            color: #c13d3b;
+        }
+
     </style>
+    <script>
+        $(document).ready(function () {
+            loadMenu()
+        })
+        var url_index = GetQueryString('index');
+        function loadMenu(){
+            $('.css_li').removeClass('active_li');
+            $('.css_li').eq(url_index).addClass('active_li');
+        }
+    </script>
 </head>
 <body>
 <div class="head_box">
@@ -102,25 +189,30 @@
                 <img src="./images/logo_top.gif" class="img_name">
                 <!--<span class="word_name">深圳湖南商会</span>-->
             </a>
-            <a href="/" class="menu_css">
-                <li class="css_li ">特区湘商</li>
+            <!--index=几，第几个菜单选中-->
+            <a href="/?index=0" class="menu_css">
+                <li class="css_li">首页</li>
             </a>
-            <a href="/" class="menu_css">
+            <a href="/picNewsList?index=1" class="menu_css">
+                <li class="css_li">特区湘商</li>
+            </a>
+            <a href="/list?index=2" class="menu_css">
                 <li class="css_li ">湘商通讯</li>
             </a>
-            <a href="/" class="menu_css">
+            <a href="/list?index=3" class="menu_css">
                 <li class="css_li ">商会新闻</li>
             </a>
-            <a href="/" class="menu_css">
+            <a href="/about_us?index=4" class="menu_css">
                 <li class="css_li ">商会成员</li>
             </a>
-            <a href="/" class="menu_css">
+            <a href="/?index=5" class="menu_css">
                 <li class="css_li ">商会章程</li>
             </a>
-            <a href="/" class="menu_css">
+            <a href="/?index=6" class="menu_css">
                 <li class="css_li ">商会简介</li>
             </a>
             <div class="clear"></div>
         </ul>
     </div>
 </div>
+

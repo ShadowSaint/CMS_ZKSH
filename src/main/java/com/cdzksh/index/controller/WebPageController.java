@@ -12,12 +12,23 @@ public class WebPageController {
     public String index(){
         return "index";
     }
-    @RequestMapping("/template")
-    public String template(){
-        return "template";
+    @RequestMapping("/list")
+    public String list(){
+        return "list";
     }
-    @RequestMapping("/header")
-    public String header(){
-        return "header";
+    //带左侧菜单的详情页面
+    @RequestMapping("/about_us")
+    public String aboutUs(){
+        return "about_us";
+    }
+    //图片新闻（特区湖南）
+    @RequestMapping("/picNewsList")
+    public String picNewsList(){
+        return "pic_list";
+    }
+    //新闻详情页面
+    @RequestMapping("/newsDetail")
+    public String newsDetail(){
+        return "news_detail";
     }
 }
