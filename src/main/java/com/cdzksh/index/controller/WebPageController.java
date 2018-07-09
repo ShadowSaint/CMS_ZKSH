@@ -58,5 +58,4 @@ public class WebPageController {
         return "manage_content";
     }
 
-
 }

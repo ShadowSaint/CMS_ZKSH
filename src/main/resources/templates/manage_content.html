@@ -1,105 +1,115 @@
 <!DOCTYPE html>
-    <meta charset="UTF-8">
-    <style type="text/css">
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
+<meta charset="UTF-8">
+<style type="text/css">
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
 
-        .clear {
-            clear: both;
-        }
+    .clear {
+        clear: both;
+    }
+    .content_list_container{
+        width: 1200px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin: 0px 25px;
+    }
+    .content_list_head{
+        margin-top: 100px;
+        padding: 0px 10px;
+        margin-left: 22px;
+    }
 
-        .article_list {
-            padding-top: 20px;
-            padding-bottom: 20px;
-            width: 1200px;
-            margin: 50px 25px;
-        }
+    .article_list {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        /*width: 1200px;*/
+        margin: 0px 25px;
+    }
 
-        .article_list_ul {
+    .article_list_li {
+        list-style: none;
+        cursor: pointer;
+        border-bottom: 1px solid #ccc;
+        padding: 0px 10px;
+    }
 
-        }
+    .article_list_li:hover {
+        box-shadow: 2px 2px 10px 2px #e8e8e8;
+        border: none;
+    }
 
-        .article_list_li {
-            list-style: none;
-            cursor: pointer;
-            border-bottom: 1px solid #ccc;
-            padding: 0px 10px;
-        }
+    .article_content_img {
+        float: left;
+        width: 210px;
+        height: 130px;
+        margin-top: 10px;
+    }
 
-        .article_list_li:hover {
-            box-shadow: 2px 2px 10px 2px #e8e8e8;
-            border: none;
-        }
+    .article_content {
 
-        .article_content_img {
-            float: left;
-            width: 210px;
-            height: 130px;
-            margin-top: 10px;
-        }
+    }
 
-        .article_content {
+    .article_list_content {
+        margin-left: 230px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        padding-top: 10px;
+    }
 
-        }
+    .article_list_title {
+        font-size: 18px;
+        line-height: 44px;
+    }
 
-        .article_list_content {
-            margin-left: 230px;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
-            overflow: hidden;
-            padding-top: 10px;
-        }
+    .article_list_describe {
+        color: #888;
+        font-size: 15px;
+        line-height: 25px;
+    }
 
-        .article_list_title {
-            font-size: 18px;
-            line-height: 44px;
-        }
+    .article_content_list {
 
-        .content_list_describe {
-            color: #888;
-            font-size: 15px;
-            line-height: 25px;
-        }
+    }
 
-        .article_content_list {
+    .article_list_bottom {
+        margin-top: 10px;
+        line-height: 30px;
+        margin-bottom: 3px;
+    }
 
-        }
+    .article_list_time {
+        display: inline-block;
+        margin-left: 10px;
+        color: #888;
+        font-size: 14px;
+    }
 
-        .content_list_bottom {
-            margin-top: 10px;
-            line-height: 30px;
-            margin-bottom: 3px;
-        }
+    .article_list_operate {
+        margin-right: 10px;
+        float: right;
+    }
 
-        .content_list_time {
-            display: inline-block;
-            margin-left: 10px;
-            color: #888;
-            font-size: 14px;
-        }
+    .article_list_revise {
+        display: inline-block;
+        margin-right: 10px;
+        color: #3498db;
+        cursor: pointer;
+    }
 
-        .content_list_operate {
-            margin-right: 10px;
-            float: right;
-        }
+    .article_list_delete {
+        display: inline-block;
+        color: #e74c3c;
+        cursor: pointer;
+    }
+    .add_page{
+        float: right;
+    }
 
-        .content_list_revise {
-            display: inline-block;
-            margin-right: 10px;
-            color: #3498db;
-            cursor: pointer;
-        }
-
-        .content_list_delete {
-            display: inline-block;
-            color: #e74c3c;
-            cursor: pointer;
-        }
-
-    </style>
+</style>
 
 <div lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="manage_header::html"></div>
@@ -107,184 +117,202 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <!--中间代码区域-->
-        <div class="article_list">
-            <ul class="article_list_ul">
-                <li class="article_list_li">
-                    <div class="article_content">
-                        <div class="article_content_list">
-                            <img src="./images/d1.jpg" class="article_content_img">
-                            <div class="article_list_content">
-                                <div class="article_list_title">标题</div>
-                                <div class="content_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        <div class="content_list_container">
+            <div class="content_list_head">
+                <ul class="userManage_container_ul">
+                    <form class="layui-form" action="">
+                        <div class="layui-inline">
+                            <input class="layui-input" name="keyword" id="keyword" value="" placeholder="请输入医院名称" style="width: 250px;">
+                        </div>
+                        <button class="layui-btn" type="button" onclick="global_curr_page=1;queryPage()">查询</button>
+                        <button class="layui-btn add_page" type="button" onclick="global_curr_page=1;addPage()">添加文章</button>
+                        <table class="layui-hide" id="test" lay-filter="demo"></table>
+                        <div class="not_find_message">
+                            <img src="/resource/image/not_find.png" alt="">
+                        </div>
+                        <div class="clear"></div>
+                    </form>
+                </ul>
+            </div>
+            <div class="article_list">
+                <ul class="article_list_ul">
+                    <li class="article_list_li">
+                        <div class="article_content">
+                            <div class="article_content_list">
+                                <img src="./images/d1.jpg" class="article_content_img">
+                                <div class="article_list_content">
+                                    <div class="article_list_title">标题</div>
+                                    <div class="article_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="article_list_bottom">
+                                <div class="article_list_time"></div>
+                                <div class="article_list_operate">
+                                    <div class="article_list_revise">修改</div>
+                                    <div class="article_list_delete">删除</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
-                        <div class="content_list_bottom">
-                            <div class="content_list_time"></div>
-                            <div class="content_list_operate">
-                                <div class="content_list_revise">修改</div>
-                                <div class="content_list_delete">删除</div>
+                    </li>
+                    <li class="article_list_li">
+                        <div class="article_content">
+                            <div class="article_content_list">
+                                <img src="./images/d1.jpg" class="article_content_img">
+                                <div class="article_list_content">
+                                    <div class="article_list_title">标题</div>
+                                    <div class="article_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="article_list_li">
-                    <div class="article_content">
-                        <div class="article_content_list">
-                            <img src="./images/d1.jpg" class="article_content_img">
-                            <div class="article_list_content">
-                                <div class="article_list_title">标题</div>
-                                <div class="content_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                            <div class="clear"></div>
+
+                            <div class="article_list_bottom">
+                                <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_list_operate">
+                                    <div class="article_list_revise">修改</div>
+                                    <div class="article_list_delete">删除</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
-
-                        <div class="content_list_bottom">
-                            <div class="content_list_time">2000-1-1 12：22：12</div>
-                            <div class="content_list_operate">
-                                <div class="content_list_revise">修改</div>
-                                <div class="content_list_delete">删除</div>
+                    </li>
+                    <li class="article_list_li">
+                        <div class="article_content">
+                            <div class="article_content_list">
+                                <img src="./images/d1.jpg" class="article_content_img">
+                                <div class="article_list_content">
+                                    <div class="article_list_title">标题</div>
+                                    <div class="article_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="article_list_li">
-                    <div class="article_content">
-                        <div class="article_content_list">
-                            <img src="./images/d1.jpg" class="article_content_img">
-                            <div class="article_list_content">
-                                <div class="article_list_title">标题</div>
-                                <div class="content_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                            <div class="clear"></div>
+
+                            <div class="article_list_bottom">
+                                <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_list_operate">
+                                    <div class="article_list_revise">修改</div>
+                                    <div class="article_list_delete">删除</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
-
-                        <div class="content_list_bottom">
-                            <div class="content_list_time">2000-1-1 12：22：12</div>
-                            <div class="content_list_operate">
-                                <div class="content_list_revise">修改</div>
-                                <div class="content_list_delete">删除</div>
+                    </li>
+                    <li class="article_list_li">
+                        <div class="article_content">
+                            <div class="article_content_list">
+                                <img src="./images/d1.jpg" class="article_content_img">
+                                <div class="article_list_content">
+                                    <div class="article_list_title">标题</div>
+                                    <div class="article_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="article_list_li">
-                    <div class="article_content">
-                        <div class="article_content_list">
-                            <img src="./images/d1.jpg" class="article_content_img">
-                            <div class="article_list_content">
-                                <div class="article_list_title">标题</div>
-                                <div class="content_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                            <div class="clear"></div>
+
+                            <div class="article_list_bottom">
+                                <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_list_operate">
+                                    <div class="article_list_revise">修改</div>
+                                    <div class="article_list_delete">删除</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
-
-                        <div class="content_list_bottom">
-                            <div class="content_list_time">2000-1-1 12：22：12</div>
-                            <div class="content_list_operate">
-                                <div class="content_list_revise">修改</div>
-                                <div class="content_list_delete">删除</div>
+                    </li>
+                    <li class="article_list_li">
+                        <div class="article_content">
+                            <div class="article_content_list">
+                                <img src="./images/d1.jpg" class="article_content_img">
+                                <div class="article_list_content">
+                                    <div class="article_list_title">标题</div>
+                                    <div class="article_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="article_list_li">
-                    <div class="article_content">
-                        <div class="article_content_list">
-                            <img src="./images/d1.jpg" class="article_content_img">
-                            <div class="article_list_content">
-                                <div class="article_list_title">标题</div>
-                                <div class="content_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                            <div class="clear"></div>
+
+                            <div class="article_list_bottom">
+                                <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_list_operate">
+                                    <div class="article_list_revise">修改</div>
+                                    <div class="article_list_delete">删除</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
-
-                        <div class="content_list_bottom">
-                            <div class="content_list_time">2000-1-1 12：22：12</div>
-                            <div class="content_list_operate">
-                                <div class="content_list_revise">修改</div>
-                                <div class="content_list_delete">删除</div>
+                    </li>
+                    <li class="article_list_li">
+                        <div class="article_content">
+                            <div class="article_content_list">
+                                <img src="./images/d1.jpg" class="article_content_img">
+                                <div class="article_list_content">
+                                    <div class="article_list_title">标题</div>
+                                    <div class="article_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="article_list_li">
-                    <div class="article_content">
-                        <div class="article_content_list">
-                            <img src="./images/d1.jpg" class="article_content_img">
-                            <div class="article_list_content">
-                                <div class="article_list_title">标题</div>
-                                <div class="content_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                            <div class="clear"></div>
+
+                            <div class="article_list_bottom">
+                                <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_list_operate">
+                                    <div class="article_list_revise">修改</div>
+                                    <div class="article_list_delete">删除</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
-
-                        <div class="content_list_bottom">
-                            <div class="content_list_time">2000-1-1 12：22：12</div>
-                            <div class="content_list_operate">
-                                <div class="content_list_revise">修改</div>
-                                <div class="content_list_delete">删除</div>
+                    </li>
+                    <li class="article_list_li">
+                        <div class="article_content">
+                            <div class="article_content_list">
+                                <img src="./images/d1.jpg" class="article_content_img">
+                                <div class="article_list_content">
+                                    <div class="article_list_title">标题</div>
+                                    <div class="article_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="article_list_li">
-                    <div class="article_content">
-                        <div class="article_content_list">
-                            <img src="./images/d1.jpg" class="article_content_img">
-                            <div class="article_list_content">
-                                <div class="article_list_title">标题</div>
-                                <div class="content_list_describe">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                            <div class="clear"></div>
+
+                            <div class="article_list_bottom">
+                                <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_list_operate">
+                                    <div class="article_list_revise">修改</div>
+                                    <div class="article_list_delete">删除</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
+                    </li>
 
-                        <div class="content_list_bottom">
-                            <div class="content_list_time">2000-1-1 12：22：12</div>
-                            <div class="content_list_operate">
-                                <div class="content_list_revise">修改</div>
-                                <div class="content_list_delete">删除</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
+                </ul>
+            </div>
         </div>
         <!--中间代码区域-->
     </div>
@@ -294,23 +322,27 @@
     $(document).ready(function () {
 
     });
+    var form;
     layui.use('element', function () {
         var element = layui.element;
-        element.render();
+
+
     });
-    function getFormatDate(){
+
+    function getFormatDate() {
         var nowDate = new Date();
         var year = nowDate.getFullYear();
         var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
         var date = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
-        var hour = nowDate.getHours()< 10 ? "0" + nowDate.getHours() : nowDate.getHours();
-        var minute = nowDate.getMinutes()< 10 ? "0" + nowDate.getMinutes() : nowDate.getMinutes();
-        var second = nowDate.getSeconds()< 10 ? "0" + nowDate.getSeconds() : nowDate.getSeconds();
-        return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
+        var hour = nowDate.getHours() < 10 ? "0" + nowDate.getHours() : nowDate.getHours();
+        var minute = nowDate.getMinutes() < 10 ? "0" + nowDate.getMinutes() : nowDate.getMinutes();
+        var second = nowDate.getSeconds() < 10 ? "0" + nowDate.getSeconds() : nowDate.getSeconds();
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
     }
+
     var str = getFormatDate();
     console.log(str);
-    $(".content_list_time").text(str);
+    $(".article_list_time").text(str);
 </script>
 </body>
 </html>
