@@ -2,12 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-
+    <script src="./js/jquery-3.3.1.min.js"></script>
     <title>成都周口商会管理系统</title>
     <link rel="stylesheet" href="./css/layui.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
+    <!--头部-->
     <div class="layui-header">
         <div class="layui-logo">商会后台管理</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
@@ -25,10 +26,9 @@
              </li>-->
         </ul>
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item"><a href="">退出</a></li>
+            <li class="layui-nav-item"><a href="./login">退出</a></li>
         </ul>
     </div>
-
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
@@ -36,7 +36,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">所有商品</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="/manage_content" class="layui-this">列表一</a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>
                         <dd><a href="javascript:;">列表三</a></dd>
 
@@ -47,7 +47,6 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">列表一</a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>
-
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">云市场</a></li>
@@ -56,24 +55,4 @@
         </div>
     </div>
 
-    <div class="layui-body">
-        <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
-    </div>
-
-    <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        Copyright ©2005-2010 SZHNSH.COM All Rights Reserved
-        Copyright2005-2010 成都周口商会粤ICP备06022819号
-    </div>
 </div>
-<script src="./css/layui/layui.js"></script>
-<script>
-    //JavaScript代码区域
-    layui.use('element', function () {
-        var element = layui.element;
-
-    });
-</script>
-</body>
-</html>

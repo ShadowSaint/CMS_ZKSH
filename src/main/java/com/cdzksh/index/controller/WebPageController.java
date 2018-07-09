@@ -52,10 +52,11 @@ public class WebPageController {
     public String newsDetail(){
         return "news_detail";
     }
-    //后台管理页面
-    @RequestMapping("/manage_header")
-    public String manageHeader(){
-        return "manage_header";
+    //后台管理详情页面
+    @RequestMapping("/manage_content")
+    public String manageContent(){
+        return "manage_content";
     }
+
 
 }
