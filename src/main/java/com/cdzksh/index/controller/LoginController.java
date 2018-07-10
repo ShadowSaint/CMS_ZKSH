@@ -27,7 +27,7 @@ public class LoginController {
         String password = request.getParameter("password");
         if (username.equals("zkshadmin") && (password.equals("zksh") || password.toLowerCase().equals("4717273d97c5d0cbcd37c19e9f2585f3"))) {
             session.setAttribute("User", "admin");
-            return "redirect:/manage_header";
+            return "redirect:/manage_content";
         } else {
             return "redirect:/login?msg=wrong";
         }

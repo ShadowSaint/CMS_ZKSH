@@ -57,5 +57,10 @@ public class WebPageController {
     public String manageContent(){
         return "manage_content";
     }
+    //添加文章页面
+    @RequestMapping("/add_article")
+    public String addArticle(){
+        return "add_article";
+    }
 
 }

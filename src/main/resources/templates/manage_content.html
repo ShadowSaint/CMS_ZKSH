@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <style type="text/css">
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .clear {
-        clear: both;
-    }
-    .content_list_container{
-        width: 1200px;
+    .all_container {
         padding-top: 20px;
         padding-bottom: 20px;
         margin: 0px 25px;
     }
-    .content_list_head{
+
+    .content_list_head {
         margin-top: 100px;
         padding: 0px 10px;
         margin-left: 22px;
@@ -88,6 +80,13 @@
         font-size: 14px;
     }
 
+    .article_author {
+        display: inline-block;
+        margin-left: 10px;
+        color: #888;
+        font-size: 14px;
+    }
+
     .article_list_operate {
         margin-right: 10px;
         float: right;
@@ -105,7 +104,8 @@
         color: #e74c3c;
         cursor: pointer;
     }
-    .add_page{
+
+    .add_article {
         float: right;
     }
 
@@ -117,19 +117,19 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <!--中间代码区域-->
-        <div class="content_list_container">
+        <div class="all_container article_container">
             <div class="content_list_head">
                 <ul class="userManage_container_ul">
                     <form class="layui-form" action="">
                         <div class="layui-inline">
-                            <input class="layui-input" name="keyword" id="keyword" value="" placeholder="请输入医院名称" style="width: 250px;">
+                            <input class="layui-input" name="keyword" id="keyword" value="" placeholder="请输入文章标题"
+                                   style="width: 250px;">
                         </div>
                         <button class="layui-btn" type="button" onclick="global_curr_page=1;queryPage()">查询</button>
-                        <button class="layui-btn add_page" type="button" onclick="global_curr_page=1;addPage()">添加文章</button>
+                        <button class="layui-btn add_article" type="button" onclick="global_curr_page=1;addArticle()">
+                            添加文章
+                        </button>
                         <table class="layui-hide" id="test" lay-filter="demo"></table>
-                        <div class="not_find_message">
-                            <img src="/resource/image/not_find.png" alt="">
-                        </div>
                         <div class="clear"></div>
                     </form>
                 </ul>
@@ -153,6 +153,7 @@
                             <div class="clear"></div>
                             <div class="article_list_bottom">
                                 <div class="article_list_time"></div>
+                                <div class="article_author">作者：啥子</div>
                                 <div class="article_list_operate">
                                     <div class="article_list_revise">修改</div>
                                     <div class="article_list_delete">删除</div>
@@ -178,6 +179,7 @@
 
                             <div class="article_list_bottom">
                                 <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_author">作者：啥子</div>
                                 <div class="article_list_operate">
                                     <div class="article_list_revise">修改</div>
                                     <div class="article_list_delete">删除</div>
@@ -203,6 +205,7 @@
 
                             <div class="article_list_bottom">
                                 <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_author">作者：啥子</div>
                                 <div class="article_list_operate">
                                     <div class="article_list_revise">修改</div>
                                     <div class="article_list_delete">删除</div>
@@ -228,6 +231,7 @@
 
                             <div class="article_list_bottom">
                                 <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_author">作者：啥子</div>
                                 <div class="article_list_operate">
                                     <div class="article_list_revise">修改</div>
                                     <div class="article_list_delete">删除</div>
@@ -253,6 +257,7 @@
 
                             <div class="article_list_bottom">
                                 <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_author">作者：啥子</div>
                                 <div class="article_list_operate">
                                     <div class="article_list_revise">修改</div>
                                     <div class="article_list_delete">删除</div>
@@ -278,6 +283,7 @@
 
                             <div class="article_list_bottom">
                                 <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_author">作者：啥子</div>
                                 <div class="article_list_operate">
                                     <div class="article_list_revise">修改</div>
                                     <div class="article_list_delete">删除</div>
@@ -303,6 +309,7 @@
 
                             <div class="article_list_bottom">
                                 <div class="article_list_time">2000-1-1 12：22：12</div>
+                                <div class="article_author">作者：啥子</div>
                                 <div class="article_list_operate">
                                     <div class="article_list_revise">修改</div>
                                     <div class="article_list_delete">删除</div>
@@ -325,10 +332,11 @@
     var form;
     layui.use('element', function () {
         var element = layui.element;
-
+        form = layui.form;
 
     });
 
+    //实时时间
     function getFormatDate() {
         var nowDate = new Date();
         var year = nowDate.getFullYear();
@@ -343,6 +351,11 @@
     var str = getFormatDate();
     console.log(str);
     $(".article_list_time").text(str);
+
+    //添加文章页面
+    function addArticle() {
+        window.location.href = "/add_article";
+    }
 </script>
 </body>
 </html>
