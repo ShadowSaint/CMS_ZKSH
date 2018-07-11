@@ -14,23 +14,52 @@
         position: relative;
     }
 
-    .add_article_name{
+    .add_article_name {
         font-size: 20px;
         margin: 25px;
         line-height: 40px;
     }
-    .add_article_container{
+
+    .add_article_container {
         padding-left: 40px;
     }
-    .add_title_box{
-        position: relative;
-    }
-    .add_title_name{
-        font-size: 16px;
-        float: left;
-    }
-    .add_title_input{
 
+    .all_box_type {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .all_input_type {
+        font-size: 15px;
+        float: left;
+        padding-top: 10px;
+    }
+
+    .title_input {
+        width: 500px;
+        height: 40px;
+        border: 2px solid #e8e8e8;
+        text-indent: 12px;
+    }
+
+    .title_input:focus {
+        border: 2px solid #009688;
+    }
+
+    .class_span {
+        padding: 10px 10px;
+        line-height: 44px;
+        background: #009688;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .add_release_name {
+        float: right;
+        padding: 10px 33px;
+        background: #009688;
+        color: #fff;
+        cursor: pointer;
     }
 </style>
 
@@ -40,26 +69,42 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <!--中间代码区域-->
+
         <div class="all_container">
             <div class="add_article_names">
                 <div class="add_article_name">发表文章</div>
             </div>
             <div class="add_article_container">
-                <div class="add_title_box all_">
-                    <div class="add_title_name">标题：</div>
+                <div class="add_title_box all_box_type">
+                    <div class="add_title_name all_input_type">标题：</div>
                     <div class="add_title_input">
-                        <input class="title_input" type="text" placeholder="请输入标题内容">
+                        <input class="title_input" name="title" type="text" placeholder="请输入标题内容">
                     </div>
                 </div>
-                <div class="add_class_box">
-                    <div class="add_class_name">分类：</div>
+                <div class="add_class_box all_box_type">
+                    <div class="add_class_name all_input_type">分类：</div>
                     <div class="add_class_span">
-                        <span class="class_span" onclick="addClass()">选择发表类型</span>
+                        <span class="class_span" type="button" onclick="addClass()">选择发表类型</span>
                     </div>
                 </div>
+                <!--<form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单行选择框</label>
+                    <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                            <option value=""></option>
+                            <option value="0">写作</option>
+                            <option value="1" selected="">阅读</option>
+                            <option value="2">游戏</option>
+                            <option value="3">音乐</option>
+                            <option value="4">旅行</option>
+                        </select>
+                    </div>
+                </div>
+                </form>-->
                 <div class="add_subject_box">
                     <!--<%&#45;&#45;基本样式&#45;&#45;%>-->
-                    <textarea id="editor" autofocus></textarea>
+                    <textarea id="editor" name="content" autofocus></textarea>
                     <!--<%&#45;&#45;simditor富文本编辑器&#45;&#45;%>-->
                     <div class="clear"></div>
                 </div>
@@ -69,16 +114,33 @@
             </div>
 
         </div>
+
         <!--中间代码区域-->
     </div>
 </div>
 <script src="./css/layui/layui.js"></script>
 <script>
+    $(document).ready(function () {
+
+    })
     //JavaScript代码区域
     layui.use('element', function () {
         var element = layui.element;
 
     });
+
+    function addArticle() {
+        operation.operation_ajax_async("/api/manage/article/insert", "post", {}, function () {
+
+        });
+    }
+
+    //添加文章分类
+    function addClass() {
+        operation.operation_ajax_async("/api/manage/menu/list", "post", {}, function () {
+
+        });
+    }
 
 </script>
 

@@ -1,5 +1,5 @@
 /**
- * Created by juan on 2016/10/18.
+ * Created by super on 2016/10/18.
  */
 /*
  swal配置参数
@@ -49,6 +49,7 @@ var size = 20;
 var count;
 var check;
 var page_array = [10, 20, 30, 50, 100];
+var global_url = 'https://epec418.cyparty.com'
 //加载页码
 var loadPage = (function () {
     //加载下一页
@@ -224,9 +225,9 @@ function removeManagerStyle() {
 //ajax操作
 var operation = (function () {
     //异步传输
-    var operation_ajax_async = function (url, array, callback) {
+    var operation_ajax_async = function (url,type, array, callback) {
         $.ajax({
-            type: "POST",
+            type: type,
             url: url,
             data: array,
             dataType: "json",
@@ -238,18 +239,18 @@ var operation = (function () {
                     // console.log("操作成功");
                     callback();
                 } else {
-                    swal(data.message);
+                    alert(data.message);
                 }
             },
             error: function () {
-                swal(data.message);
+                alert(data.message);
             }
         })
     };
     //同步传输
-    var operation_ajax_synchro = function (url, array, callback) {
+    var operation_ajax_synchro = function (url, type,array, callback) {
         $.ajax({
-            type: "POST",
+            type: type,
             url: url,
             data: array,
             async: false,
@@ -454,7 +455,7 @@ function getFormatDate(date_time, seperator1, seperator2) {
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if (r != null)return unescape(r[2]);
+    if (r != null) return unescape(r[2]);
     return null;
 }
 

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<style type="text/css">
+    .all_container {
+        padding-top: 100px;
+        padding-bottom: 20px;
+        margin: 0px 25px;
+    }
+
+    .add_menu_box {
+        padding: 20px;
+    }
+
+    .add_menu_but {
+        display: inline-block;
+        background: #009688;
+        padding: 12px 20px;
+        color: #fff;
+        float: right;
+        cursor: pointer;
+    }
+
+    .menu_box {
+        margin: 35px 30px 20px 0px;
+    }
+</style>
+<div lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+    <div th:replace="manage_header::html"></div>
+    <!--中间主体部分-->
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <!--中间代码区域-->
+        <div class="all_container">
+            <div class="menu_manage_box">
+                <div class="add_menu_box">
+                    <div class="add_menu_but" onclick="addMenu()">添加菜单</div>
+                    <div class="clear"></div>
+                </div>
+                <table class="layui-hide" id="test" lay-filter="demo"></table>
+            </div>
+        </div>
+
+        <!--中间代码区域-->
+    </div>
+</div>
+<script src="./css/layui/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    $(document).ready(function () {
+        clickLiChangeStyle('first_menu', 'first_menu2')
+        //菜单管理
+        loadList();
+    });
+    layui.use('form', function () {
+        form = layui.form;
+    })
+
+    //菜单表格管理
+    var tableData;
+    function loadList() {
+        layui.use('table', function () {
+            table = layui.table;
+            tableData = table.render({
+                elem: '#test'
+                , url: '/api/manage/menu/list'
+                , where: {}
+                , cols: [
+                    [
+                        {type: 'numbers', title: '序号', width: 100}
+                        , {field: 'name', title: '菜单名称', align: "center", edit: 'text'}
+                        , {field: 'seq', title: '菜单顺序', align: "center", edit: 'text'}
+                        , {
+                        field: 'title',
+                        title: '操作',
+                        width: 300,
+                        align: "center",
+                        fixed: 'right',
+                        templet: '#barDemo'
+                    }
+                    ]
+                ]
+                /* , page:{curr:global_curr_page}
+                 , limit: 10
+                 , limits: [10, 20, 40, 60, 80, 100],
+                 done: function(res, curr, count){
+                     //得到当前页码
+                     console.log(curr);
+                     history.replaceState('', 'title', '?curr='+curr);
+                     global_curr_page = curr;
+                 }
+ */
+            });
+            tool();
+        });
+    }
+
+    function tool() {
+        layui.use('table', function () {
+            var table = layui.table;
+            //监听医院科室表格复选框选择
+            table.on('checkbox(demo)', function (obj) {
+                console.log(obj)
+            });
+        });
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            console.log(obj);
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('确定删除？', function (index) {
+                    obj.del();
+                    var dataObj = {};
+                    dataObj.id = data.id;
+                    operation.operation_ajax_async("/api/manage/menu/delete", "post", dataObj, function () {
+                        layer.msg("删除成功");
+                    });
+                    layer.close(index);
+                });
+            }
+            /*else if (obj.event === 'show') {
+                reviseHospital(data.hospital_id);
+            }else if(obj.event === 'operat'){
+                global_hospital_id=data.hospital_id;
+                addHospitalClass();
+            }*/
+        });
+    }
+
+    //添加菜单
+    function addMenu() {
+        layer.open({
+            type: 1
+            , title: '添加菜单'
+            , area: ['600px', '400px']
+            , shade: 0
+            , content: '<form class="layui-form" id="tf">' +
+            '<div class="form_box">' +
+            '<div class="menu_box">' +
+            '<label class="layui-form-label">菜单名称</label>' +
+            '<div class="layui-input-block">' +
+            '<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input" value="">' +
+            '</div>' +
+            '</div>' +
+            '<div class="menu_box">' +
+            '<label class="layui-form-label">菜单顺序</label>' +
+            '<div class="layui-input-block">' +
+            '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input" value="">' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</form>'
+            , btn: ['保存', '取消'] //只是为了演示
+            , yes: function () {
+                var form = new FormData(document.getElementById("tf"));
+                layer.load();
+                $.ajax({
+                    url: "/api/manege/menu/insert",
+                    type: "post",
+                    data: form,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data.status){
+                            layer.closeAll();
+                            layer.msg("保存成功");
+                        }
+                    },
+                    error: function (e) {
+                        alert("错误！！");
+                    }
+                });
+            }
+            , btn2: function () {
+                layer.closeAll();
+            }
+            , zIndex: 999//重点1
+            , success: function (layero) {
+                layer.setTop(layero); //重点2
+                form.render();
+            }
+        });
+    }
+    //监听单元格编辑
+    layui.use('table', function(){
+        var table = layui.table;
+        //监听单元格编辑
+        table.on('edit(demo)', function(obj){
+            var value = obj.value //得到修改后的值
+            var data = obj.data //得到所在行所有键值
+            console.log(data)
+            var field = obj.field; //得到字段
+            //layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+            var editData={};
+            editData.name=data.name;
+            editData.seq=data.seq;
+            editData.id=data.id;
+            menuEdit(editData);
+        });
+    });
+    //修改菜单
+    var global_id="";
+    function menuEdit(editData){
+        // console.log(editData)
+        var name=editData.name;
+        var seq=editData.seq;
+        var id=editData.id;
+        $.ajax({
+            async: false,
+            type: "GET",
+            url: "/api/manage/menu/update",
+            data: { name:name,seq:seq,id:id},
+            dataType: "JSON",
+            success: function (res) {
+                // console.log(res);
+                layui.use('form', function () {
+                    form = layui.form;
+                    form.render();
+                });
+            },
+            error: function (data) {
+                alert(data.message);
+            }
+        });
+    }
+
+
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="width: 68px">删除</a>
+</script>
+</body>
+</html>
