@@ -1,15 +1,10 @@
 
 <style type="text/css">
     .all_container {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        margin: 0px 25px;
-    }
-
-    .content_list_head {
-        margin-top: 100px;
-        padding: 0px 10px;
-        margin-left: 22px;
+        margin: 75px 20px 40px;
+        background: #fff;
+        padding: 40px 20px;
+        box-sizing: border-box;
     }
 
     .article_list {
@@ -74,7 +69,7 @@
 
     .article_list_time {
         display: inline-block;
-        margin-left: 10px;
+        margin-left: 40px;
         color: #888;
         font-size: 14px;
     }
@@ -96,6 +91,7 @@
         margin-right: 10px;
         color: #3498db;
         cursor: pointer;
+        padding: 0 10px;
     }
 
     .article_list_delete {
@@ -116,48 +112,68 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <!--中间代码区域-->
+        <div class="loading_box">
+            <div class="sk-spinner sk-spinner-cube-grid">
+                <div class="sk-cube"></div>
+                <div class="sk-cube"></div>
+                <div class="sk-cube"></div>
+                <div class="sk-cube"></div>
+                <div class="sk-cube"></div>
+                <div class="sk-cube"></div>
+                <div class="sk-cube"></div>
+                <div class="sk-cube"></div>
+                <div class="sk-cube"></div>
+            </div>
+        </div>
         <div class="all_container article_container">
             <div class="content_list_head">
                 <ul class="userManage_container_ul">
                     <form class="layui-form" action="">
+                        <span class="sub_message">总数（0）</span>
                         <div class="layui-inline">
-                            <input class="layui-input" name="keyword" id="keyword" value="" placeholder="请输入文章标题"
+                            <input class="layui-input search_input" name="keyword" id="keyword" value="" placeholder="请输入文章标题"
                                    style="width: 250px;">
                         </div>
-                        <button class="layui-btn" type="button" onclick="global_curr_page=1;queryPage()">查询</button>
-                        <button class="layui-btn add_article" type="button" onclick="global_curr_page=1;addArticle()">
+                        <button class="layui-btn" type="button" onclick="global_page=1;findMessage()">查询</button>
+                        <button class="layui-btn add_article" type="button" onclick="addArticle()">
                             添加文章
                         </button>
-                        <table class="layui-hide" id="test" lay-filter="demo"></table>
                         <div class="clear"></div>
                     </form>
                 </ul>
             </div>
             <div class="article_list">
                 <ul class="article_list_ul">
-                    <li class="article_list_li">
-                        <div class="article_content">
-                            <div class="article_content_list">
-                                <img src="./images/d1.jpg" class="article_content_img">
-                                <div class="article_list_content">
-                                    <div class="article_list_title" name=""></div>
-                                    <div class="article_list_describe">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                            <div class="article_list_bottom">
-                                <div class="article_author">作者：啥子</div>
-                                <div class="article_list_time">ww</div>
-                                <div class="article_list_time">ww</div>
-                                <div class="article_list_operate">
-                                    <div class="article_list_revise">修改</div>
-                                    <div class="article_list_delete">删除</div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+
+
+                    <div class="not_find_message">
+                        <img src="./images/not_find.png" alt="">
+                    </div>
+                    <div class="clear"></div>
                 </ul>
+            </div>
+            <!--分页-->
+            <div class="page_container">
+                <div class="page_box">
+                    <div class="page_prev" onclick="loadPage.pagePrev()">
+                        <div class="arrow prev_arrow"></div>
+                    </div>
+                    <div class="page_number">
+                        <span class="page_current"></span>
+                        <span>/</span>
+                        <span class="page_content"></span>
+                    </div>
+                    <div class="page_next" onclick="loadPage.pageNext()">
+                        <div class="arrow next_arrow"></div>
+                    </div>
+                    <input type="text" class="page_input_number">
+
+                    <div class="page_go" onclick="loadPage.checkPageTo();">
+                        <span>跳转</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
             </div>
         </div>
         <!--中间代码区域-->
@@ -166,46 +182,104 @@
 <script>
 
     $(document).ready(function(){
-        clickLiChangeStyle('first_menu','first_menu1')
-        allArticle();
-    })
+        clickLiChangeStyle('first_menu','first_menu'+global_type);
+        allArticle()
+    });
+    let global_type=GetQueryString('type');
     //文章列表
     function allArticle() {
-        operation.operation_ajax_async("/api/manage/article/list", "post", {}, function () {
-
-        });
+        let obj ={
+            menu_id:global_type,
+            size : size,
+            page : global_page
+        };
+        operation.operation_ajax_async("/api/manage/article/list", "post", obj, checkMessage);
+    }
+    function checkMessage() {
+        $('.article_li').remove();
+        var count = global_data.data.count;
+        loadPage.checkUserPrivilege(count, loadMessageSuccess);
+    }
+    function loadMessageSuccess(){
+        var data_length = global_data.data.list.length;
+        $('.sub_message').text("总数（" + global_data.data.count + "）");
+        if (data_length == 0) {
+            $('.not_find_message').show();
+        } else {
+            $('.not_find_message').hide();
+            global_data.data.list.map(v=>{
+                $('.not_find_message').before('<li class="article_list_li article_li" data_id="'+v.id+'">'+
+                    '<div class="article_content">'+
+                    '<div class="article_content_list">'+
+                    '<img src="./images/d1.jpg" class="article_content_img">'+
+                    '<div class="article_list_content">'+
+                    '<div class="article_list_title">'+v.title+'</div>'+
+                    '<div class="article_list_describe">'+v.description+'</div>'+
+                    '</div>'+
+                    '<div class="clear"></div>'+
+                    '</div>'+
+                    ''+
+                    '<div class="article_list_bottom">'+
+                    '<div class="article_author">作者：'+v.author+'</div>'+
+                    '<div class="article_list_time">分类：'+v.menu_id+'</div>'+
+                    '<div class="article_list_time">'+v.gmt_create.substring(0,16)+'</div>'+
+                    '<div class="article_list_operate">'+
+                    '<div class="article_list_revise" onclick="updateArticle(this)">修改</div>'+
+                    '<div class="article_list_delete" onclick="showDeleteTip(this)">删除</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '</li>')
+            })
+        }
     }
     //查询文章
     function queryPage() {
-        tableData.reload({
-            where: {
-                keyword: jQuery("#keyword").val(),
-                level_id:jQuery(".hospital_select").val()
-                // page: global_curr_page
-            }
-            , page: {curr:global_curr_page}
-        });
-    }
 
-    /*//实时时间
-    function getFormatDate() {
-        var nowDate = new Date();
-        var year = nowDate.getFullYear();
-        var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
-        var date = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
-        var hour = nowDate.getHours() < 10 ? "0" + nowDate.getHours() : nowDate.getHours();
-        var minute = nowDate.getMinutes() < 10 ? "0" + nowDate.getMinutes() : nowDate.getMinutes();
-        var second = nowDate.getSeconds() < 10 ? "0" + nowDate.getSeconds() : nowDate.getSeconds();
-        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
     }
-    var str = getFormatDate();
-    console.log(str);
-    $(".article_list_time").text(str);*/
-
     //添加文章页面
     function addArticle() {
-        window.location.href = "/manage_add_article";
+        window.location.href = "/manage_add_article?type="+global_type;
     }
+    function updateArticle(obj){
+        var data_id = $(obj).closest('.article_li').attr('data_id');
+        window.location.href = "/manage_add_article?type="+global_type+"&id="+data_id;
+    }
+    function showDeleteTip(obj) {
+        var data_id = $(obj).closest('.article_li').attr('data_id');
+        swal({
+            title: "确定删除？",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#169BD5",
+            confirmButtonText: "确定",
+            cancelButtonText: "取消",
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true
+        }, function () {
+            setTimeout(function () {
+                deleteList(data_id);
+            }, 100);
+        });
+    }
+    function deleteList(data_id) {
+        var obj = {};
+        obj.id = data_id;
+        operation.swal_ajax_manager("/api/manage/article/delete", obj, findMessage)
+
+    }
+
+    //查找信息
+    function findMessage() {
+        var obj = {};
+        var search = $('.search_input').val();
+        obj.search = search;
+        obj.size = size;
+        obj.page = global_page;
+        obj.menu_id = global_type;
+        operation.operation_ajax_async("/api/manage/article/list",'post', obj, checkMessage);
+    }
+
 </script>
 </body>
 </html>

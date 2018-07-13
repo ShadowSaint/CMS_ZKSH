@@ -47,7 +47,7 @@
 <script>
     //JavaScript代码区域
     $(document).ready(function () {
-        clickLiChangeStyle('first_menu', 'first_menu2')
+        clickLiChangeStyle('second_menu', '');
         //菜单管理
         loadList();
     });
@@ -67,8 +67,8 @@
                 , cols: [
                     [
                         {type: 'numbers', title: '序号', width: 100}
-                        , {field: 'name', title: '菜单名称', align: "center", edit: 'text'}
-                        , {field: 'seq', title: '菜单顺序', align: "center", edit: 'text'}
+                        , {field: 'name', title: '菜单名称（点击可编辑）', align: "center", edit: 'text'}
+                        , {field: 'seq', title: '菜单顺序（点击可编辑）', align: "center", edit: 'text'}
                         , {
                         field: 'title',
                         title: '操作',
@@ -115,6 +115,7 @@
                         layer.msg("删除成功");
                     });
                     layer.close(index);
+                    loadMenus();
                 });
             }
             /*else if (obj.event === 'show') {
@@ -163,6 +164,9 @@
                         if (data.status){
                             layer.closeAll();
                             layer.msg("保存成功");
+                            //菜单管理
+                            loadList();
+                            loadMenus();
                         }
                     },
                     error: function (e) {
@@ -212,10 +216,13 @@
             dataType: "JSON",
             success: function (res) {
                 // console.log(res);
+                layer.msg("保存成功");
                 layui.use('form', function () {
                     form = layui.form;
                     form.render();
+
                 });
+                loadMenus();
             },
             error: function (data) {
                 alert(data.message);

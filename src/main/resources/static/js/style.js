@@ -239,11 +239,11 @@ var operation = (function () {
                     // console.log("操作成功");
                     callback();
                 } else {
-                    alert(data.message);
+                    swal(data.message);
                 }
             },
             error: function () {
-                alert(data.message);
+                swal(data.message);
             }
         })
     };

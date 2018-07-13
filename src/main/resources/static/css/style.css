@@ -59,7 +59,7 @@ input:-webkit-autofill {
 }
 
 input:focus{
-    border:#c13d3b;
+    border:1px solid #c13d3b;
     outline: none;
 }
 textarea{
@@ -198,7 +198,7 @@ nav.page-tabs .page-tabs-content {
     font-size: 0;
     border-width: 7px 7px 0;
     border-style: solid dashed;
-    border-color: #c13d3b transparent transparent;
+    border-color: #16a085 transparent transparent;
     -webkit-transition-duration: 0.5s;
     cursor: pointer;
 }
@@ -225,10 +225,10 @@ nav.page-tabs .page-tabs-content {
     background-color: #f4f5f9;
 }
 .page_prev:hover > .prev_arrow{
-    border-right-color: #c13d3b ;
+    border-right-color: #16a085 ;
 }
 .page_next:hover > .next_arrow{
-    border-left-color: #c13d3b ;
+    border-left-color: #16a085 ;
 }
 .page_prev .arrow, .page_next .arrow {
     position: absolute;
@@ -261,7 +261,6 @@ nav.page-tabs .page-tabs-content {
 }
 .page_container{
     content: "";
-    border-top: 1px #e8e8e8 solid;
     margin-top: 20px;
     padding: 15px 0;
     line-height: 40px;
@@ -284,8 +283,8 @@ nav.page-tabs .page-tabs-content {
     vertical-align: middle;
     float: left;
     width: 75px;
-    height: 22px;
-    line-height: 22px;
+    height: 32px;
+    line-height: 32px;
     padding: 4px 0;
     border: 1px solid #e8e8e8;
     box-shadow: none;
@@ -319,6 +318,7 @@ nav.page-tabs .page-tabs-content {
     line-height: 40px;
     font-size: 16px;
     float: left;
+    margin-right: 10px;
 }
 .page_set{
     float: right;
@@ -352,7 +352,7 @@ nav.page-tabs .page-tabs-content {
     background-color: #e8e8e8;
 }
 .page_set_number{
-    color: #c13d3b;
+    color: #16a085;
 }
 .page_set:hover>.down1{
     transform: rotate(180deg);
@@ -367,7 +367,7 @@ nav.page-tabs .page-tabs-content {
 }
 .not_find_message span{
     font-size: 25px;
-    color: #13A5EA
+    color: #16a085
 }
 /*未查询到信息结束*/
 .container_content {
@@ -397,7 +397,7 @@ nav.page-tabs .page-tabs-content {
 }
 .add_span{
     padding: 5px 10px 5px 24px;
-    background-color: #c13d3b;
+    background-color: #16a085;
     margin-bottom: 0px;
     color: #fff !important;
     position: relative;
@@ -456,7 +456,7 @@ nav.page-tabs .page-tabs-content {
 }
 
 .submit_select_span {
-    background-color: #c13d3b;
+    background-color: #16a085;
     color: #fff;
     float: right;
     display: inline-block;
@@ -568,7 +568,7 @@ nav.page-tabs .page-tabs-content {
 .submit_style {
     color: #fff;
     padding: 0 12px;
-    background-color: #c13d3b;
+    background-color: #16a085;
     cursor: pointer;
     line-height: 38px;
     display: inline-block;
@@ -608,6 +608,15 @@ nav.page-tabs .page-tabs-content {
     opacity: 0.4;
 }
 
+.loading_box {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    display: none;
+    text-align: center;
+    z-index: 1000;
+}
+
 /*动画效果9*/
 
 .sk-spinner-cube-grid.sk-spinner {
@@ -619,7 +628,7 @@ nav.page-tabs .page-tabs-content {
 .sk-spinner-cube-grid .sk-cube {
     width: 33%;
     height: 33%;
-    background-color: #D52B2A;
+    background-color: #16a085;
     float: left;
     -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
     animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out

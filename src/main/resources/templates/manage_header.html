@@ -3,27 +3,65 @@
 <head>
     <meta charset="utf-8">
     <title>成都周口商会管理系统</title>
-    <link rel="stylesheet" href="./css/layui.css">
+    <link href="./css/toastr/toastr.min.css" rel="stylesheet">
+    <link href="./css/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="./css/font-awesome.min.css" rel="stylesheet">
+    <link href="./css/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
     <script src="./js/jquery-3.3.1.min.js"></script>
-    <script src="./css/layui/layui.js"></script>
     <script src="./js/style.js"></script>
-
+    <script src="./js/toastr/toastr.js"></script>
+    <script src="./css/layui/layui.js"></script>
+    <script src="./js/sweetalert/sweetalert.min.js"></script>
     <style type="text/css">
-        * {
-            margin: 0px;
-            padding: 0px;
+        .all_container {
+            margin: 75px 20px 40px;
+            background: #fff;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            min-height: 80%;
         }
 
-        .clear {
-            clear: both;
-        }
     </style>
     <script type="text/javascript">
+        $(document).ready(function(){
+           loadMenus();
+        });
         //改变点击li后的样式
         function clickLiChangeStyle(parent, child) {
             $('.nav_tab').removeClass('layui-this');
-            $('.'+parent).find('.'+child).addClass('layui-this');
+            if(child==''){
+                $('.'+parent).addClass('layui-this');
+            }else{
+                $('.'+parent).find('.'+child).addClass('layui-this');
+            }
+        }
+
+        //提示信息配置
+        toastr.options = {
+            "closeButton": false, //是否显示关闭按钮
+            "debug": false, //是否使用debug模式
+            "positionClass": "toast-top-right",//弹出窗的位置
+            "showDuration": "300",//显示的动画时间
+            "hideDuration": "1000",//消失的动画时间
+            "timeOut": "2000", //展现时间
+            "extendedTimeOut": "1000",//加长展示时间
+            "showEasing": "swing",//显示时的动画缓冲方式
+            "hideEasing": "linear",//消失时的动画缓冲方式
+            "showMethod": "fadeIn",//显示时的动画方式
+            "hideMethod": "fadeOut" //消失时的动画方式
+        };
+        let global_menu;
+        // 加载菜单
+        function loadMenus(){
+            $('.article_menu').empty();
+            operation.operation_ajax_synchro('/api/manage/menu/list','post','',function(){
+                global_menu= global_data.data;
+                global_menu.map(v=>{
+                    $('.article_menu').append('<dd class="nav_tab first_menu'+v.id+'"><a href="/manage_article?type='+v.id+'">'+v.name+'</a></dd>')
+                })
+            })
         }
     </script>
 </head>
@@ -54,24 +92,38 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="manage_menu">
-                <li class="layui-nav-item layui-nav-itemed first_menu">
+                <li class="layui-nav-item layui-nav-itemed  first_menu">
                     <a href="javascript:;">文章管理</a>
-                    <dl class="layui-nav-child">
-                        <dd class="nav_tab first_menu1"><a href="/manage_article">列表一</a></dd>
-                        <dd class="nav_tab first_menu2"><a href="/manage_add_menu">列表二</a></dd>
-                        <dd class="nav_tab first_menu3"><a href="javascript:;">列表三</a></dd>
+                    <dl class="layui-nav-child article_menu">
+
                     </dl>
                 </li>
-                <li class="layui-nav-item second_menu">
-                    <a href="javascript:;">设置</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" class="second_menu1">列表一</a></dd>
-                        <dd><a href="javascript:;" class="second_menu2">列表二</a></dd>
-                    </dl>
+                <li class="layui-nav-item layui-nav-itemed  second_menu">
+                    <a href="/manage_add_menu">菜单设置</a>
                 </li>
-                <li class="layui-nav-item third_menu"><a href="">云市场</a></li>
-                <li class="layui-nav-item fourth_menu"><a href="">发布商品</a></li>
             </ul>
+
+            <!--<ul class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" lay-filter="demo">-->
+                <!--<li class="layui-nav-item layui-nav-itemed">-->
+                    <!--<a href="javascript:;">默认展开</a>-->
+                    <!--<dl class="layui-nav-child">-->
+                        <!--<dd><a href="javascript:;">选项一</a></dd>-->
+                        <!--<dd><a href="javascript:;">选项二</a></dd>-->
+                        <!--<dd><a href="javascript:;">选项三</a></dd>-->
+                        <!--<dd><a href="">跳转项</a></dd>-->
+                    <!--</dl>-->
+                <!--</li>-->
+                <!--<li class="layui-nav-item">-->
+                    <!--<a href="javascript:;">解决方案</a>-->
+                    <!--<dl class="layui-nav-child">-->
+                        <!--<dd><a href="">移动模块</a></dd>-->
+                        <!--<dd><a href="">后台模版</a></dd>-->
+                        <!--<dd><a href="">电商平台</a></dd>-->
+                    <!--</dl>-->
+                <!--</li>-->
+                <!--<li class="layui-nav-item"><a href="">云市场</a></li>-->
+                <!--<li class="layui-nav-item"><a href="">社区</a></li>-->
+            <!--</ul>-->
         </div>
     </div>
 
