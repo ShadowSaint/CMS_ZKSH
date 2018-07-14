@@ -7,6 +7,7 @@ import com.cdzksh.index.domain.ResultVO;
 import com.cdzksh.index.service.ArticleService;
 import com.cdzksh.index.util.GRQUtil;
 import com.github.pagehelper.Page;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,8 +42,8 @@ public class ArticleController {
             }
             String cover = request.getParameter("cover");
             String content = request.getParameter("content");
-            String description = content;
-            if (content.length() > 100) {
+            String description = Jsoup.parse(content).text();
+            if (description.length() > 100) {
                 description = content.substring(0, 99);
             }
 
@@ -159,7 +160,7 @@ public class ArticleController {
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("list", (List<ArticleDO>) articleDOPage);
-            jsonObject.put("count", articleDOPage.size());
+            jsonObject.put("count", articleDOPage.getTotal());
 
             resultVO.setData(jsonObject);
 
