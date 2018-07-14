@@ -35,7 +35,7 @@ spring:
       enabled: true
       #设置重启的目录
       additional-paths: resources/**,static/**,templates/**
-      #classpath目录下的WEB-INF文件夹内容修改不重启
+      #该目录下的内容修改不重启
       exclude: data/**
 
 
