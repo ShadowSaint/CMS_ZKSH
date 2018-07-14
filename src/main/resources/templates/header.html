@@ -36,7 +36,7 @@
         }
 
         .css_li {
-            font-size: 14px;
+            font-size: 16px;
             color: #555;
             float: left;
             padding: 30px 13px;
@@ -279,6 +279,10 @@
             width: 140px;
             height: 140px;
         }
+        .top_logo_box{
+            height: 200px;
+            overflow: hidden;
+        }
     </style>
     <script>
         $(document).ready(function () {
@@ -301,6 +305,10 @@
     </script>
 </head>
 <body>
+<div class="top_logo_box">
+    <img src="./images/top_logo.png" style="width: 100%;height: 340px;position: relative;top:-10px;">
+</div>
+
 <div class="head_box">
     <div class="head_box_list">
         <div class="header_box">
@@ -314,22 +322,22 @@
                     <li class="css_li">首页</li>
                 </a>
                 <a href="/picNewsList?index=1" class="menu_css">
-                    <li class="css_li">特区豫商</li>
+                    <li class="css_li">商会简介</li>
                 </a>
                 <a href="/list?index=2" class="menu_css">
-                    <li class="css_li ">豫商通讯</li>
+                    <li class="css_li ">周口人文</li>
                 </a>
                 <a href="/list?index=3" class="menu_css">
                     <li class="css_li ">商会新闻</li>
                 </a>
                 <a href="/c_member?index=4" class="menu_css">
-                    <li class="css_li ">商会成员</li>
-                </a>
-                <a href="/c_info?index=5" class="menu_css">
                     <li class="css_li ">商会章程</li>
                 </a>
+                <a href="/c_info?index=5" class="menu_css">
+                    <li class="css_li ">商会会员</li>
+                </a>
                 <a href="/c_about?index=6" class="menu_css">
-                    <li class="css_li ">商会简介</li>
+                    <li class="css_li ">互助基金</li>
                 </a>
 
                 <div class="clear"></div>

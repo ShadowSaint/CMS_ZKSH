@@ -23,10 +23,11 @@ public class LoginController {
         if (username == null) {
             return "login";
         }
+
         String password = request.getParameter("password");
         if (username.equals("zkshadmin") && (password.equals("zksh") || password.toLowerCase().equals("4717273d97c5d0cbcd37c19e9f2585f3"))) {
             session.setAttribute("User", "admin");
-            return "redirect:/manage/index";
+            return "redirect:/manage_article";
         } else {
             return "redirect:/login?msg=wrong";
         }
@@ -35,6 +36,6 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logoutPage(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/login";
     }
 }
