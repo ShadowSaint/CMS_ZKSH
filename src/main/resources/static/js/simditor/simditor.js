@@ -4438,7 +4438,7 @@ ImageButton = (function(superClass) {
           alert(msg);
           img_path = _this.defaultImage;
         } else {
-          img_path = result.file_path;
+          img_path = result.data;
         }
         _this.loadImage($img, img_path, function() {
           var $mask;

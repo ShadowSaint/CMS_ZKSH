@@ -415,7 +415,7 @@
     //添加图片
     function addImages() {
         var data = new FormData($('#upload_form')[0]);
-        operation.operation_ajax_FormData("http://qsx.cyparty.com/api/file/upload", data, imgTips);
+        operation.operation_ajax_FormData("/file/upload", data, imgTips);
     }
     function imgTips() {
         toastr.success("图片保存成功");
@@ -440,7 +440,7 @@
             toolbarFloat: true,  //工具栏
             // defaultImage: '/resource/images/logo.png', //编辑器插入图片时使用的默认图片
             upload: {
-                url: 'http://qsx.cyparty.com/api/file/upload', //文件上传的接口地址
+                url: '/file/upload', //文件上传的接口地址
                 params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
                 fileKey: 'file', //服务器端获取文件数据的参数名
                 connectionCount: 3,
