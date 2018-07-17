@@ -58,7 +58,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
-			<scope>true</scope>
+			<!--<scope>true</scope>-->
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
 		<dependency>

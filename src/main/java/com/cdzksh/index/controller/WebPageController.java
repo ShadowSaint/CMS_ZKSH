@@ -53,17 +53,17 @@ public class WebPageController {
         return "news_detail";
     }
     //后台管理详情页面
-    @RequestMapping("/manage_article")
+    @RequestMapping("/manage/article")
     public String manageArticle(){
         return "manage_article";
     }
     //添加文章页面
-    @RequestMapping("/manage_add_article")
+    @RequestMapping("/manage/add_article")
     public String addArticle(){
         return "manage_add_article";
     }
     //添加文章页面
-    @RequestMapping("/manage_add_menu")
+    @RequestMapping("/manage/add_menu")
     public String addMenu(){
         return "manage_add_menu";
     }

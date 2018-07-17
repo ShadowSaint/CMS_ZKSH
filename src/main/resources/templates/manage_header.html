@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>成都周口商会管理系统</title>
-    <link href="./css/toastr/toastr.min.css" rel="stylesheet">
-    <link href="./css/sweetalert/sweetalert.css" rel="stylesheet">
-    <link href="./css/font-awesome.min.css" rel="stylesheet">
-    <link href="./css/layui/css/layui.css" rel="stylesheet">
-    <link href="./css/sweetalert/sweetalert.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
-    <script src="./js/jquery-3.3.1.min.js"></script>
-    <script src="./js/style.js"></script>
-    <script src="./js/toastr/toastr.js"></script>
-    <script src="./css/layui/layui.js"></script>
-    <script src="./js/sweetalert/sweetalert.min.js"></script>
+    <link href="/css/toastr/toastr.min.css" rel="stylesheet">
+    <link href="/css/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/layui/css/layui.css" rel="stylesheet">
+    <link href="/css/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/style.js"></script>
+    <script src="/js/toastr/toastr.js"></script>
+    <script src="/css/layui/layui.js"></script>
+    <script src="/js/sweetalert/sweetalert.min.js"></script>
     <style type="text/css">
         .all_container {
             margin: 75px 20px 40px;
@@ -59,7 +59,7 @@
             operation.operation_ajax_synchro('/api/manage/menu/list','post','',function(){
                 global_menu= global_data.data;
                 global_menu.map(v=>{
-                    $('.article_menu').append('<dd class="nav_tab first_menu'+v.id+'"><a href="/manage_article?type='+v.id+'">'+v.name+'</a></dd>')
+                    $('.article_menu').append('<dd class="nav_tab first_menu'+v.id+'"><a href="/manage/article?type='+v.id+'">'+v.name+'</a></dd>')
                 })
             })
         }
@@ -84,7 +84,7 @@
         <div class="layui-logo">商会后台管理</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="/manage_article?type=2">主页</a></li>
+            <li class="layui-nav-item"><a href="/manage/article?type=2">主页</a></li>
             <!-- <li class="layui-nav-item"><a href="">商品管理</a></li>
              <li class="layui-nav-item"><a href="">用户</a></li>
           <li class="layui-nav-item">
@@ -111,7 +111,7 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed  second_menu">
-                    <a href="/manage_add_menu">菜单设置</a>
+                    <a href="/manage/add_menu">菜单设置</a>
                 </li>
             </ul>
 

@@ -15,6 +15,9 @@ public class IndexConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(indexInterceptor).addPathPatterns("/api/manage/**");
+        registry.addInterceptor(indexInterceptor)
+                .addPathPatterns("/api/manage/**")
+                .addPathPatterns("/manage/**")
+                .excludePathPatterns("/**/login_redirect_long_string_just_in_case");
     }
 }

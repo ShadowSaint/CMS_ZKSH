@@ -147,7 +147,7 @@
 
 
                     <div class="not_find_message">
-                        <img src="./images/not_find.png" alt="">
+                        <img src="/images/not_find.png" alt="">
                     </div>
                     <div class="clear"></div>
                 </ul>
@@ -211,7 +211,7 @@
                 $('.not_find_message').before('<li class="article_list_li article_li" data_id="'+v.id+'">'+
                     '<div class="article_content">'+
                     '<div class="article_content_list">'+
-                    '<img src="./images/d1.jpg" class="article_content_img">'+
+                    '<img src="/images/d1.jpg" class="article_content_img">'+
                     '<div class="article_list_content">'+
                     '<div class="article_list_title">'+v.title+'</div>'+
                     '<div class="article_list_describe">'+v.description+'</div>'+
@@ -239,11 +239,11 @@
     }
     //添加文章页面
     function addArticle() {
-        window.location.href = "/manage_add_article?type="+global_type;
+        window.location.href = "/manage/add_article?type="+global_type;
     }
     function updateArticle(obj){
         var data_id = $(obj).closest('.article_li').attr('data_id');
-        window.location.href = "/manage_add_article?type="+global_type+"&id="+data_id;
+        window.location.href = "/manage/add_article?type="+global_type+"&id="+data_id;
     }
     function showDeleteTip(obj) {
         var data_id = $(obj).closest('.article_li').attr('data_id');
