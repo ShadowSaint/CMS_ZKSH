@@ -17,14 +17,16 @@ public interface MenuMapper {
             "`gmt_modified`,\n" +
             "`p_id`,\n" +
             "`name`,\n" +
-            "`seq`)\n" +
+            "`seq`,\n" +
+            "`content`)\n" +
             "VALUES\n" +
             "(\n" +
             "#{m.gmt_create},\n" +
             "#{m.gmt_modified},\n" +
             "#{m.p_id},\n" +
             "#{m.name},\n" +
-            "#{m.seq});\n")
+            "#{m.seq},\n" +
+            "#{m.content});\n")
     @Options(useGeneratedKeys = true,keyColumn = "m.id")
     void insertMenu(@Param("m")MenuDO menuDO);
 
@@ -36,10 +38,14 @@ public interface MenuMapper {
             "`gmt_modified` = #{m.gmt_modified},\n" +
             "`p_id` = #{m.p_id},\n" +
             "`name` = #{m.name},\n" +
-            "`seq` = #{m.seq}\n" +
+            "`seq` = #{m.seq},\n" +
+            "`content` = #{m.content}\n" +
             "WHERE `id` = #{m.id};\n")
     void updateMenu(@Param("m")MenuDO menuDO);
 
     @Select("select * from cms_menu where p_id = #{0} order by seq")
     List<MenuDO> listMenu(int p_id);
+
+    @Select("select * from cms_menu where id = #{0}")
+    MenuDO getMenu(int id);
 }

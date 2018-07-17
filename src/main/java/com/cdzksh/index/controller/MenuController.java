@@ -29,6 +29,7 @@ public class MenuController {
             int p_id = GRQUtil.getRequestInteger(request, "p_id", 0);
             String name = request.getParameter("name");
             int seq = GRQUtil.getRequestInteger(request, "seq", 0);
+            String content=request.getParameter("content");
 
             MenuDO menuDO = new MenuDO();
             menuDO.setGmt_create(now);
@@ -36,6 +37,7 @@ public class MenuController {
             menuDO.setP_id(p_id);
             menuDO.setName(name);
             menuDO.setSeq(seq);
+            menuDO.setContent(content);
 
             menuService.insertMenu(menuDO);
 
@@ -71,6 +73,7 @@ public class MenuController {
             int p_id = GRQUtil.getRequestInteger(request, "p_id", 0);
             String name = request.getParameter("name");
             int seq = GRQUtil.getRequestInteger(request, "seq", 0);
+            String content=request.getParameter("content");
 
             MenuDO menuDO = new MenuDO();
             menuDO.setId(id);
@@ -78,6 +81,7 @@ public class MenuController {
             menuDO.setP_id(p_id);
             menuDO.setName(name);
             menuDO.setSeq(seq);
+            menuDO.setContent(content);
 
             menuService.updateMenu(menuDO);
         } catch (Exception e) {
@@ -98,6 +102,20 @@ public class MenuController {
 
             resultVO.setData(list);
         } catch (Exception e) {
+            resultVO.setMessage("请求失败");
+            resultVO.setStatus(false);
+            resultVO.setData(e.getMessage());
+        }
+        return resultVO;
+    }
+
+    @RequestMapping("/api/manage/menu")
+    public ResultVO apiManageMenu(HttpServletRequest request){
+        ResultVO resultVO=new ResultVO();
+        try {
+            int id=Integer.valueOf(request.getParameter("id"));
+
+        }catch (Exception e){
             resultVO.setMessage("请求失败");
             resultVO.setStatus(false);
             resultVO.setData(e.getMessage());

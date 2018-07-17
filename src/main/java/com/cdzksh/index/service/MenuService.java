@@ -13,5 +13,7 @@ public interface MenuService {
     void deleteMenu(int id);
     void updateMenu(@Param("m")MenuDO menuDO);
     List<MenuDO> listMenu(int p_id);
+    MenuDO getMenu(int id);
+
 
 }

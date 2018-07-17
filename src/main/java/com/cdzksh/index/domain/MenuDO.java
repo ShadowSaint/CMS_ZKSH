@@ -10,6 +10,7 @@ public class MenuDO {
     private Integer p_id;
     private String name;
     private Integer seq;
+    private String content;
 
     @Override
     public String toString() {
@@ -69,5 +70,13 @@ public class MenuDO {
 
     public void setSeq(Integer seq) {
         this.seq = seq;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

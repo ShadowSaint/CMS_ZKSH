@@ -35,4 +35,9 @@ public class MenuServiceImpl implements MenuService{
     public List<MenuDO> listMenu(int p_id) {
         return menuMapper.listMenu(p_id);
     }
+
+    @Override
+    public MenuDO getMenu(int id) {
+        return menuMapper.getMenu(id);
+    }
 }
