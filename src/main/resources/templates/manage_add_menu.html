@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<link href="/css/simditor/simditor.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
     .all_container {
         padding-top: 100px;
@@ -22,6 +23,9 @@
 
     .menu_box {
         margin: 35px 30px 20px 0px;
+    }
+    .textarea_box{
+        padding: 10px 0 20px 38px;
     }
 </style>
 <div lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
@@ -99,12 +103,12 @@
             var table = layui.table;
             //监听医院科室表格复选框选择
             table.on('checkbox(demo)', function (obj) {
-                console.log(obj)
+                // console.log(obj)
             });
         });
         //监听工具条
         table.on('tool(demo)', function (obj) {
-            console.log(obj);
+            // console.log(obj);
             var data = obj.data;
             if (obj.event === 'del') {
                 layer.confirm('确定删除？', function (index) {
@@ -118,12 +122,9 @@
                     loadMenus();
                 });
             }
-            /*else if (obj.event === 'show') {
-                reviseHospital(data.hospital_id);
-            }else if(obj.event === 'operat'){
-                global_hospital_id=data.hospital_id;
-                addHospitalClass();
-            }*/
+            else if (obj.event === 'edit') {
+                editMenu(data)
+            }
         });
     }
 
@@ -132,47 +133,45 @@
         layer.open({
             type: 1
             , title: '添加菜单'
-            , area: ['600px', '400px']
+            , area: ['1000px', '700px']
             , shade: 0
             , content: '<form class="layui-form" id="tf">' +
             '<div class="form_box">' +
             '<div class="menu_box">' +
             '<label class="layui-form-label">菜单名称</label>' +
             '<div class="layui-input-block">' +
-            '<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input" value="">' +
+            '<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input menu_name" value="">' +
             '</div>' +
             '</div>' +
             '<div class="menu_box">' +
             '<label class="layui-form-label">菜单顺序</label>' +
             '<div class="layui-input-block">' +
-            '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input" value="">' +
+            '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input menu_seq" value="">' +
+            '</div>' +
+            '</div>' +
+            '<div class="menu_box">' +
+            '<div class="textarea_box">' +
+            '<textarea id="editor" name="content" autofocus></textarea>'+
             '</div>' +
             '</div>' +
             '</div>' +
             '</form>'
             , btn: ['保存', '取消'] //只是为了演示
             , yes: function () {
-                var form = new FormData(document.getElementById("tf"));
-                layer.load();
-                $.ajax({
-                    url: "/api/manege/menu/insert",
-                    type: "post",
-                    data: form,
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        if (data.status){
-                            layer.closeAll();
-                            layer.msg("保存成功");
-                            //菜单管理
-                            loadList();
-                            loadMenus();
-                        }
-                    },
-                    error: function (e) {
-                        alert("错误！！");
+                var obj ={
+                    name:$('.menu_name').val(),
+                    seq:$('.menu_seq').val(),
+                    content:editor.getValue()
+                };
+                operation.operation_ajax_async('/api/manege/menu/insert','post',obj,function(){
+                    if (global_data.status){
+                        layer.closeAll();
+                        layer.msg("保存成功");
+                        //菜单管理
+                        loadList();
+                        loadMenus();
                     }
-                });
+                })
             }
             , btn2: function () {
                 layer.closeAll();
@@ -180,10 +179,71 @@
             , zIndex: 999//重点1
             , success: function (layero) {
                 layer.setTop(layero); //重点2
+                loadEditor();
                 form.render();
             }
         });
     }
+
+    //编辑菜单
+    function editMenu(data) {
+        layer.msg('数据为：'+ JSON.stringify(data));
+        console.log(data)
+        layer.open({
+            type: 1
+            , title: '修改菜单'
+            , area: ['1000px', '700px']
+            , shade: 0
+            , content: '<form class="layui-form" id="tf">' +
+            '<div class="form_box">' +
+            '<div class="menu_box">' +
+            '<label class="layui-form-label">菜单名称</label>' +
+            '<div class="layui-input-block">' +
+            '<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input menu_name" value="">' +
+            '</div>' +
+            '</div>' +
+            '<div class="menu_box">' +
+            '<label class="layui-form-label">菜单顺序</label>' +
+            '<div class="layui-input-block">' +
+            '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input menu_seq" value="">' +
+            '</div>' +
+            '</div>' +
+            '<div class="menu_box">' +
+            '<div class="textarea_box">' +
+            '<textarea id="editor" name="content" autofocus></textarea>'+
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</form>'
+            , btn: ['保存', '取消'] //只是为了演示
+            , yes: function () {
+                var obj ={
+                    name:$('.menu_name').val(),
+                    seq:$('.menu_seq').val(),
+                    content:editor.getValue()
+                };
+                operation.operation_ajax_async('/api/manege/menu/insert','post',obj,function(){
+                    if (global_data.status){
+                        layer.closeAll();
+                        layer.msg("保存成功");
+                        //菜单管理
+                        loadList();
+                        loadMenus();
+                    }
+                })
+            }
+            , btn2: function () {
+                layer.closeAll();
+            }
+            , zIndex: 999//重点1
+            , success: function (layero) {
+                layer.setTop(layero); //重点2
+                loadEditor();
+                form.render();
+            }
+        });
+    }
+
     //监听单元格编辑
     layui.use('table', function(){
         var table = layui.table;
@@ -191,12 +251,13 @@
         table.on('edit(demo)', function(obj){
             var value = obj.value //得到修改后的值
             var data = obj.data //得到所在行所有键值
-            console.log(data)
+            // console.log(data)
             var field = obj.field; //得到字段
-            //layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+            // layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
             var editData={};
             editData.name=data.name;
             editData.seq=data.seq;
+            editData.content=data.content;
             editData.id=data.id;
             menuEdit(editData);
         });
@@ -204,15 +265,11 @@
     //修改菜单
     var global_id="";
     function menuEdit(editData){
-        // console.log(editData)
-        var name=editData.name;
-        var seq=editData.seq;
-        var id=editData.id;
         $.ajax({
             async: false,
             type: "GET",
             url: "/api/manage/menu/update",
-            data: { name:name,seq:seq,id:id},
+            data: editData,
             dataType: "JSON",
             success: function (res) {
                 // console.log(res);
@@ -234,7 +291,36 @@
 </script>
 
 <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit" style="width: 68px">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="width: 68px">删除</a>
 </script>
+
+<script type="text/javascript">
+    var editor;
+    var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough',
+        'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|',
+        'link', 'image', 'hr', '|', 'indent', 'outdent','alignment'];
+    function loadEditor(){
+        editor = new Simditor({
+            textarea: $('#editor'),
+            placeholder: '如果是单页则填写内容，如果是列表页则不需要添加内容...',
+            toolbar: toolbar,  //工具栏
+            toolbarFloat: true,  //工具栏
+            // defaultImage: '/resource/images/logo.png', //编辑器插入图片时使用的默认图片
+            upload: {
+                url: '/file/upload', //文件上传的接口地址
+                params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                fileKey: 'file', //服务器端获取文件数据的参数名
+                connectionCount: 3,
+                leaveConfirm: '正在上传文件'
+            }
+        });
+    }
+
+</script>
+<script src="/js/simditor/module.js" type="text/javascript"></script>
+<script src="/js/simditor/hotkeys.js" type="text/javascript"></script>
+<script src="/js/simditor/uploader.js" type="text/javascript"></script>
+<script src="/js/simditor/simditor.js" type="text/javascript"></script>
 </body>
 </html>

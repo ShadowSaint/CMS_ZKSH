@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<link href="/css/simditor/simditor.css" rel="stylesheet" type="text/css"/>
+
 <div lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="manage_header::html"></div>
     <!--中间主体部分-->
@@ -432,7 +432,7 @@
     $(function () {
         var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough',
             'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|',
-            'link', 'image', 'hr', '|', 'indent', 'outdent'];
+            'link', 'image', 'hr', '|', 'indent', 'outdent','alignment'];
         editor = new Simditor({
             textarea: $('#editor'),
             placeholder: '这里输入内容...',
