@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-
+<link href="/css/simditor/simditor.css" rel="stylesheet" type="text/css"/>
 <div lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="manage_header::html"></div>
     <!--中间主体部分-->
@@ -275,7 +275,9 @@
         }else{
             setTimeout(function(){
                 global_menu.map(v=>{
-                    $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
+                    if(v.content==""){
+                        $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
+                    }
                 })
                 form.render()
             },300)
@@ -306,11 +308,14 @@
             $('.editor_mid_box').css('width', 'auto');
             editor.setValue(data.content);
             global_menu.map(v=>{
-                if(v.id==data.menu_id){
-                    $('.menu_li').after('<option value="'+v.id+'" selected>'+v.name+'</option>')
-                }else{
-                    $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
+                if(v.content==""){
+                    if(v.id==data.menu_id){
+                        $('.menu_li').after('<option value="'+v.id+'" selected>'+v.name+'</option>')
+                    }else{
+                        $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
+                    }
                 }
+
 
             })
             form.render()
