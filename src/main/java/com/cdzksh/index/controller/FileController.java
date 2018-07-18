@@ -39,7 +39,7 @@ public class FileController {
             File localFile = new File(filePath);
             file.transferTo(localFile);
 
-            String ossUrl= OssUtil.getOSSUrl(filePath,"."+file.getContentType());
+            String ossUrl= OssUtil.getOSSUrl(filePath,"."+getSuffix(file.getContentType()));
             resultVO.setData(ossUrl);
 
             localFile.delete();
@@ -50,5 +50,26 @@ public class FileController {
         }
         return resultVO;
 
+    }
+
+    private String getSuffix(String contentType){
+        try {
+            String suffix=contentType;
+            if (suffix.contains("png")){
+                return "png";
+            }
+            if (suffix.contains("jpg")){
+                return "jpg";
+            }
+            if (suffix.contains("jpeg")){
+                return "jpeg";
+            }
+            if (suffix.contains("gif")){
+                return "gif";
+            }
+            return "png";
+        }catch (Exception e){
+            return null;
+        }
     }
 }
