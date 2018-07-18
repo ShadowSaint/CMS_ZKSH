@@ -187,8 +187,8 @@
 
     //编辑菜单
     function editMenu(data) {
-        layer.msg('数据为：'+ JSON.stringify(data));
-        console.log(data)
+        // layer.msg('数据为：'+ JSON.stringify(data));
+        // console.log(data)
         layer.open({
             type: 1
             , title: '修改菜单'
@@ -199,18 +199,18 @@
             '<div class="menu_box">' +
             '<label class="layui-form-label">菜单名称</label>' +
             '<div class="layui-input-block">' +
-            '<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input menu_name" value="">' +
+            '<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input menu_name" value="'+data.name+'">' +
             '</div>' +
             '</div>' +
             '<div class="menu_box">' +
             '<label class="layui-form-label">菜单顺序</label>' +
             '<div class="layui-input-block">' +
-            '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input menu_seq" value="">' +
+            '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input menu_seq" value="'+data.seq+'">' +
             '</div>' +
             '</div>' +
             '<div class="menu_box">' +
             '<div class="textarea_box">' +
-            '<textarea id="editor" name="content" autofocus></textarea>'+
+            '<textarea id="editor" name="content" autofocus>'+data.content+'</textarea>'+
             '</div>' +
             '</div>' +
             '</div>' +
@@ -218,11 +218,12 @@
             , btn: ['保存', '取消'] //只是为了演示
             , yes: function () {
                 var obj ={
+                    id:data.id,
                     name:$('.menu_name').val(),
                     seq:$('.menu_seq').val(),
                     content:editor.getValue()
                 };
-                operation.operation_ajax_async('/api/manege/menu/insert','post',obj,function(){
+                operation.operation_ajax_async('/api/manage/menu/update','post',obj,function(){
                     if (global_data.status){
                         layer.closeAll();
                         layer.msg("保存成功");
