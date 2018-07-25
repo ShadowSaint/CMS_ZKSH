@@ -46,7 +46,7 @@
         <div class="all_container">
             <div class="menu_manage_box">
                 <div class="add_menu_box">
-                    <!--<div class="add_menu_but" onclick="global_type=0;addMenu('')">添加菜单</div>-->
+                    <div class="add_menu_but" onclick="global_type=0;addMenu('')">添加菜单</div>
                     <div class="clear"></div>
                 </div>
                 <table class="layui-hide" id="test" lay-filter="demo"></table>
@@ -81,9 +81,9 @@
                 , cols: [
                     [
                         {type: 'numbers', title: '序号', width: 100}
-                        , {field: 'name', title: '一级菜单名称', align: "center",templet:'#cat1'}
+                        , {field: 'name', title: '一级菜单名称', align: "center",templet:'#cat1',edit:'text'}
                         // , {field: 'title2', title: '二级菜单名称', align: "center",templet:'#cat2'}
-                        , {field: 'seq', title: '菜单顺序', align: "center", }
+                        , {field: 'seq', title: '菜单顺序', align: "center", edit:'text'}
                         , {
                         field: 'title',
                         title: '操作',
@@ -378,9 +378,9 @@
 </script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit" style="width: 68px">编辑</a>
-    <span class="{{[2,6,10,11,12,13,14,15,16].indexOf(d.id)==-1?'show':'hide'}}">
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="width: 68px">删除</a>
-    </span>
+    <!--<span class="{{[2,6,10,11,12,13,14,15,16].indexOf(d.id)==-1?'show':'hide'}}">-->
+        <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="width: 68px">删除</a>-->
+    <!--</span>-->
     <!--<span class="{{[2].indexOf(d.id)==-1?'hide':'show'}}">-->
         <!--<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit2" style="width: 68px">添加二级</a>-->
     <!--</span>-->

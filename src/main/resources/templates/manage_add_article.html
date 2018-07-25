@@ -276,15 +276,21 @@
             setTimeout(function(){
                 global_menu.map(v=>{
                     if(v.content==""){
-                        $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
+                        if(v.id==global_type){
+                            $('.menu_li').after('<option value="'+v.id+'" selected>'+v.name+'</option>')
+                        }else{
+                            $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
+                        }
                     }
+
                 })
                 form.render()
             },300)
         }
     })
     var form;
-    var global_id = GetQueryString('id')
+    var global_id = GetQueryString('id');
+    var global_type = GetQueryString('type');
     //JavaScript代码区域
     layui.use('form', function () {
         form= layui.form;
@@ -315,8 +321,6 @@
                         $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
                     }
                 }
-
-
             })
             form.render()
         });
