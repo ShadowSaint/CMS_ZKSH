@@ -56,7 +56,9 @@
         // 加载菜单
         function loadMenus(){
             $('.article_menu').empty();
-            operation.operation_ajax_synchro('/api/manage/menu/list','post','',function(){
+            operation.operation_ajax_synchro('/api/manage/menu/list','post',{
+                menu_type:1
+            },function(){
                 global_menu= global_data.data;
                 global_menu.map(v=>{
                     if(v.content==''){

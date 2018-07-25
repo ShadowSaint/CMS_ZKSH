@@ -45,10 +45,10 @@
         <!--中间代码区域-->
         <div class="all_container">
             <div class="menu_manage_box">
-                <div class="add_menu_box">
-                    <div class="add_menu_but" onclick="global_type=0;addMenu('')">添加菜单</div>
-                    <div class="clear"></div>
-                </div>
+                <!--<div class="add_menu_box">-->
+                    <!--<div class="add_menu_but" onclick="global_type=0;addMenu('')">添加菜单</div>-->
+                    <!--<div class="clear"></div>-->
+                <!--</div>-->
                 <table class="layui-hide" id="test" lay-filter="demo"></table>
             </div>
         </div>
@@ -77,13 +77,13 @@
             tableData = table.render({
                 elem: '#test'
                 , url: '/api/manage/menu/list'
-                , where: {}
+                , where: {menu_type:0}
                 , cols: [
                     [
                         {type: 'numbers', title: '序号', width: 100}
-                        , {field: 'name', title: '一级菜单名称', align: "center",templet:'#cat1',edit:'text'}
+                        , {field: 'name', title: '菜单名称', align: "center",templet:'#cat1',edit:'text'}
                         // , {field: 'title2', title: '二级菜单名称', align: "center",templet:'#cat2'}
-                        , {field: 'seq', title: '菜单顺序', align: "center", edit:'text'}
+                        // , {field: 'seq', title: '菜单顺序(点击可编辑)', align: "center", edit:'text'}
                         , {
                         field: 'title',
                         title: '操作',
@@ -133,10 +133,10 @@
                 });
             }
             else if (obj.event === 'edit') {
-                global_type=0
+                global_type=0;
                 editMenu(data)
             }else if(obj.event ==="edit2"){
-                global_type=1
+                global_type=1;
                 addMenu(data)
             }
         });
@@ -160,12 +160,12 @@
                 '<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input menu_name" value="">' +
                 '</div>' +
                 '</div>' +
-                '<div class="menu_box">' +
-                '<label class="layui-form-label">菜单顺序</label>' +
-                '<div class="layui-input-block">' +
-                '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input menu_seq" value="">' +
-                '</div>' +
-                '</div>' +
+                // '<div class="menu_box">' +
+                // '<label class="layui-form-label">菜单顺序</label>' +
+                // '<div class="layui-input-block">' +
+                // '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input menu_seq" value="">' +
+                // '</div>' +
+                // '</div>' +
                 '<div class="menu_box">' +
                 '<div class="textarea_box">' +
                 '<textarea id="editor" name="content" autofocus></textarea>' +
@@ -215,12 +215,12 @@
                 '<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input menu_name" value="">' +
                 '</div>' +
                 '</div>' +
-                '<div class="menu_box">' +
-                '<label class="layui-form-label">菜单顺序</label>' +
-                '<div class="layui-input-block">' +
-                '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input menu_seq" value="">' +
-                '</div>' +
-                '</div>' +
+                // '<div class="menu_box">' +
+                // '<label class="layui-form-label">菜单顺序</label>' +
+                // '<div class="layui-input-block">' +
+                // '<input type="text" name="seq" lay-verify="title" autocomplete="off" placeholder="请输入排序号" class="layui-input menu_seq" value="">' +
+                // '</div>' +
+                // '</div>' +
                 '<div class="menu_box">' +
                 '<div class="textarea_box">' +
                 '<textarea id="editor" name="content" autofocus></textarea>' +
@@ -232,7 +232,7 @@
                 , yes: function () {
                     var obj = {
                         name: $('.menu_name').val(),
-                        seq: $('.menu_seq').val(),
+                        seq: 1,
                         content: editor.getValue(),
                         p_id:data.id
                     };
