@@ -530,8 +530,8 @@
         <div class="index2_news2_content index2_news2_content1">
             <!--商会新闻-->
             <div class="index2_news2_box index2_news2_box1 index2_news2_box1_active">
-                <ul th:each="item : ${shxw}">
-                    <li class="index2_news2_li">
+                <ul>
+                    <li class="index2_news2_li" th:each="item : ${shxw}">
                         <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
                                 <p class="month" th:text="${item.month}">月份</p>
@@ -548,8 +548,8 @@
             </div>
             <!--政策法规-->
             <div class="index2_news2_box index2_news2_box1">
-                <ul th:each="item : ${zcfg}">
-                    <li class="index2_news2_li">
+                <ul>
+                    <li class="index2_news2_li" th:each="item : ${zcfg}">
                         <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
                                 <p class="month" th:text="${item.month}">月份</p>
@@ -566,8 +566,8 @@
             </div>
             <!--防水之窗-->
             <div class="index2_news2_box index2_news2_box1">
-                <ul th:each="item : ${fszc}">
-                    <li class="index2_news2_li">
+                <ul>
+                    <li class="index2_news2_li" th:each="item : ${fszc}">
                         <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
                                 <p class="month" th:text="${item.month}">月份</p>
@@ -622,8 +622,8 @@
         <div class="index2_news2_content index2_news2_content2">
             <!--蓉周聚焦-->
             <div class="index2_news2_box index2_news2_box1 index2_news2_box1_active">
-                <ul th:each="item : ${rzjj}">
-                    <li class="index2_news2_li">
+                <ul>
+                    <li class="index2_news2_li" th:each="item : ${rzjj}">
                         <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
                                 <p class="month" th:text="${item.month}">月份</p>
@@ -640,8 +640,8 @@
             </div>
             <!--商会交流-->
             <div class="index2_news2_box index2_news2_box1">
-                <ul th:each="item : ${shjl}">
-                    <li class="index2_news2_li">
+                <ul>
+                    <li class="index2_news2_li" th:each="item : ${shjl}">
                         <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
                                 <p class="month" th:text="${item.month}">月份</p>
@@ -658,8 +658,8 @@
             </div>
             <!--法律服务-->
             <div class="index2_news2_box index2_news2_box1">
-                <ul th:each="item : ${flfw}">
-                    <li class="index2_news2_li">
+                <ul>
+                    <li class="index2_news2_li" th:each="item : ${flfw}">
                         <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
                                 <p class="month" th:text="${item.month}">月份</p>

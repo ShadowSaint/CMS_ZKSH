@@ -327,9 +327,13 @@
     }
 
     function submit() {
+        var add_image =$(".add_image").attr('data_src')
+        if(add_image==null){
+            add_image=''
+        }
         let title = $("input[name='title']").val();
         let author = $("input[name='author']").val();
-        let cover = $(".add_image").attr('data_src');
+        let cover = add_image;
         let content = editor.getValue();
         let menu_id = $('.layui-form-select').find('.layui-this').attr('lay-value');
         if(title==""){
@@ -351,7 +355,7 @@
                 obj.id=global_id;
             }
             operation.operation_ajax_async(url, "post", obj, function () {
-                history.go(-1)
+                // history.go(-1)
             });
         }
 
@@ -415,6 +419,7 @@
         k.children('.editor_cancel').css('display', 'none');
         j.css({"display": "none"});
         $(obj).parent().children('.file0').val("");
+        $(".add_image").attr('data_src','');
     }
     function getFileName(file_name) {
         var pos = file_name.lastIndexOf("\\");
@@ -426,9 +431,10 @@
         var data = new FormData($('#upload_form')[0]);
         operation.operation_ajax_FormData("/file/upload", data, imgTips);
     }
+    var global_img="";
     function imgTips() {
         toastr.success("图片保存成功");
-        var global_img = global_data.result;
+        global_img = global_data.data;
         $('.add_image').attr('data_src', global_img);
     }
 
