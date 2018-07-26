@@ -10,6 +10,14 @@ public class ArticleQueryParam {
     private Integer menu_id;
     private Integer p_id;
 
+    public ArticleQueryParam(){
+
+    }
+
+    public ArticleQueryParam(Integer menu_id) {
+        this.menu_id = menu_id;
+    }
+
     @Override
     public String toString() {
         return "ArticleQueryParam{" +

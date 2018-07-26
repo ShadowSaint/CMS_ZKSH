@@ -1,4 +1,4 @@
-<html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org" th:fragment="frag (menu_id,menu_list)">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -315,31 +315,17 @@
             <a href="/" class="logo_box">
                 <img src="/images/logo_top.gif" class="img_name">
             </a>
-            <ul class="head_ul">
-
-                <!--index=几，第几个菜单选中-->
-                <a href="/?index=0" class="menu_css ">
-                    <li class="css_li active_li">首页</li>
-                </a>
-                <a href="/picNewsList?index=1" class="menu_css">
-                    <li class="css_li">商会简介</li>
-                </a>
-                <a href="/list?index=2" class="menu_css">
-                    <li class="css_li ">周口人文</li>
-                </a>
-                <a href="/list?index=3" class="menu_css">
-                    <li class="css_li ">商会新闻</li>
-                </a>
-                <a href="/c_member?index=4" class="menu_css">
-                    <li class="css_li ">商会章程</li>
-                </a>
-                <a href="/c_info?index=5" class="menu_css">
-                    <li class="css_li ">商会会员</li>
-                </a>
-                <a href="/c_about?index=6" class="menu_css">
-                    <li class="css_li ">互助基金</li>
-                </a>
-
+            <ul class="head_ul" th:each="item : ${menu_list}">
+                <th:block th:if=" ${item.id eq menu_id}">
+                    <a th:href="@{${item.url}}" class="menu_css ">
+                        <li class="css_li active_li" th:text="${item.name}">菜单名</li>
+                    </a>
+                </th:block>
+                <th:block th:if=" ${item.id ne menu_id}">
+                    <a th:href="@{${item.url}}" class="menu_css ">
+                        <li class="css_li" th:text="${item.name}">菜单名</li>
+                    </a>
+                </th:block>
                 <div class="clear"></div>
             </ul>
             <div class="login_container" onmouseenter="showAppCode()" onmouseleave="removeAppCode()">

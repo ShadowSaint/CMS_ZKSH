@@ -69,6 +69,9 @@ public interface ArticleMapper {
     @SelectProvider(type = ArticleProvider.class, method = "queryArticleInfoByParam")
     List<ArticleDO> listArticleInfoByParam(@Param("param")ArticleQueryParam articleQueryParam);
 
+    @Select("select * from cms_article_info where menu_id = 2 and cover is not null and cover != '' order by gmt_create desc limit 0,3")
+    List<ArticleDO> listCarouselArticle();
+
     @Select("select a.*,b.content from cms_article_info a left join cms_article_detail b on a.id=b.id where a.id = #{0}")
     ArticleDO getArticleById(int id);
 }

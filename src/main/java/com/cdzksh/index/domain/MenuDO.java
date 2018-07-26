@@ -11,6 +11,7 @@ public class MenuDO {
     private String name;
     private Integer seq;
     private String content;
+    private Integer type;
 
     @Override
     public String toString() {
@@ -78,5 +79,13 @@ public class MenuDO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

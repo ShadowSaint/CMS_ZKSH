@@ -1,7 +1,7 @@
 <html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
 <!--头部信息-->
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<div th:replace="header::html"></div>
+<div th:replace="header::frag(menu_id=${menu_id},menu_list=${menu_list})" ></div>
 <style>
     #content {
         width: 1200px;
@@ -249,194 +249,108 @@
 <!--中间部分-->
 <div id="content">
     <div class="left_box">
-        <ul class="news_ul">
-            <a href="/newsDetail?id=1969" target="_blank">
-                <li class="news_li">
-                    <div class="news_li_img_box  ui-flex justify-center center">
-                        <img src="/images/s1.JPG" class="news_li_img_left">
-                    </div>
-                    <div class="news_li_right">
-                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
-                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
-                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
+        <ul class="news_ul" th:each="item : ${list}">
+            <th:block th:if="${item.cover ne null && item.cover ne ''}">
+                <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" target="_blank">
+                    <li class="news_li">
+                        <div class="news_li_img_box  ui-flex justify-center center">
+                            <img th:src="${item.cover}" class="news_li_img_left">
                         </div>
-                        <div class="news_li_bottom">
-                            <div class="news_li_source">成都周口商会</div>
-                            <div class="news_li_time">2018-01-26</div>
-                            <div class="clear"></div>
+                        <div class="news_li_right">
+                            <div class="news_li_title" th:text="${item.title}">标题</div>
+                            <div class="news_li_des" th:text="${item.description}">描述</div>
+                            <div class="news_li_bottom">
+                                <div class="news_li_source" th:text="${item.author}">作者</div>
+                                <div class="news_li_time" th:text="${item.gmt_create}">时间</div>
+                                <div class="clear"></div>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </a>
-            <a href="/newsDetail?id=1969" target="_blank">
-                <li class="news_li no_cover">
-                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
-                    </div>
-                    <div class="news_li_right">
-                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
-                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
-                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
+                    </li>
+                </a>
+            </th:block>
+            <th:block th:if="${item.cover eq null || item.cover eq ''}">
+                <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" target="_blank">
+                    <li class="news_li no_cover">
+                        <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
                         </div>
-                        <div class="news_li_bottom">
-                            <div class="news_li_source">成都周口商会</div>
-                            <div class="news_li_time">2018-01-26</div>
-                            <div class="clear"></div>
+                        <div class="news_li_right">
+                            <div class="news_li_title" th:text="${item.title}">标题</div>
+                            <div class="news_li_des" th:text="${item.description}">描述</div>
+                            <div class="news_li_bottom">
+                                <div class="news_li_source" th:text="${item.author}">作者</div>
+                                <div class="news_li_time" th:text="${item.gmt_create}">时间</div>
+                                <div class="clear"></div>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </a>
-            <a href="/newsDetail?id=1969" target="_blank">
-                <li class="news_li no_cover">
-                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
-                    </div>
-                    <div class="news_li_right">
-                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
-                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
-                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
-                        </div>
-                        <div class="news_li_bottom">
-                            <div class="news_li_source">成都周口商会</div>
-                            <div class="news_li_time">2018-01-26</div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </li>
-            </a>
-            <a href="/newsDetail?id=1969" target="_blank">
-                <li class="news_li no_cover">
-                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
-                    </div>
-                    <div class="news_li_right">
-                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
-                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
-                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
-                        </div>
-                        <div class="news_li_bottom">
-                            <div class="news_li_source">成都周口商会</div>
-                            <div class="news_li_time">2018-01-26</div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </li>
-            </a>
-            <a href="/newsDetail?id=1969" target="_blank">
-                <li class="news_li no_cover">
-                    <div class="news_li_img_box  ui-flex justify-center center"><img src="" class="news_li_img_left">
-                    </div>
-                    <div class="news_li_right">
-                        <div class="news_li_title">国家安全监管总局将施行《烟花爆竹生产经营安全规定》</div>
-                        <div class="news_li_des">&nbsp; 国家安全监管总局将施行 《烟花爆竹生产经营安全规定》 &nbsp; &nbsp;
-                            生产企业、批发企业应当保证10类安全生产资金投入 &nbsp; 为加强烟花爆竹生产经营安全工作，减少和预防生产安全事故，日前，国家安全监管总局制
-                        </div>
-                        <div class="news_li_bottom">
-                            <div class="news_li_source">成都周口商会</div>
-                            <div class="news_li_time">2018-01-26</div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </li>
-            </a>
+                    </li>
+                </a>
+            </th:block>
             <div class="clear news_li_clear"></div>
         </ul>
         <nav aria-label="Page navigation">
             <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
+                <%--翻页--%>
+                <th:block th:if="${max_page ne 1}" >
+                    <div class="page-wrap">
+                        <nav>
+                            <ul class="pagination">
+                                <th:block th:if="${now_page ne 1}" >
+                                    <li>
+                                        <a th:href="@{/news/list(menu_id=${menu_id},page=${now_page - 1})}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a >
+                                    </li>
+                                </th:block>
+                                <th:block th:if="${now_page - 2 >= 1}">
+                                    <li><a th:href="@{/news/list(menu_id=${menu_id},page=${now_page - 2})}"  th:text="${now_page - 2}">上两页</a ></li>
+                                </th:block>
+                                <th:block th:if="${now_page - 1 >= 1}">
+                                    <li><a th:href="@{/news/list(menu_id=${menu_id},page=${now_page - 1})}" th:text="${now_page - 1}">上一页</a ></li>
+                                </th:block>
+                                <li><a href="#" class="page-on" th:text="${now_page}">当前页</a ></li>
+                                <th:block th:if="${now_page + 1 <= max_page}">
+                                    <li><a th:href="@{/news/list(menu_id=${menu_id},page=${now_page + 1})}" th:text="${now_page + 1}">下一页</a ></li>
+                                </th:block>
+                                <th:block th:if="${now_page + 2 <= max_page}">
+                                    <li><a th:href="@{/news/list(menu_id=${menu_id},page=${now_page + 2})}" th:text="${now_page + 2}">下两页</a ></li>
+                                </th:block>
+                                <th:block th:if="${now_page ne max_page}">
+                                    <li>
+                                        <a th:href="@{/news/list(menu_id=${menu_id},page=${now_page + 1})}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a >
+                                    </li>
+                                </th:block>
+                            </ul>
+                        </nav>
+                    </div>
+                </th:block>
             </ul>
         </nav>
     </div>
     <div class="right_box">
-        <!--<div th:replace="righter :: html"></div>-->
+        <!--右边的其他分类新闻推荐-->
         <div class="words_body hb_body">
-            <div class="right_head">
-                <div class="select_everyday">专题新闻推荐</div>
+            <th:block th:each="map_item : ${map}">
+                    <div class="right_head">
+                        <div class="select_everyday" th:text="${map_item.key.name}">菜单名</div>
 
-                <a href="/?id=1&index=0">
-                    <div class="head_right">MORE <span class="active_color add">+</span></div>
-                </a>
-                <div class="clear"></div>
-            </div>
-            <div class="subject">
-                <ul class="article article_hb">
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2675"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2674"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2243"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2243"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2243"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                </ul>
-            </div>
-        </div>
-        <!--hide控制隱藏-->
-        <div class="words_body zsh_body">
-            <div class="right_head">
-                <div class="select_everyday">商会新闻</div>
-                <a href="/?id=1&index=4">
-                    <div class="head_right">MORE <span class="active_color add">+</span></div>
-                </a>
-                <div class="clear"></div>
-            </div>
-            <div class="subject">
-                <ul class="article article_zsh">
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2675"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2674"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2243"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2243"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                    <a href="" target="_blank">
-                        <li class="article_content" data_id="2243"><span>·</span>
-                            <div class="article_content_left">成都周口商会关于河南省201</div>
-                        </li>
-                    </a>
-                </ul>
-            </div>
+                        <a th:href="@{/news/list(menu_id=${map_item.key.id})}">
+                            <div class="head_right">MORE <span class="active_color add">+</span></div>
+                        </a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="subject">
+                        <ul class="article article_hb" th:each="news_item : ${map_item.value}">
+                            <a th:href="@{/news/detail(id=${news_item.id},menu_id=${news_item.menu_id})}" target="_blank">
+                                <li class="article_content" data_id="2675"><span>·</span>
+                                    <div class="article_content_left" th:text="${news_item.title}">标题</div>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+            </th:block>
+
         </div>
     </div>
     <div class="clear"></div>

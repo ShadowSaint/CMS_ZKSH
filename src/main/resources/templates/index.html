@@ -1,6 +1,6 @@
 <html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
 <!--头部信息-->
-<div th:replace="header::html"></div>
+<div th:replace="header::frag(menu_id=${menu_id},menu_list=${menu_list})" ></div>
 <link rel="stylesheet" href="/css/swiper-4.3.3.min.css">
 <script src="/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="/js/swiper-4.3.3.min.js"></script>
@@ -419,22 +419,11 @@
     <div class="first_line">
         <!--轮播图-->
         <div class="swiper-container style_width">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" th:each="item : ${lbt}">
                 <div class="swiper-slide">
-                    <a href="/">
-                        <img src="/images/s1.JPG" class="img_carousel">
+                    <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}">
+                        <img th:src="${item.cover}" class="img_carousel">
                     </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="/">
-                        <img src="/images/s2.JPG" class="img_carousel">
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="/">
-                        <img src="/images/s3.JPG" class="img_carousel">
-                    </a>
-
                 </div>
             </div>
             <!-- 如果需要分页器 -->
@@ -445,52 +434,17 @@
             <div class="words_body">
                 <div class="right_head">
                     <div class="select_everyday">商会公告</div>
-                    <a href="/">
+                    <a th:href="@{/news/list(menu_id=12)}">
                         <div class="head_right">MORE<span class="active_color add">+</span></div>
                     </a>
                     <div class="clear"></div>
                 </div>
                 <div class="subject">
-                    <ul class="article article_hb">
+                    <ul class="article article_hb" th:each="item : ${shgg}">
                         <!--此处放8列  好看-->
-                        <a href="" target="_blank">
+                        <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" target="_blank">
                             <li class="article_content" data_id="2675"><span>·</span>
-                                <div class="article_content_left">成都周口商会关于河南省201</div>
-                            </li>
-                        </a>
-                        <a href="" target="_blank">
-                            <li class="article_content" data_id="2674"><span>·</span>
-                                <div class="article_content_left">成都周口商会关于河南省201</div>
-                            </li>
-                        </a>
-                        <a href="" target="_blank">
-                            <li class="article_content" data_id="2243"><span>·</span>
-                                <div class="article_content_left">成都周口商会关于河南省201</div>
-                            </li>
-                        </a>
-                        <a href="" target="_blank">
-                            <li class="article_content" data_id="2243"><span>·</span>
-                                <div class="article_content_left">成都周口商会关于河南省201</div>
-                            </li>
-                        </a>
-                        <a href="" target="_blank">
-                            <li class="article_content" data_id="2243"><span>·</span>
-                                <div class="article_content_left">成都周口商会关于河南省201</div>
-                            </li>
-                        </a>
-                        <a href="" target="_blank">
-                            <li class="article_content" data_id="2243"><span>·</span>
-                                <div class="article_content_left">成都周口商会关于河南省201</div>
-                            </li>
-                        </a>
-                        <a href="" target="_blank">
-                            <li class="article_content" data_id="2243"><span>·</span>
-                                <div class="article_content_left">成都周口商会关于河南省201</div>
-                            </li>
-                        </a>
-                        <a href="" target="_blank">
-                            <li class="article_content" data_id="2243"><span>·</span>
-                                <div class="article_content_left">成都周口商会关于河南省2012</div>
+                                <div class="article_content_left" th:text="${item.title}">标题</div>
                             </li>
                         </a>
                     </ul>
@@ -506,7 +460,7 @@
         <div class="product-wrap">
             <div class="product-list-wrap">
                 <div class="product-list">
-                    <a href="/">
+                    <a th:href="@{/menu/detail(id=22)}">
                         <i class="i_bg"></i>
                         <img src="/images/d1.jpg" class="product-list-img">
                         <p class="product-description">商会简介</p>
@@ -514,21 +468,21 @@
                     </a>
                 </div>
                 <div class="product-list">
-                    <a href="/">
+                    <a th:href="@{/menu/detail(id=6)}">
                         <i class="i_bg"></i>
                         <img src="/images/d4.jpg" class="product-list-img">
                         <p class="product-description">商会章程</p>
                     </a>
                 </div>
                 <div class="product-list">
-                    <a href="/">
+                    <a th:href="@{/news/list(menu_id=23)}">
                         <i class="i_bg"></i>
                         <img src="/images/d2.jpg" class="product-list-img">
                         <p class="product-description">商会活动</p>
                     </a>
                 </div>
                 <div class="product-list" style="margin-right: 0">
-                    <a href="/">
+                    <a th:href="@{/menu/detail(id=10)}">
                         <i class="i_bg"></i>
                         <img src="/images/d3.jpg" class="product-list-img">
                         <p class="product-description">部分成员</p>
@@ -546,7 +500,7 @@
         <div class="index2_news2_top">
             <ul>
                 <li class="index2_top_li  index2_top_li_active" data_index="0" onmouseenter="showList1(this)">
-                    <a href="/">
+                    <a th:href="@{/news/list(menu_id=2)}">
                         <div class="index2_top_li_title">
                             <img src="/images/home_video.png" class="icon_style icon_style1">
                             <img src="/images/home_video_active.png" class="icon_style icon_style2">商会新闻
@@ -555,7 +509,7 @@
 
                 </li>
                 <li class="index2_top_li  index2_top_li_last" data_index="1" onmouseenter="showList1(this)">
-                    <a href="/">
+                    <a th:href="@{/news/list(menu_id=12)}">
                         <div class="index2_top_li_title">
                             <img src="/images/home_tx.png" class="icon_style icon_style1">
                             <img src="/images/home_tx_active.png" class="icon_style icon_style2">政策法规
@@ -563,7 +517,7 @@
                     </a>
                 </li>
                 <li class="index2_top_li  index2_top_li_last" data_index="2" onmouseenter="showList1(this)">
-                    <a href="/">
+                    <a th:href="@{/news/list(menu_id=13)}">
                         <div class="index2_top_li_title">
                             <img src="/images/home_xw.png" class="icon_style icon_style1">
                             <img src="/images/home_xw_active.png" class="icon_style icon_style2">防水之窗
@@ -574,233 +528,53 @@
             </ul>
         </div>
         <div class="index2_news2_content index2_news2_content1">
-            <!--商会视频-->
-            <div class="index2_news2_box index2_news2_box1 index2_news2_box1_active">
-                <ul>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <div class="clear"></div>
-                </ul>
-            </div>
-            <!--豫商通讯-->
-            <div class="index2_news2_box index2_news2_box1">
-                <ul>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <div class="clear"></div>
-                </ul>
-            </div>
             <!--商会新闻-->
+            <div class="index2_news2_box index2_news2_box1 index2_news2_box1_active">
+                <ul th:each="item : ${shxw}">
+                    <li class="index2_news2_li">
+                        <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
+                            <div class="dl dl_bg1">
+                                <p class="month" th:text="${item.month}">月份</p>
+                                <p class="date" th:text="${item.day}">日期</p>
+                            </div>
+                            <div class="dr">
+                                <div class="l1" th:text="${item.title}">标题</div>
+                            </div>
+                            <div class="clear"></div>
+                        </a>
+                    </li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <!--政策法规-->
             <div class="index2_news2_box index2_news2_box1">
-                <ul>
+                <ul th:each="item : ${zcfg}">
                     <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
+                        <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
+                                <p class="month" th:text="${item.month}">月份</p>
+                                <p class="date" th:text="${item.day}">日期</p>
                             </div>
                             <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
+                                <div class="l1" th:text="${item.title}">标题</div>
                             </div>
                             <div class="clear"></div>
                         </a>
                     </li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <!--防水之窗-->
+            <div class="index2_news2_box index2_news2_box1">
+                <ul th:each="item : ${fszc}">
                     <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
+                        <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
+                                <p class="month" th:text="${item.month}">月份</p>
+                                <p class="date" th:text="${item.day}">日期</p>
                             </div>
                             <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
+                                <div class="l1" th:text="${item.title}">标题</div>
                             </div>
                             <div class="clear"></div>
                         </a>
@@ -818,16 +592,16 @@
         <div class="index2_news2_top">
             <ul>
                 <li class="index2_top_li  index2_top_li_active" data_index="0" onmouseenter="showList2(this)">
-                    <a href="/">
+                    <a th:href="@{/news/list(menu_id=14)}">
                         <div class="index2_top_li_title">
                             <img src="/images/home_jj.png" class="icon_style icon_style1" >
-                            <img src="/images/home_jj_active.png" class="icon_style icon_style2">周蓉聚焦
+                            <img src="/images/home_jj_active.png" class="icon_style icon_style2">蓉周聚焦
                         </div>
                     </a>
 
                 </li>
                 <li class="index2_top_li  index2_top_li_last" data_index="1" onmouseenter="showList2(this)">
-                    <a href="/">
+                    <a th:href="@{/news/list(menu_id=15)}">
                         <div class="index2_top_li_title">
                             <img src="/images/home_q.png" class="icon_style icon_style1">
                             <img src="/images/home_q_active.png" class="icon_style icon_style2">商会交流
@@ -835,7 +609,7 @@
                     </a>
                 </li>
                 <li class="index2_top_li  index2_top_li_last" data_index="2" onmouseenter="showList2(this)">
-                    <a href="/">
+                    <a th:href="@{/news/list(menu_id=16)}">
                         <div class="index2_top_li_title">
                             <img src="/images/home_fa.png" class="icon_style icon_style1">
                             <img src="/images/home_fa_active.png" class="icon_style icon_style2">法律服务
@@ -846,77 +620,17 @@
             </ul>
         </div>
         <div class="index2_news2_content index2_news2_content2">
-            <!--深湘聚焦-->
+            <!--蓉周聚焦-->
             <div class="index2_news2_box index2_news2_box1 index2_news2_box1_active">
-                <ul>
+                <ul th:each="item : ${rzjj}">
                     <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
+                        <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
+                                <p class="month" th:text="${item.month}">月份</p>
+                                <p class="date" th:text="${item.day}">日期</p>
                             </div>
                             <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
+                                <div class="l1" th:text="${item.title}">标题</div>
                             </div>
                             <div class="clear"></div>
                         </a>
@@ -924,77 +638,17 @@
                     <div class="clear"></div>
                 </ul>
             </div>
-            <!--深湘桥-->
+            <!--商会交流-->
             <div class="index2_news2_box index2_news2_box1">
-                <ul>
+                <ul th:each="item : ${shjl}">
                     <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
+                        <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
+                            <div class="dl dl_bg1">
+                                <p class="month" th:text="${item.month}">月份</p>
+                                <p class="date" th:text="${item.day}">日期</p>
                             </div>
                             <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg2">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
+                                <div class="l1" th:text="${item.title}">标题</div>
                             </div>
                             <div class="clear"></div>
                         </a>
@@ -1004,75 +658,15 @@
             </div>
             <!--法律服务-->
             <div class="index2_news2_box index2_news2_box1">
-                <ul>
+                <ul th:each="item : ${flfw}">
                     <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
+                        <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" th:title="${item.title}">
                             <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
+                                <p class="month" th:text="${item.month}">月份</p>
+                                <p class="date" th:text="${item.day}">日期</p>
                             </div>
                             <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
-                            </div>
-                            <div class="clear"></div>
-                        </a>
-                    </li>
-                    <li class="index2_news2_li">
-                        <a href="/" title="恒富金融集团荣获“成都知名品牌”荣誉称号">
-                            <div class="dl dl_bg1">
-                                <p class="month">2016</p>
-                                <p class="date">03</p>
-                            </div>
-                            <div class="dr">
-                                <div class="l1">恒富金融集团荣获“成都知名品牌”荣誉称号</div>
+                                <div class="l1" th:text="${item.title}">标题</div>
                             </div>
                             <div class="clear"></div>
                         </a>

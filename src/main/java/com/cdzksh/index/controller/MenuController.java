@@ -1,6 +1,7 @@
 package com.cdzksh.index.controller;
 
 import com.cdzksh.index.domain.MenuDO;
+import com.cdzksh.index.domain.MenuVO;
 import com.cdzksh.index.domain.ResultVO;
 import com.cdzksh.index.service.MenuService;
 import com.cdzksh.index.util.GRQUtil;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +22,17 @@ import java.util.List;
 public class MenuController {
     @Autowired
     MenuService menuService;
+
+    public static List<MenuVO> getTopMenu(){
+        List<MenuVO> list=new ArrayList<>();
+        list.add(new MenuVO(0,"首页","/"));
+        list.add(new MenuVO(22,"商会简介","/menu/detail?id=22"));
+        list.add(new MenuVO(2,"商会新闻","/news/list?id=2"));
+        list.add(new MenuVO(6,"商会章程","/menu/detail?id=6"));
+        list.add(new MenuVO(10,"商会会员","/menu/detail?id=10"));
+        list.add(new MenuVO(11,"互助基金","/menu/detail?id=11"));
+        return list;
+    }
 
     @RequestMapping("/api/manege/menu/insert")
     public ResultVO apiManageMenuInsert(HttpServletRequest request) {
@@ -96,9 +109,10 @@ public class MenuController {
     public ResultVO apiManageMenuList(HttpServletRequest request) {
         ResultVO resultVO = new ResultVO();
         try {
-            int p_id = GRQUtil.getRequestInteger(request, "p_id", 0);
+            String p_id = request.getParameter("p_id");
+            String type = request.getParameter("type");
 
-            List<MenuDO> list = menuService.listMenu(p_id);
+            List<MenuDO> list = menuService.listMenu(p_id,type);
 
             resultVO.setData(list);
         } catch (Exception e) {
@@ -114,6 +128,10 @@ public class MenuController {
         ResultVO resultVO=new ResultVO();
         try {
             int id=Integer.valueOf(request.getParameter("id"));
+
+            MenuDO menuDO=menuService.getMenu(id);
+
+            resultVO.setData(menuDO);
 
         }catch (Exception e){
             resultVO.setMessage("请求失败");

@@ -32,8 +32,8 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
-    public List<MenuDO> listMenu(int p_id) {
-        return menuMapper.listMenu(p_id);
+    public List<MenuDO> listMenu(String p_id, String type) {
+        return menuMapper.listMenu(p_id,type);
     }
 
     @Override

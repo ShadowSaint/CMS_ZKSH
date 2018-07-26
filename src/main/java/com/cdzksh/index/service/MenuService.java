@@ -12,7 +12,7 @@ public interface MenuService {
     void insertMenu(@Param("m")MenuDO menuDO);
     void deleteMenu(int id);
     void updateMenu(@Param("m")MenuDO menuDO);
-    List<MenuDO> listMenu(int p_id);
+    List<MenuDO> listMenu(@Param("p_id") String p_id,@Param("type")String type);
     MenuDO getMenu(int id);
 
 
