@@ -76,7 +76,7 @@
 
     .article_author {
         display: inline-block;
-        margin-left: 10px;
+        /*margin-left: 10px;*/
         color: #888;
         font-size: 14px;
     }
@@ -102,6 +102,12 @@
 
     .add_article {
         float: right;
+    }
+    .no_cover .article_content_img{
+        display: none;
+    }
+    .no_cover .article_list_content{
+        margin-left: 0;
     }
 
 </style>
@@ -186,6 +192,7 @@
         allArticle()
     });
     let global_type=GetQueryString('type');
+    size =10;
     //文章列表
     function allArticle() {
         let obj ={
@@ -209,10 +216,14 @@
         } else {
             $('.not_find_message').hide();
             global_data.data.list.map(v=>{
-                $('.not_find_message').before('<li class="article_list_li article_li" data_id="'+v.id+'">'+
+                let no_class=""
+                if(v.cover==""){
+                    no_class="no_cover"
+                }
+                $('.not_find_message').before('<li class="article_list_li article_li '+no_class+'" data_id="'+v.id+'">'+
                     '<div class="article_content">'+
                     '<div class="article_content_list">'+
-                    '<img src="/images/d1.jpg" class="article_content_img">'+
+                    '<img src="'+v.cover+'" class="article_content_img">'+
                     '<div class="article_list_content">'+
                     '<div class="article_list_title">'+v.title+'</div>'+
                     '<div class="article_list_describe">'+v.description+'</div>'+

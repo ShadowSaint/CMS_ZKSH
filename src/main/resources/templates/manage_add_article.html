@@ -308,10 +308,10 @@
             let data = global_data.data
             $("input[name='title']").val(data.title);
             $("input[name='author']").val(data.author);
-            $('.img0').attr('src', data.cover).attr('data_src', data.cover).addClass('add_image').show();
+            $('.img0').attr('src', data.cover).attr('data_src', data.cover).addClass('add_image').show().css("width",'92%');
             $('.editor_cancel').show();
             $('.editor_change').hide();
-            $('.editor_mid_box').css('width', 'auto');
+            $('.editor_mid_box').css({height:'auto'});
             editor.setValue(data.content);
             global_menu.map(v=>{
                 if(v.content==""){
@@ -355,7 +355,7 @@
                 obj.id=global_id;
             }
             operation.operation_ajax_async(url, "post", obj, function () {
-                // history.go(-1)
+                history.go(-1)
             });
         }
 
