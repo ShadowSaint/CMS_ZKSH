@@ -58,7 +58,7 @@ public class ArticleServiceImpl implements ArticleService {
             av.setId(ad.getId());
             av.setTitle(ad.getTitle());
             av.setMenu_id(ad.getMenu_id());
-            LocalDateTime time=LocalDateTime.parse(ad.getGmt_create(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+            LocalDateTime time=LocalDateTime.parse(ad.getGmt_create(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             av.setMonth(time.getMonthValue());
             av.setDay(time.getDayOfMonth());
             articleVOIndexList.add(av);

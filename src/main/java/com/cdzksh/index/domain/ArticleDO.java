@@ -42,7 +42,7 @@ public class ArticleDO {
     }
 
     public void setGmt_create(String gmt_create) {
-        this.gmt_create = gmt_create;
+        this.gmt_create = gmt_create.split("\\.")[0];
     }
 
     public String getGmt_modified() {
@@ -50,7 +50,7 @@ public class ArticleDO {
     }
 
     public void setGmt_modified(String gmt_modified) {
-        this.gmt_modified = gmt_modified;
+        this.gmt_modified = gmt_modified.split("\\.")[0];
     }
 
     public Integer getMenu_id() {
