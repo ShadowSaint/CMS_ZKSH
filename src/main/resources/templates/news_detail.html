@@ -289,8 +289,9 @@
         </div>
         <div class="right_box">
             <!--右边的其他分类新闻推荐-->
+            <th:block th:each="map_item : ${map}">
             <div class="words_body hb_body">
-                <th:block th:each="map_item : ${map}">
+
                     <div class="right_head">
                         <div class="select_everyday" th:text="${map_item.key.name}">菜单名</div>
 
@@ -308,9 +309,10 @@
                             </a>
                         </ul>
                     </div>
-                </th:block>
+
 
             </div>
+            </th:block>
         </div>
         <div class="clear"></div>
     </div>
