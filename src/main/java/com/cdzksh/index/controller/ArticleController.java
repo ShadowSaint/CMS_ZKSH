@@ -44,7 +44,7 @@ public class ArticleController {
             String content = request.getParameter("content");
             String description = Jsoup.parse(content).text();
             if (description.length() > 100) {
-                description = content.substring(0, 99);
+                description = description.substring(0, 99);
             }
 
             ArticleDO articleDO = new ArticleDO();
@@ -98,8 +98,8 @@ public class ArticleController {
             String cover = request.getParameter("cover");
             String content = request.getParameter("content");
             String description = Jsoup.parse(content).text();
-            if (content.length() > 100) {
-                description = content.substring(0, 99);
+            if (description.length() > 100) {
+                description = description.substring(0, 99);
             }
 
             ArticleDO articleDO = new ArticleDO();
