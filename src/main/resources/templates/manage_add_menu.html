@@ -77,7 +77,8 @@
             tableData = table.render({
                 elem: '#test'
                 , url: '/api/manage/menu/list'
-                , where: {menu_type:0}
+                , where: {  p_id:0,
+                    type:0}
                 , cols: [
                     [
                         {type: 'numbers', title: '序号', width: 100}

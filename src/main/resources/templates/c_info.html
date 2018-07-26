@@ -273,13 +273,13 @@
                 <ul th:each="item : ${left_menu_list}">
                     <th:block th:if="${item.id eq menu_id}">
                         <li class="menu-on" th:title="${item.name}">
-                            <i class="line"/>
+                            <i class="line"></i>
                             <a th:href="@{/menu/detail(id=${item.id})}" class="menu_a" th:text="${item.name}">名字</a>
                         </li>
                     </th:block>
                     <th:block th:if="${item.id ne menu_id}">
                         <li th:title="${item.name}">
-                            <i class="line"/>
+                            <i class="line"></i>
                             <a th:href="@{/menu/detail(id=${item.id})}" class="menu_a" th:text="${item.name}">名字</a>
                         </li>
                     </th:block>
