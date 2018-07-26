@@ -57,7 +57,8 @@
         function loadMenus(){
             $('.article_menu').empty();
             operation.operation_ajax_synchro('/api/manage/menu/list','post',{
-                menu_type:1
+                p_id:0,
+                type:1
             },function(){
                 global_menu= global_data.data;
                 global_menu.map(v=>{

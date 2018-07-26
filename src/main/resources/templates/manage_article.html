@@ -203,6 +203,7 @@
     function loadMessageSuccess(){
         var data_length = global_data.data.list.length;
         $('.sub_message').text("总数（" + global_data.data.count + "）");
+
         if (data_length == 0) {
             $('.not_find_message').show();
         } else {
