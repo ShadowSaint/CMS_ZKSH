@@ -70,7 +70,7 @@ public class WebPageController {
 
         Page<ArticleDO> articleDOList = articleService.listArticleInfoByParam(new ArticleQueryParam(menu_id), page, size);
         for (ArticleDO articleDO:articleDOList){
-            articleDO.setGmt_create(LocalDateTime.parse(articleDO.getGmt_create(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            articleDO.setGmt_create(LocalDateTime.parse(articleDO.getGmt_create(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
         }
         List<MenuDO> menuDOList = menuService.listMenu("0", "1");
         Map<MenuDO, List<ArticleDO>> map = new HashMap<>();
