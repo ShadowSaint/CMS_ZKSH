@@ -419,8 +419,8 @@
     <div class="first_line">
         <!--轮播图-->
         <div class="swiper-container style_width">
-            <div class="swiper-wrapper" th:each="item : ${lbt}">
-                <div class="swiper-slide">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" th:each="item : ${lbt}">
                     <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}">
                         <img th:src="${item.cover}" class="img_carousel">
                     </a>
