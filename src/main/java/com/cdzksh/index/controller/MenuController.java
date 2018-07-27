@@ -43,6 +43,7 @@ public class MenuController {
             String name = request.getParameter("name");
             int seq = GRQUtil.getRequestInteger(request, "seq", 0);
             String content=request.getParameter("content");
+            int type=GRQUtil.getRequestInteger(request,"type",0);
 
             MenuDO menuDO = new MenuDO();
             menuDO.setGmt_create(now);
@@ -51,6 +52,7 @@ public class MenuController {
             menuDO.setName(name);
             menuDO.setSeq(seq);
             menuDO.setContent(content);
+            menuDO.setType(type);
 
             menuService.insertMenu(menuDO);
 
@@ -87,6 +89,7 @@ public class MenuController {
             String name = request.getParameter("name");
             int seq = GRQUtil.getRequestInteger(request, "seq", 0);
             String content=request.getParameter("content");
+            int type=GRQUtil.getRequestInteger(request,"type",0);
 
             MenuDO menuDO = new MenuDO();
             menuDO.setId(id);
@@ -95,6 +98,7 @@ public class MenuController {
             menuDO.setName(name);
             menuDO.setSeq(seq);
             menuDO.setContent(content);
+            menuDO.setType(type);
 
             menuService.updateMenu(menuDO);
         } catch (Exception e) {
