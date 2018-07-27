@@ -179,7 +179,8 @@
                     var obj = {
                         name: $('.menu_name').val(),
                         seq: $('.menu_seq').val(),
-                        content: editor.getValue()
+                        content: editor.getValue(),
+                        type:0
                     };
                     operation.operation_ajax_async('/api/manege/menu/insert', 'post', obj, function () {
                         if (global_data.status) {
@@ -235,7 +236,8 @@
                         name: $('.menu_name').val(),
                         seq: 1,
                         content: editor.getValue(),
-                        p_id:data.id
+                        p_id:data.id,
+                        type:0
                     };
                     operation.operation_ajax_async('/api/manege/menu/insert', 'post', obj, function () {
                         if (global_data.status) {
@@ -297,7 +299,8 @@
                     id: data.id,
                     name: $('.menu_name').val(),
                     seq: $('.menu_seq').val(),
-                    content: editor.getValue()
+                    content: editor.getValue(),
+                    type:0
                 };
                 operation.operation_ajax_async('/api/manage/menu/update', 'post', obj, function () {
                     if (global_data.status) {
