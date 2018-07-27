@@ -16,6 +16,7 @@ import com.github.pagehelper.Page;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,11 +74,19 @@ public class WebPageController {
             articleDO.setGmt_create(LocalDateTime.parse(articleDO.getGmt_create(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
         }
         List<MenuDO> menuDOList = menuService.listMenu("0", "1");
+        Collections.shuffle(menuDOList);
+        Collections.shuffle(menuDOList);
+        Collections.shuffle(menuDOList);
         Map<MenuDO, List<ArticleDO>> map = new HashMap<>();
         for (MenuDO menuDO : menuDOList) {
             if (!menuDO.getId().equals(menu_id)) {
                 List<ArticleDO> menuArticleList = articleService.listArticleInfoByParam(new ArticleQueryParam(menuDO.getId()), 1, 5);
-                map.put(menuDO,menuArticleList);
+                if (menuArticleList.size()>0){
+                    map.put(menuDO,menuArticleList);
+                }
+            }
+            if (map.size()>1){
+                break;
             }
         }
 
