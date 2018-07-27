@@ -25,7 +25,7 @@ public class LoginController {
         }
 
         String password = request.getParameter("password");
-        if (username.equals("zkshadmin") && (password.equals("zksh") || password.toLowerCase().equals("4717273d97c5d0cbcd37c19e9f2585f3"))) {
+        if (username.equals("rzshadmin") && (password.equals("rzsh") || password.toLowerCase().equals("3a106092635945849a0fbf7bac92409d"))) {
             session.setAttribute("User", "admin");
             return "redirect:/manage/article?type=2";
         } else {
