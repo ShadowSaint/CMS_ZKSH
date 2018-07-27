@@ -75,8 +75,6 @@ public class WebPageController {
         }
         List<MenuDO> menuDOList = menuService.listMenu("0", "1");
         Collections.shuffle(menuDOList);
-        Collections.shuffle(menuDOList);
-        Collections.shuffle(menuDOList);
         Map<MenuDO, List<ArticleDO>> map = new HashMap<>();
         for (MenuDO menuDO : menuDOList) {
             if (!menuDO.getId().equals(menu_id)) {
@@ -155,14 +153,22 @@ public class WebPageController {
         int id=GRQUtil.getRequestInteger(request,"id",0);
         ArticleDO articleDO=articleService.getArticleById(id);
         int menu_id = GRQUtil.getRequestInteger(request, "menu_id", 2);
+
         List<MenuDO> menuDOList = menuService.listMenu("0", "1");
+        Collections.shuffle(menuDOList);
         Map<MenuDO, List<ArticleDO>> map = new HashMap<>();
         for (MenuDO menuDO : menuDOList) {
             if (!menuDO.getId().equals(menu_id)) {
                 List<ArticleDO> menuArticleList = articleService.listArticleInfoByParam(new ArticleQueryParam(menuDO.getId()), 1, 5);
-                map.put(menuDO,menuArticleList);
+                if (menuArticleList.size()>0){
+                    map.put(menuDO,menuArticleList);
+                }
+            }
+            if (map.size()>1){
+                break;
             }
         }
+
         modelMap.addAttribute("article",articleDO);
         modelMap.addAttribute("map",map);
         modelMap.addAttribute("menu_id", menu_id);
