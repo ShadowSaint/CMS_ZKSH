@@ -62,7 +62,7 @@
             },function(){
                 global_menu= global_data.data;
                 global_menu.map(v=>{
-                    if(v.content==''){
+                    if(v.content=='' || v.content==null){
                         $('.article_menu').append('<dd class="nav_tab first_menu'+v.id+'"><a href="/manage/article?type='+v.id+'">'+v.name+'</a></dd>')
                     }
                 })
