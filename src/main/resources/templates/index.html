@@ -65,6 +65,7 @@
     .img_carousel {
         height: 100%;
         width: 100%;
+        background: #999;
     }
 
     .article_content {
@@ -422,7 +423,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide" th:each="item : ${lbt}">
                     <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}">
-                        <img th:src="${item.cover}" class="img_carousel">
+                        <img th:src="${item.cover+'?x-oss-process=image/resize,m_pad,h_348,w_800,color_999999/quality,Q_75'}" class="img_carousel">
                     </a>
                 </div>
             </div>
@@ -485,7 +486,7 @@
                     <a th:href="@{/menu/detail(id=10)}">
                         <i class="i_bg"></i>
                         <img src="/images/d3.jpg" class="product-list-img">
-                        <p class="product-description">部分成员</p>
+                        <p class="product-description">会员风采</p>
                     </a>
                 </div>
                 <div class="clear"></div>
