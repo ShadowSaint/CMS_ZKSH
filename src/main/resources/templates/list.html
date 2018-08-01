@@ -124,6 +124,7 @@
 
     .news_li_img_left {
         width: 100%;
+        background: #e7e7e7;
     }
 
     .news_li_right {
@@ -254,7 +255,7 @@
                 <a th:href="@{/news/detail(id=${item.id},menu_id=${item.menu_id})}" target="_blank">
                     <li class="news_li">
                         <div class="news_li_img_box  ui-flex justify-center center">
-                            <img th:src="${item.cover}" class="news_li_img_left">
+                            <img th:src="${item.cover}+'?x-oss-process=image/resize,m_pad,h_140,,w_230,color_e7e7e7/quality,Q_75'" class="news_li_img_left">
                         </div>
                         <div class="news_li_right">
                             <div class="news_li_title" th:text="${item.title}">标题</div>
