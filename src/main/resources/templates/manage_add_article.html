@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<link href="/css/simditor/simditor.css" rel="stylesheet" type="text/css"/>
+<!--<link href="/css/simditor/simditor.css" rel="stylesheet" type="text/css"/>-->
 <div lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="manage_header::html"></div>
     <!--中间主体部分-->
@@ -25,20 +25,20 @@
                 <div class="add_article_name">发表文章</div>
             </div>
 
-                <div class="add_article_container">
-                    <div class="add_title_box all_box_type">
-                        <label class="layui-form-label">标题：</label>
-                        <div class="add_title_input">
-                            <input class="title_input" name="title" type="text" placeholder="请输入标题内容">
-                        </div>
+            <div class="add_article_container">
+                <div class="add_title_box all_box_type">
+                    <label class="layui-form-label">标题：</label>
+                    <div class="add_title_input">
+                        <input class="title_input" name="title" type="text" placeholder="请输入标题内容">
                     </div>
-                    <div class="add_title_box all_box_type">
-                        <label class="layui-form-label">作者：</label>
-                        <div class="add_title_input">
-                            <input class="title_input" name="author" type="text" placeholder="请输入标题内容">
-                        </div>
+                </div>
+                <div class="add_title_box all_box_type">
+                    <label class="layui-form-label">作者：</label>
+                    <div class="add_title_input">
+                        <input class="title_input" name="author" type="text" placeholder="请输入标题内容">
                     </div>
-                    <form class="layui-form" action="">
+                </div>
+                <form class="layui-form" action="">
                     <div class="add_class_box all_box_type">
                         <label class="layui-form-label">分类：</label>
                         <div class="input_box">
@@ -50,45 +50,50 @@
                             </div>
                         </div>
                     </div>
-                    </form>
-                    <div class="add_title_box all_box_type">
-                        <label class="layui-form-label">封面：</label>
-                        <div class="add_title_input">
-                            <div class="editor_cover">
-                                <form method="post" id="upload_form" accept-charset="utf-8" onsubmit="return false"
-                                      enctype="multipart/form-data">
-                                    <div class="editor_mid_box">
-                                        <input type="file" title="支持jpg、jpeg、gif、png格式" size="1"
-                                               onchange="loadImageChange(this)" class="file_prew file0" name="file"
-                                               accept=".jpg,.png,.gif,.jpeg">
-                                        <img src="" class="img0" alt="">
+                </form>
+                <div class="add_title_box all_box_type">
+                    <label class="layui-form-label">封面：</label>
+                    <div class="add_title_input">
+                        <div class="editor_cover">
+                            <form method="post" id="upload_form" accept-charset="utf-8" onsubmit="return false"
+                                  enctype="multipart/form-data">
+                                <div class="editor_mid_box">
+                                    <input type="file" title="支持jpg、jpeg、gif、png格式" size="1"
+                                           onchange="loadImageChange(this)" class="file_prew file0" name="file"
+                                           accept=".jpg,.png,.gif,.jpeg">
+                                    <img src="" class="img0" alt="">
 
-                                        <div class="editor_cancel fa fa-close" onclick="removePicture(this)"></div>
-                                        <div class="editor_change">
+                                    <div class="editor_cancel fa fa-close" onclick="removePicture(this)"></div>
+                                    <div class="editor_change">
                     <span class="editor_mid_box_img fa-stack fa-lg">
                         <i class="fa fa-picture-o fa-stack-2x"></i>
                         <i class="img_add_icon fa fa-plus-circle fa-stack-1x"></i>
                     </span>
 
-                                            <div class="editor_mid_box_txt">
-                                                <span class="editor_mid_box_txt_span">添加封面</span>
-                                            </div>
+                                        <div class="editor_mid_box_txt">
+                                            <span class="editor_mid_box_txt_span">添加封面</span>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="clear"></div>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="add_subject_box">
-                        <textarea id="editor" name="content" autofocus></textarea>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="add_release_box">
-                        <span class="add_release_name" onclick="submit()">发布</span>
                         <div class="clear"></div>
                     </div>
                 </div>
+                <div class="add_subject_box">
+                    <!--<textarea id="editor" name="content" autofocus></textarea>-->
+                    <!--<%&#45;&#45;富文本编辑器&#45;&#45;%>-->
+                    <div class="ueditor_box">
+                        <!-- 加载编辑器的容器 -->
+                        <script id="container" type="text/plain"></script>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="add_release_box">
+                    <span class="add_release_name" onclick="submit()">发布</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
 
         </div>
 
@@ -103,7 +108,6 @@
         box-sizing: border-box;
 
     }
-
 
     .add_subject_box {
         margin-bottom: 30px;
@@ -143,7 +147,8 @@
         border: 2px solid #e8e8e8;
         height: 44px;
     }
-    .layui-input:focus{
+
+    .layui-input:focus {
         border: 2px solid #009688;
     }
 
@@ -264,28 +269,32 @@
         min-width: 300px;
         max-width: 450px;
     }
+
+    .ueditor_box {
+        height: 350px;
+    }
 </style>
 <script src="/css/layui/layui.js"></script>
 <script>
     $(document).ready(function () {
 
 
-        if(global_id!=null){
-            loadMessage();
-        }else{
-            setTimeout(function(){
-                global_menu.map(v=>{
-                    if(v.content==""){
-                        if(v.id==global_type){
-                            $('.menu_li').after('<option value="'+v.id+'" selected>'+v.name+'</option>')
-                        }else{
-                            $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
+        if (global_id != null) {
+            // loadMessage();
+        } else {
+            setTimeout(function () {
+                global_menu.map(v => {
+                    if (v.content == "") {
+                        if (v.id == global_type) {
+                            $('.menu_li').after('<option value="' + v.id + '" selected>' + v.name + '</option>')
+                        } else {
+                            $('.menu_li').after('<option value="' + v.id + '">' + v.name + '</option>')
                         }
                     }
 
                 })
                 form.render()
-            },300)
+            }, 300)
         }
     })
     var form;
@@ -293,32 +302,33 @@
     var global_type = GetQueryString('type');
     //JavaScript代码区域
     layui.use('form', function () {
-        form= layui.form;
+        form = layui.form;
         //监听提交
         form.on('submit(formDemo)', function (data) {
             layer.msg(JSON.stringify(data.field));
             return false;
         });
     });
-    function loadMessage(){
-        var obj={
-            id:global_id
+
+    function loadMessage() {
+        var obj = {
+            id: global_id
         }
         operation.operation_ajax_async("/api/manage/article/detail", "post", obj, function () {
             let data = global_data.data
             $("input[name='title']").val(data.title);
             $("input[name='author']").val(data.author);
-            $('.img0').attr('src', data.cover).attr('data_src', data.cover).addClass('add_image').show().css("width",'92%');
+            $('.img0').attr('src', data.cover).attr('data_src', data.cover).addClass('add_image').show().css("width", '92%');
             $('.editor_cancel').show();
             $('.editor_change').hide();
-            $('.editor_mid_box').css({height:'auto'});
+            $('.editor_mid_box').css({height: 'auto'});
             editor.setValue(data.content);
-            global_menu.map(v=>{
-                if(v.content==""){
-                    if(v.id==data.menu_id){
-                        $('.menu_li').after('<option value="'+v.id+'" selected>'+v.name+'</option>')
-                    }else{
-                        $('.menu_li').after('<option value="'+v.id+'">'+v.name+'</option>')
+            global_menu.map(v => {
+                if (v.content == "") {
+                    if (v.id == data.menu_id) {
+                        $('.menu_li').after('<option value="' + v.id + '" selected>' + v.name + '</option>')
+                    } else {
+                        $('.menu_li').after('<option value="' + v.id + '">' + v.name + '</option>')
                     }
                 }
             })
@@ -327,32 +337,32 @@
     }
 
     function submit() {
-        var add_image =$(".add_image").attr('data_src')
-        if(add_image==null){
-            add_image=''
+        var add_image = $(".add_image").attr('data_src')
+        if (add_image == null) {
+            add_image = ''
         }
         let title = $("input[name='title']").val();
         let author = $("input[name='author']").val();
         let cover = add_image;
         let content = editor.getValue();
         let menu_id = $('.layui-form-select').find('.layui-this').attr('lay-value');
-        if(title==""){
+        if (title == "") {
             toastr.error("标题不能为空")
-        }else if(menu_id==undefined){
+        } else if (menu_id == undefined) {
             toastr.error("分类不能为空")
-        }else{
+        } else {
             let url = "/api/manage/article/insert";
 
-            let obj={
-                title:title,
-                author:author,
-                cover:cover,
-                content:content,
-                menu_id:menu_id
+            let obj = {
+                title: title,
+                author: author,
+                cover: cover,
+                content: content,
+                menu_id: menu_id
             }
-            if(global_id!=null){
+            if (global_id != null) {
                 url = "/api/manage/article/update";
-                obj.id=global_id;
+                obj.id = global_id;
             }
             operation.operation_ajax_async(url, "post", obj, function () {
                 history.go(-1)
@@ -361,7 +371,6 @@
 
 
     }
-
 
 
     //初始加载图片设置
@@ -380,6 +389,7 @@
             imageStyle(i, j, k);
         }
     }
+
     function imageStyle(i, j, k) {
         console.log("改变img的框的大小和添加提示图片的显示");
         if (i == undefined || i == "") {
@@ -397,6 +407,7 @@
         }
         addImages();
     }
+
     //建立一個可存取到該file的url
     function getObjectURL(file) {
         var url = null;
@@ -410,6 +421,7 @@
         console.log("获取到的url是" + url);
         return url;
     }
+
     //点击删除添加图片设置
     function removePicture(obj) {
         var j = $(obj).parent().children('.img0');
@@ -419,19 +431,23 @@
         k.children('.editor_cancel').css('display', 'none');
         j.css({"display": "none"});
         $(obj).parent().children('.file0').val("");
-        $(".add_image").attr('data_src','');
+        $(".add_image").attr('data_src', '');
     }
+
     function getFileName(file_name) {
         var pos = file_name.lastIndexOf("\\");
         return file_name.substring(pos + 1);
 
     }
+
     //添加图片
     function addImages() {
         var data = new FormData($('#upload_form')[0]);
         operation.operation_ajax_FormData("/file/upload", data, imgTips);
     }
-    var global_img="";
+
+    var global_img = "";
+
     function imgTips() {
         toastr.success("图片保存成功");
         global_img = global_data.data;
@@ -440,35 +456,75 @@
 
 
 </script>
-
-<!--<%&#45;&#45;simditor富文本编辑器引用文件&#45;&#45;%>-->
+<!-- 配置文件 -->
+<script>window.PROJECT_CONTEXT = "/";</script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.parse.js"></script>
+<!-- 实例化编辑器 -->
 <script type="text/javascript">
-    var editor;
-    $(function () {
-        var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough',
-            'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|',
-            'link', 'image', 'hr', '|', 'indent', 'outdent','alignment'];
-        editor = new Simditor({
-            textarea: $('#editor'),
-            placeholder: '这里输入内容...',
-            toolbar: toolbar,  //工具栏
-            toolbarFloat: true,  //工具栏
-            // defaultImage: '/resource/images/logo.png', //编辑器插入图片时使用的默认图片
-            upload: {
-                url: '/file/upload', //文件上传的接口地址
-                params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
-                fileKey: 'file', //服务器端获取文件数据的参数名
-                connectionCount: 3,
-                leaveConfirm: '正在上传文件'
-            }
-        });
-        // editor.setValue(global_total_content);
-    })
+    var ue = UE.getEditor('container', {
+        toolbars: [[
+            'fullscreen', 'source', '|', 'undo', 'redo', '|',
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+            'directionalityltr', 'directionalityrtl', 'indent', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+            'print', 'preview', 'searchreplace'
+        ]],
+        autoHeightEnabled: true,
+        autoFloatEnabled: true,
+        initialFrameHeight: 350,//设置编辑器高度
+//是否展示元素路径
+        elementPathEnabled: false,
+        allowDivTransToP: false,
+        initialContent: '',
+//后台接受UEditor的数据的参数名称
+        textarea: "content"
+    });
+    ue.addListener('ready', function (editor) {
+        // checkEditor();//ue加载完全后运行，防止出错；
+        if (global_id != null) {
+            loadMessage();
+        }
+//        ue.getContent();//获取信息
+//        ue.setContent("jjj");//设置信息
+    });
 </script>
-<script src="/js/simditor/module.js" type="text/javascript"></script>
-<script src="/js/simditor/hotkeys.js" type="text/javascript"></script>
-<script src="/js/simditor/uploader.js" type="text/javascript"></script>
-<script src="/js/simditor/simditor.js" type="text/javascript"></script>
+<!--<%&#45;&#45;simditor富文本编辑器引用文件&#45;&#45;%>-->
+<!--<script type="text/javascript">-->
+<!--var editor;-->
+<!--$(function () {-->
+<!--var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough',-->
+<!--'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|',-->
+<!--'link', 'image', 'hr', '|', 'indent', 'outdent','alignment'];-->
+<!--editor = new Simditor({-->
+<!--textarea: $('#editor'),-->
+<!--placeholder: '这里输入内容...',-->
+<!--toolbar: toolbar,  //工具栏-->
+<!--toolbarFloat: true,  //工具栏-->
+<!--// defaultImage: '/resource/images/logo.png', //编辑器插入图片时使用的默认图片-->
+<!--upload: {-->
+<!--url: '/file/upload', //文件上传的接口地址-->
+<!--params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交-->
+<!--fileKey: 'file', //服务器端获取文件数据的参数名-->
+<!--connectionCount: 3,-->
+<!--leaveConfirm: '正在上传文件'-->
+<!--}-->
+<!--});-->
+<!--// editor.setValue(global_total_content);-->
+<!--})-->
+<!--</script>-->
+<!--<script src="/js/simditor/module.js" type="text/javascript"></script>-->
+<!--<script src="/js/simditor/hotkeys.js" type="text/javascript"></script>-->
+<!--<script src="/js/simditor/uploader.js" type="text/javascript"></script>-->
+<!--<script src="/js/simditor/simditor.js" type="text/javascript"></script>-->
 <!--<%&#45;&#45;simditor富文本编辑器结束&#45;&#45;%>-->
 
 </body>
