@@ -28,6 +28,7 @@
         .header_box {
             width: 1200px;
             margin: 0px auto;
+            position: relative;
         }
 
         .head_ul {
@@ -39,11 +40,12 @@
             font-size: 16px;
             color: #555;
             float: left;
-            padding: 30px 13px;
+            padding: 14px 0px;
             margin-right: 15px;
             text-align: center;
             box-sizing: border-box;
             position: relative;
+            width: 92px;
         }
 
         .css_li:hover {
@@ -60,11 +62,11 @@
         }
 
         .img_name {
-            width: 95px;
-            margin-top: 11px;
+            width: 110px;
+            margin-top: 20px;
         }
         .head_ul{
-            margin-left: 70px;
+            margin-left: 60px;
         }
 
         .search_box {
@@ -229,12 +231,14 @@
         }
 
         .login_container {
-            float: right;
+            /* float: right; */
             line-height: 76px;
             font-size: 14px;
             color: #888;
             cursor: pointer;
-            position: relative;
+            position: absolute;
+            top: 18px;
+            right: 0;
         }
 
         .icon-weixingongzhonghao {
@@ -283,6 +287,11 @@
             height: 280px;
             overflow: hidden;
         }
+        .head_ul1{
+            width: 1122px;
+            margin-left: 96px;
+            padding-top: 10px;
+        }
 
     </style>
     <script>
@@ -316,19 +325,54 @@
             <a href="/" class="logo_box">
                 <img src="/images/logo_top.gif" class="img_name">
             </a>
-            <ul class="head_ul" th:each="item : ${menu_list}">
-                <th:block th:if=" ${item.id eq menu_id}">
-                    <a th:href="@{${item.url}}" class="menu_css ">
-                        <li class="css_li active_li" th:text="${item.name}">菜单名</li>
-                    </a>
-                </th:block>
-                <th:block th:if=" ${item.id ne menu_id}">
-                    <a th:href="@{${item.url}}" class="menu_css ">
-                        <li class="css_li" th:text="${item.name}">菜单名</li>
-                    </a>
-                </th:block>
-                <div class="clear"></div>
-            </ul>
+               <div class="head_ul1">
+                   <div class="head_ul" th:each="item : ${menu_list}">
+                       <th:block th:if=" ${item.id eq menu_id}">
+                           <a th:href="@{${item.url}}" class="menu_css ">
+                               <li class="css_li active_li" th:text="${item.name}">菜单名</li>
+                           </a>
+                       </th:block>
+                       <th:block th:if=" ${item.id ne menu_id}">
+                           <a th:href="@{${item.url}}" class="menu_css ">
+                               <li class="css_li" th:text="${item.name}">菜单名</li>
+                           </a>
+                       </th:block>
+                       <div class="clear"></div>
+                   </div>
+                   <div class="head_ul">
+                       <a th:href="@{/news/list(menu_id=12)}" class="menu_css ">
+                           <li class="css_li ">政策法规</li>
+                       </a>
+                   </div>
+                   <div class="head_ul">
+                       <a th:href="@{/news/list(menu_id=13)}" class="menu_css ">
+                           <li class="css_li ">防水之窗</li>
+                       </a>
+                   </div>
+                   <div class="head_ul">
+                       <a th:href="@{/news/list(menu_id=14)}" class="menu_css ">
+                           <li class="css_li ">周容聚焦</li>
+                       </a>
+                   </div>
+                   <div class="head_ul">
+                       <a th:href="@{/news/list(menu_id=16)}" class="menu_css ">
+                           <li class="css_li ">法律服务</li>
+                       </a>
+                   </div>
+                   <div class="head_ul">
+                       <a th:href="@{/news/list(menu_id=15)}" class="menu_css ">
+                           <li class="css_li ">商会活动</li>
+                       </a>
+                   </div>
+                   <div class="head_ul">
+                       <a th:href="@{/news/list(menu_id=12)}" class="menu_css ">
+                           <li class="css_li ">商会公告</li>
+                       </a>
+                   </div>
+                   <div class="clear"></div>
+               </div>
+
+
             <div class="login_container" onmouseenter="showAppCode()" onmouseleave="removeAppCode()">
                 <i class="iconfont icon-weixingongzhonghao"></i>
                 <span>公众号</span>

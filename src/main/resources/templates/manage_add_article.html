@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<!--<link href="/css/simditor/simditor.css" rel="stylesheet" type="text/css"/>-->
+<link href="/css/simditor/simditor.css" rel="stylesheet" type="text/css"/>
 <div lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="manage_header::html"></div>
     <!--中间主体部分-->
@@ -81,12 +81,12 @@
                     </div>
                 </div>
                 <div class="add_subject_box">
-                    <!--<textarea id="editor" name="content" autofocus></textarea>-->
+                    <textarea id="editor" name="content" autofocus></textarea>
                     <!--<%&#45;&#45;富文本编辑器&#45;&#45;%>-->
-                    <div class="ueditor_box">
-                        <!-- 加载编辑器的容器 -->
-                        <script id="container" type="text/plain"></script>
-                    </div>
+                    <!--<div class="ueditor_box">-->
+                    <!--&lt;!&ndash; 加载编辑器的容器 &ndash;&gt;-->
+                    <!--<script id="container" type="text/plain"></script>-->
+                    <!--</div>-->
                     <div class="clear"></div>
                 </div>
                 <div class="add_release_box">
@@ -284,12 +284,11 @@
         } else {
             setTimeout(function () {
                 global_menu.map(v => {
-                    if (v.content == "") {
-                        if (v.id == global_type) {
-                            $('.menu_li').after('<option value="' + v.id + '" selected>' + v.name + '</option>')
-                        } else {
-                            $('.menu_li').after('<option value="' + v.id + '">' + v.name + '</option>')
-                        }
+
+                    if (v.id == global_type) {
+                        $('.menu_li').after('<option value="' + v.id + '" selected>' + v.name + '</option>')
+                    } else {
+                        $('.menu_li').after('<option value="' + v.id + '">' + v.name + '</option>')
                     }
 
                 })
@@ -324,12 +323,10 @@
             $('.editor_mid_box').css({height: 'auto'});
             editor.setValue(data.content);
             global_menu.map(v => {
-                if (v.content == "") {
-                    if (v.id == data.menu_id) {
-                        $('.menu_li').after('<option value="' + v.id + '" selected>' + v.name + '</option>')
-                    } else {
-                        $('.menu_li').after('<option value="' + v.id + '">' + v.name + '</option>')
-                    }
+                if (v.id == data.menu_id) {
+                    $('.menu_li').after('<option value="' + v.id + '" selected>' + v.name + '</option>')
+                } else {
+                    $('.menu_li').after('<option value="' + v.id + '">' + v.name + '</option>')
                 }
             })
             form.render()
@@ -456,76 +453,76 @@
 
 
 </script>
-<!-- 配置文件 -->
-<script>window.PROJECT_CONTEXT = "/";</script>
-<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.js"></script>
-<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.parse.js"></script>
-<!-- 实例化编辑器 -->
-<script type="text/javascript">
-    var ue = UE.getEditor('container', {
-        toolbars: [[
-            'fullscreen', 'source', '|', 'undo', 'redo', '|',
-            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-            'directionalityltr', 'directionalityrtl', 'indent', '|',
-            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
-            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
-            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-            'print', 'preview', 'searchreplace'
-        ]],
-        autoHeightEnabled: true,
-        autoFloatEnabled: true,
-        initialFrameHeight: 350,//设置编辑器高度
-//是否展示元素路径
-        elementPathEnabled: false,
-        allowDivTransToP: false,
-        initialContent: '',
-//后台接受UEditor的数据的参数名称
-        textarea: "content"
-    });
-    ue.addListener('ready', function (editor) {
-        // checkEditor();//ue加载完全后运行，防止出错；
-        if (global_id != null) {
-            loadMessage();
-        }
-//        ue.getContent();//获取信息
-//        ue.setContent("jjj");//设置信息
-    });
-</script>
-<!--<%&#45;&#45;simditor富文本编辑器引用文件&#45;&#45;%>-->
+<!--&lt;!&ndash; 配置文件 &ndash;&gt;-->
+<!--<script>window.PROJECT_CONTEXT = "/";</script>-->
+<!--<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>-->
+<!--<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.js"></script>-->
+<!--<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>-->
+<!--<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.parse.js"></script>-->
+<!--&lt;!&ndash; 实例化编辑器 &ndash;&gt;-->
 <!--<script type="text/javascript">-->
-<!--var editor;-->
-<!--$(function () {-->
-<!--var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough',-->
-<!--'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|',-->
-<!--'link', 'image', 'hr', '|', 'indent', 'outdent','alignment'];-->
-<!--editor = new Simditor({-->
-<!--textarea: $('#editor'),-->
-<!--placeholder: '这里输入内容...',-->
-<!--toolbar: toolbar,  //工具栏-->
-<!--toolbarFloat: true,  //工具栏-->
-<!--// defaultImage: '/resource/images/logo.png', //编辑器插入图片时使用的默认图片-->
-<!--upload: {-->
-<!--url: '/file/upload', //文件上传的接口地址-->
-<!--params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交-->
-<!--fileKey: 'file', //服务器端获取文件数据的参数名-->
-<!--connectionCount: 3,-->
-<!--leaveConfirm: '正在上传文件'-->
-<!--}-->
+<!--var ue = UE.getEditor('container', {-->
+<!--toolbars: [[-->
+<!--'fullscreen', 'source', '|', 'undo', 'redo', '|',-->
+<!--'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',-->
+<!--'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',-->
+<!--'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',-->
+<!--'directionalityltr', 'directionalityrtl', 'indent', '|',-->
+<!--'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',-->
+<!--'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',-->
+<!--'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',-->
+<!--'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',-->
+<!--'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',-->
+<!--'print', 'preview', 'searchreplace'-->
+<!--]],-->
+<!--autoHeightEnabled: true,-->
+<!--autoFloatEnabled: true,-->
+<!--initialFrameHeight: 350,//设置编辑器高度-->
+<!--//是否展示元素路径-->
+<!--elementPathEnabled: false,-->
+<!--allowDivTransToP: false,-->
+<!--initialContent: '',-->
+<!--//后台接受UEditor的数据的参数名称-->
+<!--textarea: "content"-->
 <!--});-->
-<!--// editor.setValue(global_total_content);-->
-<!--})-->
+<!--ue.addListener('ready', function (editor) {-->
+<!--// checkEditor();//ue加载完全后运行，防止出错；-->
+<!--if (global_id != null) {-->
+<!--loadMessage();-->
+<!--}-->
+<!--//        ue.getContent();//获取信息-->
+<!--//        ue.setContent("jjj");//设置信息-->
+<!--});-->
 <!--</script>-->
-<!--<script src="/js/simditor/module.js" type="text/javascript"></script>-->
-<!--<script src="/js/simditor/hotkeys.js" type="text/javascript"></script>-->
-<!--<script src="/js/simditor/uploader.js" type="text/javascript"></script>-->
-<!--<script src="/js/simditor/simditor.js" type="text/javascript"></script>-->
-<!--<%&#45;&#45;simditor富文本编辑器结束&#45;&#45;%>-->
+
+<script type="text/javascript">
+    var editor;
+    $(function () {
+        var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough',
+            'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|',
+            'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
+        editor = new Simditor({
+            textarea: $('#editor'),
+            placeholder: '这里输入内容...',
+            toolbar: toolbar,  //工具栏
+            toolbarFloat: true,  //工具栏
+// defaultImage: '/resource/images/logo.png', //编辑器插入图片时使用的默认图片
+            upload: {
+                url: '/file/upload', //文件上传的接口地址
+                params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                fileKey: 'file', //服务器端获取文件数据的参数名
+                connectionCount: 3,
+                leaveConfirm: '正在上传文件'
+            }
+        });
+// editor.setValue(global_total_content);
+    })
+</script>
+<script src="/js/simditor/module.js" type="text/javascript"></script>
+<script src="/js/simditor/hotkeys.js" type="text/javascript"></script>
+<script src="/js/simditor/uploader.js" type="text/javascript"></script>
+<script src="/js/simditor/simditor.js" type="text/javascript"></script>
+
 
 </body>
 </html>
