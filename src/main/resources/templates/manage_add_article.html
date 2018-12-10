@@ -41,14 +41,14 @@
                 <form class="layui-form" action="">
                     <div class="add_class_box all_box_type">
                         <label class="layui-form-label">分类：</label>
-                        <div class="input_box">
-                            <div class="layui-input-block">
+                        <div class="input_box input_select">
+                            <div class="layui-input-block input_select_box">
                                 <select name="city" class="menu_select">
                                     <option value="" class="menu_li"></option>
-
                                 </select>
                             </div>
                         </div>
+                        <div class="clear"></div>
                     </div>
                 </form>
                 <div class="add_title_box all_box_type">
@@ -273,6 +273,13 @@
     .ueditor_box {
         height: 350px;
     }
+    .input_select{
+        float: left;
+    }
+    .input_select_box{
+            margin-left: 0;
+        width: 505px;
+    }
 </style>
 <script src="/css/layui/layui.js"></script>
 <script>
@@ -280,7 +287,7 @@
 
 
         if (global_id != null) {
-            // loadMessage();
+            loadMessage();
         } else {
             setTimeout(function () {
                 global_menu.map(v => {
@@ -314,7 +321,8 @@
             id: global_id
         }
         operation.operation_ajax_async("/api/manage/article/detail", "post", obj, function () {
-            let data = global_data.data
+            let data = global_data.data;
+
             $("input[name='title']").val(data.title);
             $("input[name='author']").val(data.author);
             $('.img0').attr('src', data.cover).attr('data_src', data.cover).addClass('add_image').show().css("width", '92%');
@@ -329,7 +337,14 @@
                     $('.menu_li').after('<option value="' + v.id + '">' + v.name + '</option>')
                 }
             })
-            form.render()
+            $('.add_article_name').text('修改文章')
+            try{
+                form.render();
+            }catch (e){
+
+            }
+
+
         });
     }
 
